@@ -14,12 +14,13 @@ public class Movie {
     private String format; // streaming or dvd
     private LocalDate releaseDate;
     private double price;
+    private int runtime;
     private Rating.MovieRating movieRating;
 
     public Movie() {
     }
 
-    public Movie(int id, String name, String description, String genre, String director, String studio, String format, LocalDate releaseDate, double price, Rating.MovieRating movieRating) {
+    public Movie(int id, String name, String description, String genre, String director, String studio, String format, LocalDate releaseDate, double price, Rating.MovieRating movieRating, int runtime) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -30,6 +31,7 @@ public class Movie {
         this.releaseDate = releaseDate;
         this.price = price;
         this.movieRating = movieRating;
+        this.runtime = runtime;
     }
 
     public int getId() {
@@ -104,6 +106,14 @@ public class Movie {
         this.price = price;
     }
 
+    public int getRuntime() {
+        return runtime;
+    }
+
+    public void setRuntime(int runtime) {
+        this.runtime = runtime;
+    }
+
     public Rating.MovieRating getMovieRating() {
         return movieRating;
     }
@@ -124,4 +134,6 @@ public class Movie {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+
 }
