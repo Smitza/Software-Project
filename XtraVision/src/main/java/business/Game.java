@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Game {
 
-private int id;
+    private int id;
     private String name;
     private String description;
     private String genre;
@@ -14,12 +14,12 @@ private int id;
     private String platform;
     private LocalDate releaseDate;
     private double price;
-    private Rating gameRating;
+    private Rating.GameRating gameRating;
 
     public Game() {
     }
 
-    public Game(int id, String name, String description, String genre, String developer, String publisher, String platform, LocalDate releaseDate, double price, Rating gameRating) {
+    public Game(int id, String name, String description, String genre, String developer, String publisher, String platform, LocalDate releaseDate, double price, Rating.GameRating gameRating) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -104,11 +104,11 @@ private int id;
         this.price = price;
     }
 
-    public Rating getGameRating() {
+    public Rating.GameRating getGameRating() {
         return gameRating;
     }
 
-    public void setGameRating(Rating gameRating) {
+    public void setGameRating(Rating.GameRating gameRating) {
         this.gameRating = gameRating;
     }
 
@@ -126,7 +126,6 @@ private int id;
                 ", price=" + price +
                 ", gameRating=" + gameRating +
                 '}';
-
     }
 
     @Override
