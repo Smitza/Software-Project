@@ -23,7 +23,7 @@ public class HelloServlet extends HttpServlet {
         out.println("<h1>" + message + "</h1>");
         out.println("</body></html>");
 
-        //sean is an asshole he wont stop looking over my shoulder
+        //sean is an asshole he wont stop looking over my shoulder x2
 
     }
 
