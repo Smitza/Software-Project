@@ -11,7 +11,7 @@ public class Game {
     private String genre;
     private String developer;
     private String publisher;
-    private String platform;
+    private String platform; // 3 possible platforms the user can pick. Pc , Xbox or Playstation
     private LocalDate releaseDate;
     private double price;
     private Rating.GameRating gameRating;
