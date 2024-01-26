@@ -16,6 +16,12 @@ public class Game {
     private double price;
     private Rating.GameRating gameRating;
 
+    //idea
+//    private static final int shortStringLength = 50;
+//    private static final int mediumStringLength = 100;
+//    private static final int longStringLength = 500
+    //maybe  regular expressions too
+
     public Game() {
     }
 
@@ -34,9 +40,13 @@ public class Game {
 
     public int getId() {
         return id;
+
     }
 
     public void setId(int id) {
+        if (id <= 0) {
+            throw new IllegalArgumentException("ID must be positive");
+        }
         this.id = id;
     }
 
@@ -45,6 +55,9 @@ public class Game {
     }
 
     public void setName(String name) {
+        if (name == null || name.trim().isEmpty() || name.length() > 100) {
+            throw new IllegalArgumentException("Name cannot be null, empty, or longer than 100 characters");
+        }
         this.name = name;
     }
 
@@ -53,14 +66,24 @@ public class Game {
     }
 
     public void setDescription(String description) {
+        if (description == null || description.trim().isEmpty() || description.length() > 500) {
+            throw new IllegalArgumentException("Description cannot be null, empty or longer than 500 characters");
+        }
         this.description = description;
     }
+
+
 
     public String getGenre() {
         return genre;
     }
 
+//might do enum for genre
+
     public void setGenre(String genre) {
+        if (genre == null || genre.trim().isEmpty()) {
+            throw new IllegalArgumentException("Genre cannot be null or empty");
+        }
         this.genre = genre;
     }
 
@@ -69,6 +92,9 @@ public class Game {
     }
 
     public void setDeveloper(String developer) {
+        if (developer == null || developer.trim().isEmpty() || developer.length() > 50) {
+            throw new IllegalArgumentException("Developer cannot be null, empty or longer than 50 characters");
+        }
         this.developer = developer;
     }
 
@@ -77,6 +103,9 @@ public class Game {
     }
 
     public void setPublisher(String publisher) {
+        if (publisher == null || publisher.trim().isEmpty() || publisher.length() > 50){
+            throw new IllegalArgumentException("Publisher cannot be null, empty or longer than 50 characters");
+        }
         this.publisher = publisher;
     }
 
@@ -84,7 +113,11 @@ public class Game {
         return platform;
     }
 
+    // might do enum for this too
     public void setPlatform(String platform) {
+        if (platform == null || platform.trim().isEmpty() || platform.length() > 50) {
+            throw new IllegalArgumentException("Platform cannot be null, empty or longer than 50 characters");
+        }
         this.platform = platform;
     }
 
@@ -93,6 +126,9 @@ public class Game {
     }
 
     public void setReleaseDate(LocalDate releaseDate) {
+        if (releaseDate == null || releaseDate.isAfter(LocalDate.now())) {
+            throw new IllegalArgumentException("Release date cannot be null or in the future");
+        }
         this.releaseDate = releaseDate;
     }
 
@@ -101,6 +137,9 @@ public class Game {
     }
 
     public void setPrice(double price) {
+        if (price < 0 || price > 100) {
+            throw new IllegalArgumentException("Price cannot be negative and not exceed €100");
+        }
         this.price = price;
     }
 
@@ -109,6 +148,9 @@ public class Game {
     }
 
     public void setGameRating(Rating.GameRating gameRating) {
+        if (gameRating == null ) {
+            throw new IllegalArgumentException("Game rating cannot be null");
+        }
         this.gameRating = gameRating;
     }
 
