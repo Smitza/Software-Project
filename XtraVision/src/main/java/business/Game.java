@@ -5,6 +5,12 @@ import java.util.Objects;
 
 public class Game {
 
+    private static final int MAX_NAME_LENGTH = 100;
+    private static final int MAX_DESCRIPTION_LENGTH = 500;
+    private static final int MAX_DEVELOPER_LENGTH = 50;
+    private static final int MAX_PUBLISHER_LENGTH = 50;
+    private static final int MAX_PRICE = 100;
+
     private int id;
     private String name;
     private String description;
@@ -16,10 +22,7 @@ public class Game {
     private double price;
     private Rating.GameRating gameRating;
 
-    //idea
-//    private static final int shortStringLength = 50;
-//    private static final int mediumStringLength = 100;
-//    private static final int longStringLength = 500
+
     //maybe  regular expressions too
 
     public Game() {
@@ -55,7 +58,7 @@ public class Game {
     }
 
     public void setName(String name) {
-        if (name == null || name.trim().isEmpty() || name.length() > 100) {
+        if (name == null || name.trim().isEmpty() || name.length() > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException("Name cannot be null, empty, or longer than 100 characters");
         }
         this.name = name;
@@ -66,7 +69,7 @@ public class Game {
     }
 
     public void setDescription(String description) {
-        if (description == null || description.trim().isEmpty() || description.length() > 500) {
+        if (description == null || description.trim().isEmpty() || description.length() > MAX_DESCRIPTION_LENGTH) {
             throw new IllegalArgumentException("Description cannot be null, empty or longer than 500 characters");
         }
         this.description = description;
@@ -92,7 +95,7 @@ public class Game {
     }
 
     public void setDeveloper(String developer) {
-        if (developer == null || developer.trim().isEmpty() || developer.length() > 50) {
+        if (developer == null || developer.trim().isEmpty() || developer.length() > MAX_DEVELOPER_LENGTH) {
             throw new IllegalArgumentException("Developer cannot be null, empty or longer than 50 characters");
         }
         this.developer = developer;
@@ -103,7 +106,7 @@ public class Game {
     }
 
     public void setPublisher(String publisher) {
-        if (publisher == null || publisher.trim().isEmpty() || publisher.length() > 50){
+        if (publisher == null || publisher.trim().isEmpty() || publisher.length() > MAX_PUBLISHER_LENGTH){
             throw new IllegalArgumentException("Publisher cannot be null, empty or longer than 50 characters");
         }
         this.publisher = publisher;
@@ -137,7 +140,7 @@ public class Game {
     }
 
     public void setPrice(double price) {
-        if (price < 0 || price > 100) {
+        if (price < 0 || price > MAX_PRICE) {
             throw new IllegalArgumentException("Price cannot be negative and not exceed €100");
         }
         this.price = price;
