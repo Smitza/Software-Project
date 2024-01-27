@@ -3,13 +3,11 @@
     import java.time.LocalDate;
     import java.util.Objects;
 
-    public class Game {
+    public class Game extends MediaEntity {
 
-        private static final int MAX_NAME_LENGTH = 100;
-        private static final int MAX_DESCRIPTION_LENGTH = 500;
+
         private static final int MAX_DEVELOPER_LENGTH = 50;
         private static final int MAX_PUBLISHER_LENGTH = 50;
-        private static final int MAX_PRICE = 100;
 
         private int id;
         private String name;
