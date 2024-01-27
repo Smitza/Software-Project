@@ -11,7 +11,7 @@ public class Movie {
     private String genre;
     private String director;
     private String studio;
-    private String format; // streaming or dvd
+    private Platform.MoviePlatform format; // streaming or dvd
     private LocalDate releaseDate;
     private double price;
     private int runtime;
@@ -20,7 +20,7 @@ public class Movie {
     public Movie() {
     }
 
-    public Movie(int id, String name, String description, String genre, String director, String studio, String format, LocalDate releaseDate, double price, Rating.MovieRating movieRating, int runtime) {
+    public Movie(int id, String name, String description, String genre, String director, String studio, Platform.MoviePlatform format, LocalDate releaseDate, double price, Rating.MovieRating movieRating, int runtime) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -82,11 +82,11 @@ public class Movie {
         this.studio = studio;
     }
 
-    public String getFormat() {
+    public Platform.MoviePlatform getFormat() {
         return format;
     }
 
-    public void setFormat(String format) {
+    public void setFormat(Platform.MoviePlatform format) {
         this.format = format;
     }
 
