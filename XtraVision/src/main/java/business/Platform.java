@@ -9,4 +9,8 @@ public class Platform {
         DVD, BLURAY, STREAMING //free can only get dvd, sliver and up all of the above
     }
 
+    public enum TVPlatform {
+        DVD, BLURAY, STREAMING
+    }
+
 }
