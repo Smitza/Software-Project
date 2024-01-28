@@ -3,67 +3,25 @@ package business;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Movie {
+public class Movie extends MediaEntity {
 
-    private int id;
-    private String name;
-    private String description;
-    private String genre;
     private String director;
-    private String studio;
     private Platform.MoviePlatform format; // streaming or dvd
-    private LocalDate releaseDate;
-    private double price;
     private int runtime;
     private Rating.MovieRating movieRating;
+
+    private static final int MAX_DIRECTOR_LENGTH = 50;
+
 
     public Movie() {
     }
 
     public Movie(int id, String name, String description, String genre, String director, String studio, Platform.MoviePlatform format, LocalDate releaseDate, double price, Rating.MovieRating movieRating, int runtime) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.genre = genre;
+        super(id, name, description, genre, studio, releaseDate, price);
         this.director = director;
-        this.studio = studio;
         this.format = format;
-        this.releaseDate = releaseDate;
-        this.price = price;
-        this.movieRating = movieRating;
         this.runtime = runtime;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
+        this.movieRating = movieRating;
     }
 
     public String getDirector() {
@@ -71,15 +29,10 @@ public class Movie {
     }
 
     public void setDirector(String director) {
+        if (director == null || director.trim().isEmpty() || director.length() > MAX_DIRECTOR_LENGTH) {
+            throw new IllegalArgumentException("Director cannot be null or empty or longer than " + MAX_DIRECTOR_LENGTH + " characters.");
+        }
         this.director = director;
-    }
-
-    public String getStudio() {
-        return studio;
-    }
-
-    public void setStudio(String studio) {
-        this.studio = studio;
     }
 
     public Platform.MoviePlatform getFormat() {
@@ -87,23 +40,10 @@ public class Movie {
     }
 
     public void setFormat(Platform.MoviePlatform format) {
+        if (format == null) {
+            throw new IllegalArgumentException("Format cannot be null.");
+        }
         this.format = format;
-    }
-
-    public LocalDate getReleaseDate() {
-        return releaseDate;
-    }
-
-    public void setReleaseDate(LocalDate releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     public int getRuntime() {
@@ -111,6 +51,9 @@ public class Movie {
     }
 
     public void setRuntime(int runtime) {
+        if (runtime <= 0) {
+            throw new IllegalArgumentException("Runtime must be positive.");
+        }
         this.runtime = runtime;
     }
 
@@ -119,21 +62,34 @@ public class Movie {
     }
 
     public void setMovieRating(Rating.MovieRating movieRating) {
+        if (movieRating == null) {
+            throw new IllegalArgumentException("Movie rating cannot be null.");
+        }
         this.movieRating = movieRating;
+    }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                super.toString() +
+                "director='" + director + '\'' +
+                ", format=" + format +
+                ", runtime=" + runtime +
+                ", movieRating=" + movieRating +
+                "} ";
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
         Movie movie = (Movie) o;
-        return id == movie.id;
+        return runtime == movie.runtime && Objects.equals(director, movie.director) && format == movie.format && movieRating == movie.movieRating;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(super.hashCode(), director, format, runtime, movieRating);
     }
-
-
 }
