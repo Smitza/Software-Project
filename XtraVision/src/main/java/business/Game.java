@@ -56,7 +56,7 @@ public class Game extends MediaEntity{
     }
 
     @Override
-    public String toString() {
+    public String toString() { // may need to change this:/
         return "Game{" +
                 super.toString() +
                 "publisher='" + publisher + '\'' +

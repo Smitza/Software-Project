@@ -39,7 +39,7 @@ CREATE TABLE `games` (
   `publisher` varchar(15) NOT NULL,
   `platform` varchar(10) NOT NULL,
   `releasedate` date NOT NULL,
-  `price` int(8) NOT NULL,
+  `price` double(8,2) NOT NULL,
   `rating` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -59,7 +59,7 @@ CREATE TABLE `movies` (
   `studio` varchar(25) NOT NULL,
   `format` varchar(25) NOT NULL,
   `releasedate` date NOT NULL,
-  `price` varchar(25) NOT NULL,
+  `price` double(8,2) NOT NULL,
   `runtime` varchar(25) NOT NULL,
   `movierating` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -80,7 +80,7 @@ CREATE TABLE `tvshows` (
   `studio` varchar(15) NOT NULL,
   `format` varchar(10) NOT NULL,
   `releasedate` date NOT NULL,
-  `price` varchar(10) NOT NULL,
+  `price` double(8,2) NOT NULL,
   `noofseasons` int(10) NOT NULL,
   `noofepisodes` int(10) NOT NULL,
   `runtime` varchar(15) NOT NULL,

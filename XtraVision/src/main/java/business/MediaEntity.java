@@ -11,7 +11,7 @@ public abstract class MediaEntity {
     protected String genre; // might add enum later for better organization
     protected String studio; //production studio / game devs, could change name in frontend to prevent confusion, if needed
     protected LocalDate releaseDate; //might consider how we handle future releases or upcoming titles
-    protected double price;
+    protected double price; //should use Bigdecimal, may fix later?
 
     private static final int MAX_NAME_LENGTH = 100;
     private static final int MAX_DESCRIPTION_LENGTH = 500;
