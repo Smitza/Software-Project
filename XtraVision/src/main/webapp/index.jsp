@@ -5,8 +5,6 @@
     <title>Xtra-Xtra Vision</title>
 </head>
 <body>
-</h1>
-<br/>
-    <a href="controller">Controller</a>
+    
 </body>
 </html>

@@ -27,7 +27,7 @@ public class LoginCommand implements Command{
             User user = userDao.findUserByUsernamePassword(username, password);
             if(user != null){
                 session.setAttribute("loggedInUser", user);
-                destination = "home.jsp";
+                destination = "index.jsp";
             }else{
                 String errorMessage = "No user found.";
                 session.setAttribute("errorMessage", errorMessage);
