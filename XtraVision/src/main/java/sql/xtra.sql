@@ -46,14 +46,8 @@ CREATE TABLE `delivery` (
 DROP TABLE IF EXISTS `games`;
 CREATE TABLE `games` (
   `gameid` int(11) NOT NULL,
-  `name` varchar(15) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `genre` varchar(20) NOT NULL,
-  `developer` varchar(15) NOT NULL,
   `publisher` varchar(15) NOT NULL,
   `platform` varchar(10) NOT NULL,
-  `releasedate` date NOT NULL,
-  `price` double(8,2) NOT NULL,
   `gamerating` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -66,14 +60,8 @@ CREATE TABLE `games` (
 DROP TABLE IF EXISTS `movies`;
 CREATE TABLE `movies` (
   `movieid` int(11) NOT NULL,
-  `name` varchar(25) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `genre` varchar(25) NOT NULL,
   `director` varchar(25) NOT NULL,
-  `studio` varchar(25) NOT NULL,
   `format` varchar(25) NOT NULL,
-  `releasedate` date NOT NULL,
-  `price` double(8,2) NOT NULL,
   `runtime` varchar(25) NOT NULL,
   `movierating` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -101,14 +89,8 @@ CREATE TABLE `payment` (
 DROP TABLE IF EXISTS `tvshows`;
 CREATE TABLE `tvshows` (
   `tvid` int(11) NOT NULL,
-  `name` varchar(15) NOT NULL,
-  `description` varchar(255) NOT NULL,
-  `genre` varchar(15) NOT NULL,
   `showrunner` varchar(15) NOT NULL,
-  `studio` varchar(15) NOT NULL,
   `format` varchar(10) NOT NULL,
-  `releasedate` date NOT NULL,
-  `price` double(8,2) NOT NULL,
   `noofseasons` int(10) NOT NULL,
   `noofepisodes` int(10) NOT NULL,
   `runtime` varchar(15) NOT NULL,
@@ -128,14 +110,24 @@ CREATE TABLE `users` (
   `email` varchar(25) NOT NULL,
   `password` varchar(30) NOT NULL,
   `phone` varchar(15) NOT NULL,
-  `firstname` varchar(10) NOT NULL,
-  `lastname` varchar(10) NOT NULL,
+  `name` varchar(30) NOT NULL,
   `membership` int(8) NOT NULL,
   `isAdmin` tinyint(1) NOT NULL,
   `gameid` int(11) NOT NULL,
   `movieid` int(11) NOT NULL,
   `tvid` int(11) NOT NULL,
   `payid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+DROP TABLE IF EXISTS `products`;
+CREATE TABLE `products` (
+`productid` int(11) NOT NULL,
+`name` varchar(15) NOT NULL,
+`description` varchar(255) NOT NULL,
+`genre` varchar(20) NOT NULL,
+`studio` varchar(15) NOT NULL,
+`releasedate` date NOT NULL,
+`price` double(8,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
