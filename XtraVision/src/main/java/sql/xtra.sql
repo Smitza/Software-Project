@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 01, 2024 at 11:19 AM
+-- Generation Time: Feb 01, 2024 at 11:55 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -34,7 +34,7 @@ CREATE TABLE `delivery` (
   `deliveryid` int(15) NOT NULL,
   `address` varchar(35) NOT NULL,
   `phoneno` int(30) NOT NULL,
-  `payId` int(15) NOT NULL
+  `payid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -45,7 +45,7 @@ CREATE TABLE `delivery` (
 
 DROP TABLE IF EXISTS `games`;
 CREATE TABLE `games` (
-  `gameid` int(5) NOT NULL,
+  `gameid` int(11) NOT NULL,
   `name` varchar(15) NOT NULL,
   `description` varchar(255) NOT NULL,
   `genre` varchar(20) NOT NULL,
@@ -54,7 +54,7 @@ CREATE TABLE `games` (
   `platform` varchar(10) NOT NULL,
   `releasedate` date NOT NULL,
   `price` double(8,2) NOT NULL,
-  `rating` varchar(10) NOT NULL
+  `gamerating` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -65,7 +65,7 @@ CREATE TABLE `games` (
 
 DROP TABLE IF EXISTS `movies`;
 CREATE TABLE `movies` (
-  `movieid` int(5) NOT NULL,
+  `movieid` int(11) NOT NULL,
   `name` varchar(25) NOT NULL,
   `description` varchar(255) NOT NULL,
   `genre` varchar(25) NOT NULL,
@@ -86,7 +86,7 @@ CREATE TABLE `movies` (
 
 DROP TABLE IF EXISTS `payment`;
 CREATE TABLE `payment` (
-  `payid` int(15) NOT NULL,
+  `payid` int(11) NOT NULL,
   `amount` int(10) NOT NULL,
   `paymentdate` varchar(30) NOT NULL,
   `paymentmethod` varchar(25) NOT NULL
@@ -123,7 +123,7 @@ CREATE TABLE `tvshows` (
 
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
-  `userid` int(10) NOT NULL,
+  `userid` int(11) NOT NULL,
   `username` varchar(25) NOT NULL,
   `email` varchar(25) NOT NULL,
   `password` varchar(30) NOT NULL,
@@ -131,7 +131,11 @@ CREATE TABLE `users` (
   `firstname` varchar(10) NOT NULL,
   `lastname` varchar(10) NOT NULL,
   `membership` int(8) NOT NULL,
-  `isAdmin` tinyint(1) NOT NULL
+  `isAdmin` tinyint(1) NOT NULL,
+  `gameid` int(11) NOT NULL,
+  `movieid` int(11) NOT NULL,
+  `tvid` int(11) NOT NULL,
+  `payid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -143,7 +147,7 @@ CREATE TABLE `users` (
 --
 ALTER TABLE `delivery`
   ADD PRIMARY KEY (`deliveryid`),
-  ADD UNIQUE KEY `FOREIGN` (`payId`);
+  ADD UNIQUE KEY `payid` (`payid`);
 
 --
 -- Indexes for table `games`
@@ -173,7 +177,11 @@ ALTER TABLE `tvshows`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`userid`);
+  ADD PRIMARY KEY (`userid`),
+  ADD KEY `gameid Foreign` (`gameid`),
+  ADD KEY `tvid Foreign` (`tvid`),
+  ADD KEY `movieid Foreign` (`movieid`),
+  ADD KEY `payid Foreign` (`payid`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -189,19 +197,19 @@ ALTER TABLE `delivery`
 -- AUTO_INCREMENT for table `games`
 --
 ALTER TABLE `games`
-  MODIFY `gameid` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `gameid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `movies`
 --
 ALTER TABLE `movies`
-  MODIFY `movieid` int(5) NOT NULL AUTO_INCREMENT;
+  MODIFY `movieid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `payid` int(15) NOT NULL AUTO_INCREMENT;
+  MODIFY `payid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tvshows`
@@ -213,7 +221,20 @@ ALTER TABLE `tvshows`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userid` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `gameid Foreign` FOREIGN KEY (`gameid`) REFERENCES `games` (`gameid`),
+  ADD CONSTRAINT `movieid Foreign` FOREIGN KEY (`movieid`) REFERENCES `movies` (`movieid`),
+  ADD CONSTRAINT `payid Foreign` FOREIGN KEY (`payid`) REFERENCES `payment` (`payid`),
+  ADD CONSTRAINT `tvid Foreign` FOREIGN KEY (`tvid`) REFERENCES `tvshows` (`tvid`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
