@@ -1,9 +1,12 @@
 package daos;
 
 import business.Game;
+import business.User;
 import exceptions.DaoException;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameDao extends Dao implements GameDaoInterface {
 
@@ -14,7 +17,7 @@ public class GameDao extends Dao implements GameDaoInterface {
 
     public boolean addGame(Game g) throws DaoException {
         int rowsAffected = -1;
-        String query = "INSERT INTO games(gameid, name, description, genre, studio, publisher, platform, releaseDate, price, gameRating) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO games(gameid, publisher, platform, releaseDate, gameRating) VALUES ( ?, ?, ?, ?)";
 
         try (Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(query)){
@@ -33,7 +36,6 @@ public class GameDao extends Dao implements GameDaoInterface {
             rowsAffected = ps.executeUpdate();
 
         } catch (SQLException e) {
-            // Optionally log the exception here
             throw new DaoException("Error adding game with ID " + g.getId() + ";: " + e.getMessage(), e);
         }
         return rowsAffected > 0;
