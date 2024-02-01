@@ -11,18 +11,21 @@ public class Product {
     private String genre;
     private String studio;
     private LocalDate releaseDate;
-    protected double price;
+    private double price;
+    private int quantity;
 
     private static final int MAX_NAME_LENGTH = 100;
     private static final int MAX_DESCRIPTION_LENGTH = 500;
     private static final int MAX_GENRE_LENGTH = 50;
     private static final int MAX_STUDIO_LENGTH = 50;
     private static final double MAX_PRICE = 100.0;
+    private static final int MAX_PRODUCT = 1000;
+
 
     public Product() {
     }
 
-    public Product(int productid, String name, String description, String genre, String studio, LocalDate releaseDate, double price) {
+    public Product(int productid, String name, String description, String genre, String studio, LocalDate releaseDate, double price, int quantity) {
         this.productid = productid;
         this.name = name;
         this.description = description;
@@ -30,6 +33,7 @@ public class Product {
         this.studio = studio;
         this.releaseDate = releaseDate;
         this.price = price;
+        this.quantity = quantity;
     }
 
 
@@ -110,6 +114,17 @@ public class Product {
         this.price = price;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        if (quantity < 0 || quantity > MAX_PRODUCT) {
+            throw new IllegalArgumentException("Product must be positive and not exceed " + MAX_PRODUCT);
+        }
+    }
+    }
+
     @Override
     public String toString() {
         return "MediaEntity{" +
@@ -135,4 +150,7 @@ public class Product {
     public int hashCode() {
         return Objects.hash(productid, name, genre, studio, releaseDate);
     }
-}
+
+
+
+
