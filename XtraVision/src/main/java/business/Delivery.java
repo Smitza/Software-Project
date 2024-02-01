@@ -4,17 +4,17 @@ import java.util.Objects;
 
 public class Delivery {
 
-    private int deliverayId;
+    private int deliveryId;
     private String address;
     private String phoneNumber;
     private Payment paymentMethod;
 
     public int getDeliverayId() {
-        return deliverayId;
+        return deliveryId;
     }
 
     public void setDeliverayId(int deliverayId) {
-        this.deliverayId = deliverayId;
+        this.deliveryId = deliverayId;
     }
 
     public String getAddress() {

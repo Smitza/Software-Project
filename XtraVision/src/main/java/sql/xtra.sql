@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2024 at 11:18 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- Generation Time: Feb 01, 2024 at 11:19 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -22,6 +22,20 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `xtra` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `xtra`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `delivery`
+--
+
+DROP TABLE IF EXISTS `delivery`;
+CREATE TABLE `delivery` (
+  `deliveryid` int(15) NOT NULL,
+  `address` varchar(35) NOT NULL,
+  `phoneno` int(30) NOT NULL,
+  `payId` int(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -67,6 +81,20 @@ CREATE TABLE `movies` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `payment`
+--
+
+DROP TABLE IF EXISTS `payment`;
+CREATE TABLE `payment` (
+  `payid` int(15) NOT NULL,
+  `amount` int(10) NOT NULL,
+  `paymentdate` varchar(30) NOT NULL,
+  `paymentmethod` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tvshows`
 --
 
@@ -102,12 +130,20 @@ CREATE TABLE `users` (
   `phone` varchar(15) NOT NULL,
   `firstname` varchar(10) NOT NULL,
   `lastname` varchar(10) NOT NULL,
-  `membership` int(8) NOT NULL
+  `membership` int(8) NOT NULL,
+  `isAdmin` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `delivery`
+--
+ALTER TABLE `delivery`
+  ADD PRIMARY KEY (`deliveryid`),
+  ADD UNIQUE KEY `FOREIGN` (`payId`);
 
 --
 -- Indexes for table `games`
@@ -120,6 +156,12 @@ ALTER TABLE `games`
 --
 ALTER TABLE `movies`
   ADD PRIMARY KEY (`movieid`);
+
+--
+-- Indexes for table `payment`
+--
+ALTER TABLE `payment`
+  ADD PRIMARY KEY (`payid`);
 
 --
 -- Indexes for table `tvshows`
@@ -138,6 +180,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `delivery`
+--
+ALTER TABLE `delivery`
+  MODIFY `deliveryid` int(15) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `games`
 --
 ALTER TABLE `games`
@@ -148,6 +196,12 @@ ALTER TABLE `games`
 --
 ALTER TABLE `movies`
   MODIFY `movieid` int(5) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `payment`
+--
+ALTER TABLE `payment`
+  MODIFY `payid` int(15) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tvshows`
