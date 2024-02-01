@@ -76,7 +76,9 @@ public class Tv extends MediaEntity {
     }
 
     public void setRuntime(int runtime) {
-        this.runtime = runtime;
+        if (id <= 0) {
+            throw new IllegalArgumentException("Runtime must be positive.");
+        }
     }
 
     public Rating.TvRating getTvRating() {
