@@ -3,7 +3,7 @@ package business;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Tv extends MediaEntity {
+public class Tv extends Product {
     private String showrunner;
     private Format.TvFormat format; // streaming or dvd
     private int numberOfSeasons;

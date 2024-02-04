@@ -8,10 +8,10 @@ public class Product {
     private int productid;
     private String name;
     private String description;
-    private String genre;
-    private String studio;
-    private LocalDate releaseDate;
-    private double price;
+    private String genre; // might add enum later for better organization
+    private String studio; //production studio / game devs, could change name in frontend to prevent confusion, if needed
+    private LocalDate releaseDate; //might consider how we handle future releases or upcoming titles
+    private double price; //should use Bigdecimal, may fix later?
     private int quantity;
 
     private static final int MAX_NAME_LENGTH = 100;
@@ -19,7 +19,7 @@ public class Product {
     private static final int MAX_GENRE_LENGTH = 50;
     private static final int MAX_STUDIO_LENGTH = 50;
     private static final double MAX_PRICE = 100.0;
-    private static final int MAX_PRODUCT = 1000;
+    private static final int MAX_QUANTITY = 1000;
 
 
     public Product() {
@@ -119,22 +119,23 @@ public class Product {
     }
 
     public void setQuantity(int quantity) {
-        if (quantity < 0 || quantity > MAX_PRODUCT) {
-            throw new IllegalArgumentException("Product must be positive and not exceed " + MAX_PRODUCT);
+        if (quantity < 0 || quantity > MAX_QUANTITY) {
+            throw new IllegalArgumentException("Quantity must be positive and not exceed " + MAX_QUANTITY);
         }
-    }
+        this.quantity = quantity;
     }
 
     @Override
     public String toString() {
-        return "MediaEntity{" +
-                "id=" + productid +
+        return "Product{" +
+                "productid=" + productid +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", genre='" + genre + '\'' +
                 ", studio='" + studio + '\'' +
                 ", releaseDate=" + releaseDate +
                 ", price=" + price +
+                ", quantity=" + quantity +
                 '}';
     }
 
@@ -142,14 +143,18 @@ public class Product {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Product that = (Product) o;
-        return productid == that.productid && Objects.equals(name, that.name) && Objects.equals(genre, that.genre) && Objects.equals(studio, that.studio) && Objects.equals(releaseDate, that.releaseDate);
+        Product product = (Product) o;
+        return productid == product.productid && Double.compare(price, product.price) == 0 && quantity == product.quantity && Objects.equals(name, product.name) && Objects.equals(description, product.description) && Objects.equals(genre, product.genre) && Objects.equals(studio, product.studio) && Objects.equals(releaseDate, product.releaseDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(productid, name, genre, studio, releaseDate);
+        return Objects.hash(productid, name, description, genre, studio, releaseDate, price, quantity);
     }
+}
+
+
+
 
 
 

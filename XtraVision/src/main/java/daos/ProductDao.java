@@ -16,7 +16,7 @@ public class ProductDao extends Dao implements ProductDaoInterface {
 
     public boolean addProduct(Product p) throws DaoException {
         int rowsAffected = -1;
-        String query = "INSERT INTO products(productid, name, description, genre, studio,  releaseDate, price) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO products(productid, name, description, genre, studio,  releaseDate, price, quantity) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection con = getConnection();
              PreparedStatement ps = con.prepareStatement(query)) {
@@ -28,6 +28,7 @@ public class ProductDao extends Dao implements ProductDaoInterface {
             ps.setString(5, p.getStudio());
             ps.setDate(6, Date.valueOf(p.getReleaseDate()));
             ps.setDouble(7, p.getPrice());
+            ps.setInt(8, p.getQuantity());
 
             rowsAffected = ps.executeUpdate();
 
