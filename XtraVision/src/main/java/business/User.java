@@ -9,23 +9,29 @@ public class User {
     private String email;
     private String password;
     private String phone;
-    private String firstname;
-    private String lastname;
+    private String name;
 
     private String membership; //Can be three states: Free, Silver or Gold
 
     public User() {
     }
 
-    public User(int userid, String username, String email, String password, String phone, String firstname, String lastname, String membership) {
+    public User(int userid, String username, String email, String password, String phone, String name, String membership) {
         this.userid = userid;
         this.username = username;
         this.email = email;
         this.password = password;
         this.phone = phone;
-        this.firstname = firstname;
-        this.lastname = lastname;
+        this.name = name;
         this.membership = membership;
+    }
+
+    public User(String username, String email, String password, String phone, String name) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.name = name;
     }
 
     public int getId() {
@@ -68,22 +74,6 @@ public class User {
         this.phone = phone;
     }
 
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
-    }
-
     public String getMembership() {
         return membership;
     }
@@ -102,8 +92,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", phone='" + phone + '\'' +
-                ", firstname='" + firstname + '\'' +
-                ", lastname='" + lastname + '\'' +
+                ", name='" + name + '\'' +
                 ", membership='" + membership + '\'' +
                 '}';
     }

@@ -15,16 +15,16 @@ public class UserDao extends Dao implements UserDaoInterface {
     }
 
     @Override
-    public boolean addUser(String username, String email, String password, String phone, String name, int membership, int isAdmin){
+    public boolean addUser(String username, String email, String password, String phone, String name){
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        boolean rowsAffected = false;
+        int rowsAffected = -1;
 
         try{
             con = this.getConnection();
 
-            String query = "INSERT INTO USERS(username, email, password, phone, name, membership, isAdmin) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO USERS(username, email, password, phone, name) VALUES (?, ?, ?, ?, ?)";
             ps = con.prepareStatement(query);
 
             ps.setString(1,username);
@@ -32,9 +32,8 @@ public class UserDao extends Dao implements UserDaoInterface {
             ps.setString(3,password);
             ps.setString(4,phone);
             ps.setString(5,name);
-            ps.setInt(6,membership);
-            ps.setInt(7,isAdmin);
 
+            rowsAffected = ps.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println("An error occurred in the findAllUsers() method: " + e.getMessage());
@@ -53,7 +52,7 @@ public class UserDao extends Dao implements UserDaoInterface {
                 System.out.println("An error occurred when shutting down the findAllUsers() method: " + e.getMessage());
             }
         }
-return rowsAffected;
+return rowsAffected > 0;
     }
 
     @Override
@@ -76,11 +75,10 @@ return rowsAffected;
                 String email = rs.getString("EMAIL");
                 String password = rs.getString("PASSWORD");
                 String phone = rs.getString("PHONE");
-                String firstname = rs.getString("FIRSTNAME");
-                String lastname = rs.getString("LASTNAME");
+                String name = rs.getString("NAME");
                 String membership = rs.getString("MEMBERSHIP");
 
-                User user = new User(userId, username, email, password, phone, firstname, lastname, membership);
+                User user = new User(userId, username, email, password, phone, name, membership);
                 users.add(user);
             }
         } catch (SQLException e) {
@@ -124,11 +122,10 @@ return rowsAffected;
                 int userid = rs.getInt("USERID");
                 String email = rs.getString("EMAIL");
                 String phone = rs.getString("PHONE");
-                String firstname = rs.getString("FIRSTNAME");
-                String lastname = rs.getString("LASTNAME");
+                String name = rs.getString("NAME");
                 String membership = rs.getString("MEMBERSHIP");
 
-                user = new User(userid, username, email, password, phone, firstname, lastname, membership);
+                user = new User(userid, username, email, password, phone, name, membership);
             }
         } catch (SQLException e) {
             System.out.println("An error occurred in the getUser() method: " + e.getMessage());
@@ -170,11 +167,10 @@ return rowsAffected;
                 String password = rs.getString("PASSWORD");
                 String email = rs.getString("EMAIL");
                 String phone = rs.getString("PHONE");
-                String firstname = rs.getString("FIRSTNAME");
-                String lastname = rs.getString("LASTNAME");
+                String name = rs.getString("NAME");
                 String membership = rs.getString("MEMBERSHIP");
 
-                User u = new User(id, username, email, password, phone, firstname, lastname, membership);
+                User u = new User(id, username, email, password, phone, name, membership);
                 users.add(u);
             }
         } catch (SQLException e) {

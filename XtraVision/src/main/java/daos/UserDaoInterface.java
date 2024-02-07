@@ -16,12 +16,10 @@ public interface UserDaoInterface {
      * @param password
      * @param phone
      * @param name
-     * @param membership
-     * @param isAdmin
      * @return
      * @throws DaoException
      */
-    public boolean addUser(String username, String email, String password, String phone, String name, int membership, int isAdmin) throws DaoException;
+    public boolean addUser(String username, String email, String password, String phone, String name) throws DaoException;
 
     /**
      * Gets all users
