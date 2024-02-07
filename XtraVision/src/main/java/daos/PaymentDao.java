@@ -53,6 +53,7 @@ public class PaymentDao extends Dao implements PaymentDaoInterface{
         return rowsAffected;
     }
 
+    @Override
     public int deletePaymentById(int id){
         Connection con = null;
         PreparedStatement ps = null;
@@ -86,52 +87,54 @@ public class PaymentDao extends Dao implements PaymentDaoInterface{
         }
         return rowsAffected;
     }
-public ArrayList<Payment> getPaymentById(int id) {
+    @Override
+    public ArrayList<Payment> getPaymentById(int id) {
     Connection con = null;
-    PreparedStatement ps = null;
-    ResultSet rs = null;
-    ArrayList<Payment> payment = new ArrayList<>();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<Payment> payment = new ArrayList<>();
 
-    try {
-        con = this.getConnection();
-
-        String query = "SELECT * FROM PAYMENT WHERE payid = ?";
-        ps = con.prepareStatement(query);
-
-        ps.setInt(1, id);
-
-        rs = ps.executeQuery();
-
-        while (rs.next()) {
-            double amount = rs.getInt("amount");
-            LocalDate paymentDate = rs.getDate("paymentDate").toLocalDate();
-            String paymentMethod = rs.getString("paymentMethod");
-
-            Payment p = new Payment(amount, paymentDate, paymentMethod);
-            payment.add(p);
-
-        }
-
-    } catch (SQLException e) {
-        System.out.println("An error occurred in the findAllUsers() method: " + e.getMessage());
-    } finally {
         try {
-            if (rs != null) {
-                rs.close();
+            con = this.getConnection();
+
+            String query = "SELECT * FROM PAYMENT WHERE payid = ?";
+            ps = con.prepareStatement(query);
+
+            ps.setInt(1, id);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                double amount = rs.getInt("amount");
+                LocalDate paymentDate = rs.getDate("paymentDate").toLocalDate();
+                String paymentMethod = rs.getString("paymentMethod");
+
+                Payment p = new Payment(amount, paymentDate, paymentMethod);
+                payment.add(p);
+
             }
-            if (ps != null) {
-                ps.close();
-            }
-            if (con != null) {
-                freeConnection(con);
-            }
+
         } catch (SQLException e) {
-            System.out.println("An error occurred when shutting down the findAllUsers() method: " + e.getMessage());
+            System.out.println("An error occurred in the findAllUsers() method: " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    freeConnection(con);
+                }
+            } catch (SQLException e) {
+                System.out.println("An error occurred when shutting down the findAllUsers() method: " + e.getMessage());
+            }
         }
-    }
         return payment;
     }
 
+    @Override
     public ArrayList<Payment> getPaymentByMethod(String method){
         Connection con = null;
         PreparedStatement ps = null;
@@ -149,6 +152,52 @@ public ArrayList<Payment> getPaymentById(int id) {
             rs = ps.executeQuery();
 
             while (rs.next()) {
+                double amount = rs.getInt("amount");
+                LocalDate paymentDate = rs.getDate("paymentDate").toLocalDate();
+                String paymentMethod = rs.getString("paymentMethod");
+
+                Payment p = new Payment(amount, paymentDate, paymentMethod);
+                payment.add(p);
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println("An error occurred in the findAllUsers() method: " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    freeConnection(con);
+                }
+            } catch (SQLException e) {
+                System.out.println("An error occurred when shutting down the findAllUsers() method: " + e.getMessage());
+            }
+        }
+        return payment;
+    }
+
+    @Override
+    public ArrayList<Payment> getAllPayments(){
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        ArrayList<Payment> payment = new ArrayList<>();
+
+        try {
+            con = this.getConnection();
+
+            String query = "SELECT * FROM PAYMENT";
+            ps = con.prepareStatement(query);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                int id = rs.getInt("payid");
                 double amount = rs.getInt("amount");
                 LocalDate paymentDate = rs.getDate("paymentDate").toLocalDate();
                 String paymentMethod = rs.getString("paymentMethod");
