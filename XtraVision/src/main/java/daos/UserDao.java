@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDao extends Dao {
+public class UserDao extends Dao implements UserDaoInterface {
     public UserDao(String dbName) {
         super(dbName);
     }
@@ -56,6 +56,7 @@ public class UserDao extends Dao {
 return rowsAffected;
     }
 
+    @Override
     public ArrayList<User> getAllUsers() {
         Connection con = null;
         PreparedStatement ps = null;
@@ -65,7 +66,7 @@ return rowsAffected;
         try {
             con = this.getConnection();
 
-            String query = "SELECT * FROM USER";
+            String query = "SELECT * FROM USERS";
             ps = con.prepareStatement(query);
 
             rs = ps.executeQuery();
@@ -103,7 +104,8 @@ return rowsAffected;
     }
 
     //Returns a Username and Password for the specified user
-    public User getUser(String username, String password) {
+    @Override
+    public User getUserbyUserPass(String username, String password) {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -112,21 +114,21 @@ return rowsAffected;
         try {
             con = this.getConnection();
 
-            String query = "SELECT * FROM USER WHERE USERNAME = ? AND PASSWORD = ?";
+            String query = "SELECT * FROM USERS WHERE USERNAME = ? AND PASSWORD = ?";
             ps = con.prepareStatement(query);
             ps.setString(1, username);
             ps.setString(2, password);
 
             rs = ps.executeQuery();
             if (rs.next()) {
-                int id = rs.getInt("ID");
+                int userid = rs.getInt("USERID");
                 String email = rs.getString("EMAIL");
                 String phone = rs.getString("PHONE");
                 String firstname = rs.getString("FIRSTNAME");
                 String lastname = rs.getString("LASTNAME");
                 String membership = rs.getString("MEMBERSHIP");
 
-                user = new User(userId, username, email, password, phone, firstname, lastname, membership);
+                user = new User(userid, username, email, password, phone, firstname, lastname, membership);
             }
         } catch (SQLException e) {
             System.out.println("An error occurred in the getUser() method: " + e.getMessage());
@@ -148,6 +150,7 @@ return rowsAffected;
         return user;
     }
 
+    @Override
     public ArrayList<User> getUserById(int id) {
         Connection con = null;
         PreparedStatement ps = null;
@@ -157,7 +160,7 @@ return rowsAffected;
         try {
             con = this.getConnection();
 
-            String query = "SELECT * FROM USER WHERE ID = ?";
+            String query = "SELECT * FROM USERS WHERE USERID = ?";
             ps = con.prepareStatement(query);
             ps.setInt(1, id);
 

@@ -24,7 +24,7 @@ public class LoginCommand implements Command{
         String password = request.getParameter("password");
         if(username != null && password != null && !username.isEmpty() && !password.isEmpty()){
             UserDao userDao = new UserDao("user_database");
-            User user = userDao.findUserByUsernamePassword(username, password);
+            User user = userDao.getUserbyUserPass(username, password);
             if(user != null){
                 session.setAttribute("loggedInUser", user);
                 destination = "index.jsp";

@@ -15,6 +15,9 @@ public class CommandFactory {
                 case "register":
                     c = new RegisterCommand(request,response);
                     break;
+                case "rental":
+//                    c = new RentalCommand(request,response);
+//                    break;
                 default:
                     String errormessage = "No action value provided in controller";
                     c = new ErrorCommand(request,response,errormessage);

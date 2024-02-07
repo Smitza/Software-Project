@@ -2,9 +2,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Xtra-Xtra Vision</title>
+    <title>Home Page</title>
 </head>
-<body>
+<body class="body">
     
 </body>
 </html>
