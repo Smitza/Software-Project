@@ -12,7 +12,7 @@ public interface UserDaoInterface {
      * @return true or false depending on if the user was created or not
      * @throws DaoException
      */
-    public boolean addUser(User u) throws DaoException;
+    public boolean addUser(String username, String email, String password, String phone, String name, int membership, int isAdmin) throws DaoException;
 
     public boolean deleteUserById(int id) throws DaoException;
 
