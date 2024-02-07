@@ -3,6 +3,11 @@ package business;
 import java.time.LocalDate;
 import java.util.Objects;
 
+/**
+ * Represents a television show product, extending the generic Product class with TV-specific attributes.
+ * This class includes details about the showrunner, format, number of seasons and episodes, runtime, and TV rating.
+ */
+
 public class Tv extends Product {
     private String showrunner;
     private Format.TvFormat format; // streaming or dvd
@@ -16,6 +21,25 @@ public class Tv extends Product {
 
     public Tv() {
     }
+
+    /**
+     * Constructs a Tv instance with specified details including inherited product attributes and TV-specific attributes.
+     *
+     * @param productid         The unique identifier for the product.
+     * @param name              The name of the TV show.
+     * @param description       A brief description of the TV show.
+     * @param genre             The genre of the TV show.
+     * @param studio            The studio that produced the TV show.
+     * @param releaseDate       The release date of the TV show.
+     * @param price             The price of the TV show.
+     * @param quantity          The available quantity of the TV show.
+     * @param showrunner        The showrunner of the TV show.
+     * @param format            The format of the TV show (streaming or DVD).
+     * @param numberOfSeasons   The number of seasons of the TV show.
+     * @param numberOfEpisodes  The number of episodes of the TV show.
+     * @param runtime           The runtime of episodes.
+     * @param tvRating          The TV rating of the show.
+     */
 
     public Tv(int productid, String name, String description, String genre, String studio, LocalDate releaseDate, double price, int quantity, String showrunner, Format.TvFormat format, int numberOfSeasons, int numberOfEpisodes, int runtime, Rating.TvRating tvRating) {
         super(productid, name, description, genre, studio, releaseDate, price, quantity);
@@ -31,6 +55,13 @@ public class Tv extends Product {
         return showrunner;
     }
 
+    /**
+     * Sets the showrunner of the TV show. The showrunner's name cannot be null, empty, or exceed a maximum length.
+     *
+     * @param showrunner The showrunner to set.
+     * @throws IllegalArgumentException If the showrunner's name is null, empty, or longer than the maximum allowed length.
+     */
+
     public void setShowrunner(String showrunner) {
         if (showrunner == null || showrunner.trim().isEmpty() || showrunner.length() > MAX_SHOWRUNNER_LENGTH) {
             throw new IllegalArgumentException("Showrunner cannot be null, empty, or longer than " + MAX_SHOWRUNNER_LENGTH + " characters.");
@@ -41,6 +72,13 @@ public class Tv extends Product {
     public Format.TvFormat getFormat() {
         return format;
     }
+
+    /**
+     * Sets the format of the TV show. The format must not be null.
+     *
+     * @param format The format to set.
+     * @throws IllegalArgumentException If the format is null.
+     */
 
     public void setFormat(Format.TvFormat format) {
         if (format == null) {
@@ -53,6 +91,13 @@ public class Tv extends Product {
         return numberOfSeasons;
     }
 
+    /**
+     * Sets the number of seasons of the TV show. The number of seasons must be positive.
+     *
+     * @param numberOfSeasons The number of seasons to set.
+     * @throws IllegalArgumentException If the number of seasons is less than or equal to 0.
+     */
+
     public void setNumberOfSeasons(int numberOfSeasons) {
         if (numberOfSeasons <= 0) {
             throw new IllegalArgumentException("Number of seasons must be positive.");
@@ -63,6 +108,13 @@ public class Tv extends Product {
     public int getNumberOfEpisodes() {
         return numberOfEpisodes;
     }
+
+    /**
+     * Sets the number of episodes of the TV show. The number of episodes must be positive.
+     *
+     * @param numberOfEpisodes The number of episodes to set.
+     * @throws IllegalArgumentException If the number of episodes is less than or equal to 0.
+     */
 
     public void setNumberOfEpisodes(int numberOfEpisodes) {
         if (numberOfEpisodes <= 0) {
@@ -75,6 +127,13 @@ public class Tv extends Product {
         return runtime;
     }
 
+    /**
+     * Sets the runtime of the TV show episodes. The runtime must be positive.
+     *
+     * @param runtime The runtime of the episodes to set.
+     * @throws IllegalArgumentException If the runtime is less than or equal to 0.
+     */
+    
     public void setRuntime(int runtime) {
         if (runtime <= 0) {
             throw new IllegalArgumentException("Runtime must be positive.");
