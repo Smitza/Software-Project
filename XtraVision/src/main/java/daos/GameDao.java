@@ -22,7 +22,7 @@ public class GameDao extends Dao implements GameDaoInterface {
         try (Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(query)){
 
-            ps.setInt(1, g.getId());
+            ps.setInt(1, g.getProductId());
             ps.setString(2, g.getName());
             ps.setString(3, g.getDescription());
             ps.setString(4, g.getGenre());
@@ -36,7 +36,7 @@ public class GameDao extends Dao implements GameDaoInterface {
             rowsAffected = ps.executeUpdate();
 
         } catch (SQLException e) {
-            throw new DaoException("Error adding game with ID " + g.getId() + ";: " + e.getMessage(), e);
+            throw new DaoException("Error adding game with ID " + g.getProductId() + ";: " + e.getMessage(), e);
         }
         return rowsAffected > 0;
     }
