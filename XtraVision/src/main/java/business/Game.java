@@ -44,6 +44,13 @@ public class Game extends Product{
         return publisher;
     }
 
+    /**
+     * Sets the publisher of the game. The publisher name cannot be null, empty, or longer than 50 characters.
+     *
+     * @param publisher the publisher to set
+     * @throws IllegalArgumentException if the publisher name is invalid
+     */
+
     public void setPublisher(String publisher) {
         if (publisher == null || publisher.trim().isEmpty() || publisher.length() > MAX_PUBLISHER_LENGTH){
             throw new IllegalArgumentException("Publisher cannot be null, empty or longer than " + MAX_PUBLISHER_LENGTH + " characters.");
@@ -55,6 +62,14 @@ public class Game extends Product{
         return platform;
     }
 
+
+    /**
+     * Sets the platform of the game. The platform cannot be null.
+     *
+     * @param platform the platform to set
+     * @throws IllegalArgumentException if the platform is null
+     */
+
     public void setPlatform(Platform.GamePlatform platform) {
         if (platform == null) {
             throw new IllegalArgumentException("Platform cannot be null.");
@@ -65,6 +80,13 @@ public class Game extends Product{
     public Rating.GameRating getGameRating() {
         return gameRating;
     }
+
+    /**
+     * Sets the game rating. The game rating cannot be null.
+     *
+     * @param gameRating the game rating to set
+     * @throws IllegalArgumentException if the game rating is null
+     */
 
     public void setGameRating(Rating.GameRating gameRating) {
         if (gameRating == null ) {
