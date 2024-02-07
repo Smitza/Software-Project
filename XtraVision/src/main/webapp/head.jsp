@@ -9,24 +9,30 @@
 <html>
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Xtra-Xtra-Vision</title>
 </head>
 <body>
-<section class="navbar">
-    <div class="navbar">
-        <div class="container">
-            <a class="brand" href="index.jsp"><img src="images/Xtra-Logo.png" width="290" sizes="(max-width: 479px) 73vw, 290px" alt="Return Home"></a>
-            <nav role="navigation" class="nav-menu">
-                    <a class="nav-link-1" href="index.jsp">Home</a>
-                    <a class="nav-link-2" href="gameslist.jsp">Games</a>
-                    <a class="nav-link-3" href="movieslist.jsp">Movies</a>
-                    <a class="nav-link-4" href="tvlist.jsp">Tv-Shows</a>
-                    <a class="nav-link-5" href="profile.jsp">Profile</a>
-            </nav>
-            <div class="nav-button">
-                <div class="icon-nav-menu"></div>
-            </div>
+    <nav class="navbar navbar-expand-sm navbar-light">
+        <div class="container-fluid">
+            <a class="navbar-brand mx-auto" href="index.jsp"><img src="images/Xtra-Logo.png" width="300" alt="Return Home"></a>
+            <ul class="navbar-nav me-auto fs-3">
+                <li class="nav-item">
+                    <a class="nav-link"href="index.jsp">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="gameslist.jsp">Games</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="movieslist.jsp">Movies</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="tvlist.jsp">Tv-Shows</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="profile.jsp">Profile</a>
+                </li>
+            </ul>
         </div>
-    </div>
-</section>
+    </nav>
