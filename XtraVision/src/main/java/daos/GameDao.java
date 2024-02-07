@@ -1,6 +1,8 @@
 package daos;
 
 import business.Game;
+import business.Platform;
+import business.Rating;
 import business.User;
 import exceptions.DaoException;
 
@@ -20,18 +22,12 @@ public class GameDao extends Dao implements GameDaoInterface {
         String query = "INSERT INTO games(gameid, publisher, platform, releaseDate, gameRating) VALUES ( ?, ?, ?, ?)";
 
         try (Connection con = getConnection();
-            PreparedStatement ps = con.prepareStatement(query)){
+             PreparedStatement ps = con.prepareStatement(query)) {
 
             ps.setInt(1, g.getProductId());
-            ps.setString(2, g.getName());
-            ps.setString(3, g.getDescription());
-            ps.setString(4, g.getGenre());
-            ps.setString(5, g.getStudio());
-            ps.setString(6, g.getPublisher());
-            ps.setString(7, g.getPlatform().name());
-            ps.setDate(8, Date.valueOf(g.getReleaseDate()));
-            ps.setDouble(9, g.getPrice());
-            ps.setString(10, g.getGameRating().name());
+            ps.setString(2, g.getPublisher());
+            ps.setString(3, g.getPlatform());
+            ps.setString(4, g.getGameRating());
 
             rowsAffected = ps.executeUpdate();
 
@@ -40,4 +36,31 @@ public class GameDao extends Dao implements GameDaoInterface {
         }
         return rowsAffected > 0;
     }
+
+    public ArrayList<Game> getAllGames() throws DaoException {
+        ArrayList<Game> games = new ArrayList<>();
+        String query = "SELECT * FROM games";
+
+        try (Connection con = getConnection();
+             PreparedStatement ps = con.prepareStatement(query);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                int productid = rs.getInt("gameid");
+                String publisher = rs.getString("Publisher");
+                String platform = rs.getString("Platform");
+                String gameRating = rs.getString("gameRating");
+
+
+                Game game = new Game(productid, publisher, platform, gameRating);
+            }
+        } catch (SQLException e) {
+            throw new DaoException("Error listing all games: " + e.getMessage(), e);
+        }
+
+        return games;
+    }
 }
+
+
+
