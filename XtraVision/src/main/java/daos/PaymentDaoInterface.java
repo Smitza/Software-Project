@@ -7,15 +7,11 @@ import java.util.ArrayList;
 
 public interface PaymentDaoInterface {
 
-    public boolean addPayment(Payment p) throws DaoException;
+    public int addPayment(int amount, String PaymentDate, String paymentMethod) throws DaoException;
 
-    public boolean deletePaymentById(int pId) throws DaoException;
+    public int deletePaymentById(int pId) throws DaoException;
 
-    public int getPaymentById(int pId) throws DaoException;
-
-    public boolean updatePayment(Payment p) throws  DaoException;
-
-    public ArrayList<Payment> getPaymentByDateRange(LocalDate startDate, LocalDate endDate) throws DaoException;
+    public ArrayList<Payment> getPaymentById(int pId) throws DaoException;
 
     public ArrayList<Payment> getPaymentByMethod(String method) throws DaoException;
 

@@ -18,8 +18,7 @@ public class Payment {
     public Payment() {
     }
 
-    public Payment(int paymentId, double amount, LocalDate paymentDate, String paymentMethod) {
-        this.paymentId = paymentId;
+    public Payment(double amount, LocalDate paymentDate, String paymentMethod) {
         this.amount = amount;
         this.paymentDate = paymentDate;
         this.paymentMethod = paymentMethod;
