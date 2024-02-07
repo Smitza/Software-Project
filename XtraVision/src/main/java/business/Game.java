@@ -13,7 +13,21 @@ public class Game extends Product{
 
     public Game() {
     }
-
+    /**
+     * Constructs a new Game instance with specified details including product attributes and game-specific attributes.
+     *
+     * @param productid    the unique identifier for the product
+     * @param name         the name of the game
+     * @param description  a brief description of the game
+     * @param genre        the genre of the game
+     * @param studio       the studio that developed the game
+     * @param publisher    the publisher of the game
+     * @param platform     the platform on which the game is available
+     * @param releaseDate  the release date of the game
+     * @param price        the price of the game
+     * @param quantity     the available quantity of the game
+     * @param gameRating   the ESRB rating of the game
+     */
     public Game(int productid, String name, String description, String genre, String studio, String publisher, Platform.GamePlatform platform, LocalDate releaseDate, double price, int quantity, Rating.GameRating gameRating) {
         super(productid, name, description, genre, studio, releaseDate, price, quantity);
         this.publisher = publisher;
@@ -21,7 +35,11 @@ public class Game extends Product{
         this.gameRating = gameRating;
 
     }
-
+    /**
+     * Returns the publisher of the game.
+     *
+     * @return the publisher name
+     */
     public String getPublisher() {
         return publisher;
     }
