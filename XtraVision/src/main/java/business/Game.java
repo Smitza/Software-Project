@@ -3,7 +3,7 @@ package business;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Game extends MediaEntity{
+public class Game extends Product{
 
     private String publisher;
     private Platform.GamePlatform platform;
@@ -14,8 +14,8 @@ public class Game extends MediaEntity{
     public Game() {
     }
 
-    public Game(int id, String name, String description, String genre, String studio, String publisher, Platform.GamePlatform platform, LocalDate releaseDate, double price, Rating.GameRating gameRating) {
-        super(id, name, description, genre, studio, releaseDate, price);
+    public Game(int productid, String name, String description, String genre, String studio, String publisher, Platform.GamePlatform platform, LocalDate releaseDate, double price, int quantity, Rating.GameRating gameRating) {
+        super(productid, name, description, genre, studio, releaseDate, price, quantity);
         this.publisher = publisher;
         this.platform = platform;
         this.gameRating = gameRating;

@@ -17,8 +17,8 @@ public class Tv extends Product {
     public Tv() {
     }
 
-    public Tv(int id, String name, String description, String genre, String studio, LocalDate releaseDate, double price, String showrunner, Format.TvFormat format, int numberOfSeasons, int numberOfEpisodes, int runtime, Rating.TvRating tvRating) {
-        super(id, name, description, genre, studio, releaseDate, price);
+    public Tv(int productid, String name, String description, String genre, String studio, LocalDate releaseDate, double price, int quantity, String showrunner, Format.TvFormat format, int numberOfSeasons, int numberOfEpisodes, int runtime, Rating.TvRating tvRating) {
+        super(productid, name, description, genre, studio, releaseDate, price, quantity);
         this.showrunner = showrunner;
         this.format = format;
         this.numberOfSeasons = numberOfSeasons;
@@ -76,7 +76,7 @@ public class Tv extends Product {
     }
 
     public void setRuntime(int runtime) {
-        if (id <= 0) {
+        if (runtime <= 0) {
             throw new IllegalArgumentException("Runtime must be positive.");
         }
     }

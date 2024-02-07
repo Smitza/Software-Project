@@ -3,7 +3,7 @@ package business;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Movie extends MediaEntity {
+public class Movie extends Product {
 
     private String director;
     private Platform.MoviePlatform format; // streaming or dvd
@@ -16,8 +16,8 @@ public class Movie extends MediaEntity {
     public Movie() {
     }
 
-    public Movie(int id, String name, String description, String genre, String director, String studio, Platform.MoviePlatform format, LocalDate releaseDate, double price, Rating.MovieRating movieRating, int runtime) {
-        super(id, name, description, genre, studio, releaseDate, price);
+    public Movie(int productid, String name, String description, String genre, String director, String studio, Platform.MoviePlatform format, LocalDate releaseDate, double price, Rating.MovieRating movieRating, int runtime, int quantity) {
+        super(productid, name, description, genre, studio, releaseDate, price, quantity);
         this.director = director;
         this.format = format;
         this.runtime = runtime;
