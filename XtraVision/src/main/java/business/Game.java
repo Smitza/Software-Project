@@ -6,8 +6,8 @@ import java.util.Objects;
 public class Game extends Product{
 
     private String publisher;
-    private Platform.GamePlatform platform;
-    private Rating.GameRating gameRating;
+    private String platform;
+    private String gameRating;
 
     private static final int MAX_PUBLISHER_LENGTH = 50;
 
@@ -28,7 +28,7 @@ public class Game extends Product{
      * @param quantity     the available quantity of the game
      * @param gameRating   the ESRB rating of the game
      */
-    public Game(int productid, String name, String description, String genre, String studio, String publisher, Platform.GamePlatform platform, LocalDate releaseDate, double price, int quantity, Rating.GameRating gameRating) {
+    public Game(int productid, String name, String description, String genre, String studio, String publisher, String platform, LocalDate releaseDate, double price, int quantity,String gameRating) {
         super(productid, name, description, genre, studio, releaseDate, price, quantity);
         this.publisher = publisher;
         this.platform = platform;
@@ -58,7 +58,7 @@ public class Game extends Product{
         this.publisher = publisher;
     }
 
-    public Platform.GamePlatform getPlatform() {
+    public String getPlatform() {
         return platform;
     }
 
@@ -70,14 +70,14 @@ public class Game extends Product{
      * @throws IllegalArgumentException if the platform is null
      */
 
-    public void setPlatform(Platform.GamePlatform platform) {
+    public void setPlatform(String platform) {
         if (platform == null) {
             throw new IllegalArgumentException("Platform cannot be null.");
         }
         this.platform = platform;
     }
 
-    public Rating.GameRating getGameRating() {
+    public String getGameRating() {
         return gameRating;
     }
 
@@ -88,7 +88,7 @@ public class Game extends Product{
      * @throws IllegalArgumentException if the game rating is null
      */
 
-    public void setGameRating(Rating.GameRating gameRating) {
+    public void setGameRating(String gameRating) {
         if (gameRating == null ) {
             throw new IllegalArgumentException("Game rating cannot be null.");
         }
@@ -111,7 +111,7 @@ public class Game extends Product{
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Game game = (Game) o;
-        return Objects.equals(publisher, game.publisher) && platform == game.platform && gameRating == game.gameRating;
+        return Objects.equals(publisher, game.publisher) && Objects.equals(platform, game.platform) && Objects.equals(gameRating, game.gameRating);
     }
 
     @Override
