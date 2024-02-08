@@ -15,9 +15,10 @@ public class GameDao extends Dao implements GameDaoInterface {
         super(dbName);
     }
 
+    @Override
     public boolean addGame(Game g) throws DaoException {
         int rowsAffected = -1;
-        String query = "INSERT INTO games(gameid, publisher, platform, releaseDate, gameRating) VALUES ( ?, ?, ?, ?)";
+        String query = "INSERT INTO games(gameid, publisher, platform, gameRating) VALUES ( ?, ?, ?, ?)";
 
         try (Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(query)){

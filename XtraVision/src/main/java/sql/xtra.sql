@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 01, 2024 at 11:55 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Feb 08, 2024 at 01:52 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -83,6 +83,40 @@ CREATE TABLE `payment` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `products`
+--
+
+DROP TABLE IF EXISTS `products`;
+CREATE TABLE `products` (
+  `productid` int(11) NOT NULL,
+  `name` varchar(15) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `genre` varchar(20) NOT NULL,
+  `studio` varchar(15) NOT NULL,
+  `releasedate` date NOT NULL,
+  `price` double(8,2) NOT NULL,
+  `payid` int(11) NOT NULL,
+  `gameid` int(11) NOT NULL,
+  `tvid` int(11) NOT NULL,
+  `movieid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products_users`
+--
+
+DROP TABLE IF EXISTS `products_users`;
+CREATE TABLE `products_users` (
+  `productid` int(11) NOT NULL,
+  `userid` int(11) NOT NULL,
+  `payid` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tvshows`
 --
 
@@ -112,22 +146,7 @@ CREATE TABLE `users` (
   `phone` varchar(15) NOT NULL,
   `name` varchar(30) NOT NULL,
   `membership` int(8) NOT NULL,
-  `isAdmin` tinyint(1) NOT NULL,
-  `gameid` int(11) NOT NULL,
-  `movieid` int(11) NOT NULL,
-  `tvid` int(11) NOT NULL,
-  `payid` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-DROP TABLE IF EXISTS `products`;
-CREATE TABLE `products` (
-`productid` int(11) NOT NULL,
-`name` varchar(15) NOT NULL,
-`description` varchar(255) NOT NULL,
-`genre` varchar(20) NOT NULL,
-`studio` varchar(15) NOT NULL,
-`releasedate` date NOT NULL,
-`price` double(8,2) NOT NULL
+  `isAdmin` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -160,6 +179,23 @@ ALTER TABLE `payment`
   ADD PRIMARY KEY (`payid`);
 
 --
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`productid`),
+  ADD KEY `gameid FOREIGN` (`gameid`),
+  ADD KEY `tvid FOREIGN` (`tvid`),
+  ADD KEY `movieid FOREIGN` (`movieid`);
+
+--
+-- Indexes for table `products_users`
+--
+ALTER TABLE `products_users`
+  ADD KEY `productid FOREIGN` (`productid`),
+  ADD KEY `userid FOREIGN` (`userid`),
+  ADD KEY `payid FOREIGN` (`payid`);
+
+--
 -- Indexes for table `tvshows`
 --
 ALTER TABLE `tvshows`
@@ -169,11 +205,7 @@ ALTER TABLE `tvshows`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`userid`),
-  ADD KEY `gameid Foreign` (`gameid`),
-  ADD KEY `tvid Foreign` (`tvid`),
-  ADD KEY `movieid Foreign` (`movieid`),
-  ADD KEY `payid Foreign` (`payid`);
+  ADD PRIMARY KEY (`userid`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -204,6 +236,12 @@ ALTER TABLE `payment`
   MODIFY `payid` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `productid` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tvshows`
 --
 ALTER TABLE `tvshows`
@@ -220,13 +258,20 @@ ALTER TABLE `users`
 --
 
 --
--- Constraints for table `users`
+-- Constraints for table `products`
 --
-ALTER TABLE `users`
-  ADD CONSTRAINT `gameid Foreign` FOREIGN KEY (`gameid`) REFERENCES `games` (`gameid`),
-  ADD CONSTRAINT `movieid Foreign` FOREIGN KEY (`movieid`) REFERENCES `movies` (`movieid`),
-  ADD CONSTRAINT `payid Foreign` FOREIGN KEY (`payid`) REFERENCES `payment` (`payid`),
-  ADD CONSTRAINT `tvid Foreign` FOREIGN KEY (`tvid`) REFERENCES `tvshows` (`tvid`);
+ALTER TABLE `products`
+  ADD CONSTRAINT `gameid FOREIGN` FOREIGN KEY (`gameid`) REFERENCES `games` (`gameid`),
+  ADD CONSTRAINT `movieid FOREIGN` FOREIGN KEY (`movieid`) REFERENCES `movies` (`movieid`),
+  ADD CONSTRAINT `tvid FOREIGN` FOREIGN KEY (`tvid`) REFERENCES `tvshows` (`tvid`);
+
+--
+-- Constraints for table `products_users`
+--
+ALTER TABLE `products_users`
+  ADD CONSTRAINT `payid FOREIGN` FOREIGN KEY (`payid`) REFERENCES `payment` (`payid`),
+  ADD CONSTRAINT `productid FOREIGN` FOREIGN KEY (`productid`) REFERENCES `products` (`productid`),
+  ADD CONSTRAINT `userid FOREIGN` FOREIGN KEY (`userid`) REFERENCES `users` (`userid`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
