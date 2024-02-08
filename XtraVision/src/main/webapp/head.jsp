@@ -32,10 +32,10 @@
                     <a class="nav-link" href="tvlist.jsp">Tv-Shows</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="tvlist.jsp">Login</a>
+                    <a class="nav-link" href="login.jsp">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="tvlist.jsp">Register</a>
+                    <a class="nav-link" href="register.jsp">Register</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="profile.jsp">Profile</a>

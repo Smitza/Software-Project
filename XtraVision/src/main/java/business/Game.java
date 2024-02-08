@@ -35,6 +35,10 @@ public class Game extends Product{
         this.gameRating = gameRating;
 
     }
+
+    public Game(int productid, String publisher, String platform, String gameRating) {
+    }
+
     /**
      * Returns the publisher of the game.
      *
