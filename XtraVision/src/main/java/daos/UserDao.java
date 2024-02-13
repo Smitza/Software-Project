@@ -15,7 +15,7 @@ public class UserDao extends Dao implements UserDaoInterface {
     }
 
     @Override
-    public boolean addUser(String username, String email, String password, String phone, String name){
+    public boolean addUser(String username, String email, String password, String phone, String name, int membership, int isAdmin){
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -24,7 +24,7 @@ public class UserDao extends Dao implements UserDaoInterface {
         try{
             con = this.getConnection();
 
-            String query = "INSERT INTO USERS(username, email, password, phone, name) VALUES (?, ?, ?, ?, ?)";
+            String query = "INSERT INTO xtra.users(username, email, password, phone, name, membership, isAdmin) VALUES (?, ?, ?, ?, ?, ?, ?)";
             ps = con.prepareStatement(query);
 
             ps.setString(1,username);
@@ -32,6 +32,8 @@ public class UserDao extends Dao implements UserDaoInterface {
             ps.setString(3,password);
             ps.setString(4,phone);
             ps.setString(5,name);
+            ps.setInt(6,membership);
+            ps.setInt(7, isAdmin);
 
             rowsAffected = ps.executeUpdate();
 
@@ -70,15 +72,16 @@ return rowsAffected > 0;
 
             rs = ps.executeQuery();
             while (rs.next()) {
-                int userId = rs.getInt("ID");
+                int userId = rs.getInt("USERID");
                 String username = rs.getString("USERNAME");
                 String email = rs.getString("EMAIL");
                 String password = rs.getString("PASSWORD");
                 String phone = rs.getString("PHONE");
                 String name = rs.getString("NAME");
-                String membership = rs.getString("MEMBERSHIP");
+                int membership = rs.getInt("MEMBERSHIP");
+                int isAdmin = rs.getInt("ISADMIN");
 
-                User user = new User(userId, username, email, password, phone, name, membership);
+                User user = new User(userId, username, email, password, phone, name, membership, isAdmin);
                 users.add(user);
             }
         } catch (SQLException e) {
@@ -123,9 +126,10 @@ return rowsAffected > 0;
                 String email = rs.getString("EMAIL");
                 String phone = rs.getString("PHONE");
                 String name = rs.getString("NAME");
-                String membership = rs.getString("MEMBERSHIP");
+                int membership = rs.getInt("MEMBERSHIP");
+                int isAdmin = rs.getInt("ISADMIN");
 
-                user = new User(userid, username, email, password, phone, name, membership);
+                user = new User(userid, username, email, password, phone, name, membership, isAdmin);
             }
         } catch (SQLException e) {
             System.out.println("An error occurred in the getUser() method: " + e.getMessage());
@@ -168,9 +172,10 @@ return rowsAffected > 0;
                 String email = rs.getString("EMAIL");
                 String phone = rs.getString("PHONE");
                 String name = rs.getString("NAME");
-                String membership = rs.getString("MEMBERSHIP");
+                int membership = rs.getInt("MEMBERSHIP");
+                int isAdmin = rs.getInt("ISADMIN");
 
-                User u = new User(id, username, email, password, phone, name, membership);
+                User u = new User(id, username, email, password, phone, name, membership, isAdmin);
                 users.add(u);
             }
         } catch (SQLException e) {

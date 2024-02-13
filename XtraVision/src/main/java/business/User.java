@@ -11,12 +11,14 @@ public class User {
     private String phone;
     private String name;
 
-    private String membership; //Can be three states: Free, Silver or Gold
+    private int membership = 0; //Can be three states: Free, Silver or Gold
+
+    private int isAdmin = 0;
 
     public User() {
     }
 
-    public User(int userid, String username, String email, String password, String phone, String name, String membership) {
+    public User(int userid, String username, String email, String password, String phone, String name, int membership, int isAdmin) {
         this.userid = userid;
         this.username = username;
         this.email = email;
@@ -24,6 +26,7 @@ public class User {
         this.phone = phone;
         this.name = name;
         this.membership = membership;
+        this.isAdmin = isAdmin;
     }
 
     public User(String username, String email, String password, String phone, String name) {
@@ -74,15 +77,21 @@ public class User {
         this.phone = phone;
     }
 
-    public String getMembership() {
+    public int getMembership() {
         return membership;
     }
 
-    public void setMembership(String membership) {
+    public void setMembership(int membership) {
         this.membership = membership;
     }
 
+    public int isAdmin() {
+        return isAdmin;
+    }
 
+    public void setAdmin(int admin) {
+        isAdmin = admin;
+    }
 
     @java.lang.Override
     public java.lang.String toString() {

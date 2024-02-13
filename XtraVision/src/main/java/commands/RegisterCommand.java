@@ -25,10 +25,12 @@ public class RegisterCommand implements Command {
         String password = request.getParameter("password");
         String phone = request.getParameter("phone");
         String name = request.getParameter("name");
+        int membership = request.getIntHeader("membership");
+        int isAdmin = request.getIntHeader("isAdmin");
 
         if(username != null && email != null && password != null && phone != null && name != null && !username.isEmpty() && !email.isEmpty() && !password.isEmpty() && !phone.isEmpty() && !name.isEmpty()){
             UserDao userDao = new UserDao("xtra");
-            boolean added = userDao.addUser(username, email, password, phone, name);
+            boolean added = userDao.addUser(username, email, password, phone, name, membership, isAdmin);
             if(added = false){
                 forwardToJsp = "error.jsp";
                 String error = "Account creation failed, Please try again";
