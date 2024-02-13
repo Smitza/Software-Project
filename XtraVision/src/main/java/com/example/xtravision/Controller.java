@@ -28,6 +28,7 @@ public class Controller extends HttpServlet {
         response.sendRedirect(destination);
     }
 
+
     //Get a request and process it into different pages
     //Make sure to check if user is logged in for specific pages, and check membership status and admin status
     //--------------FIRST DRAFT LIST OF COMMANDS-----------
