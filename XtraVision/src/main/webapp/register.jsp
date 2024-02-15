@@ -36,7 +36,7 @@
     <label for="isAdmin">Admin Status (Enter 0 for User, 1 for Admin):</label><br>
     <input type="number" id="isAdmin" name="isAdmin" required><br>
 
-    <input type="submit" value="Register">
+    <input type="submit" value="register">
 </form>
 
 </body>
