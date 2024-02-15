@@ -12,7 +12,7 @@
 }
 %>
 
-<form action="Controller" method="post">
+<form action="controller" method="post">
     <input type="hidden" name="command" value="RegisterCommand">
 
     <label for="username">Username:</label><br>
