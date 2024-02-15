@@ -2,4 +2,3 @@
 <!DOCTYPE html>
 <body>
 <jsp:include page="head.jsp"/>
-
