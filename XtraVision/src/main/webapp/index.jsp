@@ -51,15 +51,9 @@
     <section id="Memberships" style="background-image: linear-gradient(#fa0303, #ff960e 100%, #fff)">
         <div class="container pt-sm-3" id="membership-container">
             <div class="row text-center" id="membership-row">
-                <div class="col-6 mx-auto" style="background-color: rgba(250, 177, 42, 0.64)">
+                <div class="col-6 mx-auto">
                     <img class="img-fluid mb-3" width="450" src="images/xtragold.png">
                     <h4 class="text-center">With Xtra-Vision Gold you get the following perks:</h4>
-                    <ul class="list-group">
-                        <li class="list-group-item">• Cras justo odio</li>
-                        <li class="list-group-item">• Dapibus ac facilisis in</li>
-                        <li class="list-group-item">• Morbi leo risus</li>
-                        <li class="list-group-item">• Porta ac consectetur ac</li>
-                    </ul>
                 </div>
                 <div class="col-6 x-auto" style="background-color: rgba(192, 192, 192, 0.75)">
                     <img class="img-fluid mb-3" width="450" src="images/xtrasilver.png">

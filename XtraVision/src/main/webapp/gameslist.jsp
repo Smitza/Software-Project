@@ -26,7 +26,11 @@
         %>
     </table>
 <%
-    }
+    } else {
 %>
+ <p>No games found</p>
+<%    }
+    %>
+
 
 <jsp:include page="footer.jsp"/>

@@ -140,10 +140,10 @@ CREATE TABLE `tvshows` (
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `userid` int(11) NOT NULL,
-  `username` varchar(25) NOT NULL,
-  `email` varchar(25) NOT NULL,
-  `password` varchar(30) NOT NULL,
-  `phone` varchar(15) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `phone` varchar(30) NOT NULL,
   `name` varchar(30) NOT NULL,
   `membership` int(8) NOT NULL,
   `isAdmin` tinyint(1) NOT NULL
