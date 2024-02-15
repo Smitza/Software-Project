@@ -53,7 +53,7 @@ public class GameDao extends Dao implements GameDaoInterface {
                 String gameRating = rs.getString("gameRating");
 
 
-                Game game = new Game(productid, publisher, platform, gameRating);
+//                Game game = new Game(productid, publisher, platform, gameRating);
             }
         } catch (SQLException e) {
             throw new DaoException("Error listing all games: " + e.getMessage(), e);

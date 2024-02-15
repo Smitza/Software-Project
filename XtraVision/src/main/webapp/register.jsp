@@ -12,7 +12,7 @@
 }
 %>
 
-<form action="Controller" method="post">
+<form action="controller" method="post">
     <input type="hidden" name="command" value="RegisterCommand">
 
     <label for="username">Username:</label><br>
@@ -36,7 +36,8 @@
     <label for="isAdmin">Admin Status (Enter 0 for User, 1 for Admin):</label><br>
     <input type="number" id="isAdmin" name="isAdmin" required><br>
 
-    <input type="submit" value="Register">
+    <input type="submit" value="Submit">
+    <input type="hidden" name="action" value="register">
 </form>
 
 </body>
