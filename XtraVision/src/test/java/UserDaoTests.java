@@ -40,8 +40,7 @@ public class UserDaoTests {
 
     @Test
     public void testGetUserById() {
-        ArrayList<User> users = userDao.getUserById(1);
-        assertNotNull(users);
-        assertFalse(users.isEmpty());
+        User user = userDao.getUserById(1);
+        assertNotNull(user);
     }
 }

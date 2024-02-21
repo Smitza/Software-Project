@@ -1,4 +1,4 @@
-<%--
+<%@ page import="business.User" %><%--
   Created by IntelliJ IDEA.
   User: Sean
   Date: 06/01/2024
@@ -31,15 +31,26 @@
                 <li class="nav-item">
                     <a class="nav-link" href="tvlist.jsp">Tv-Shows</a>
                 </li>
+                <% User user  = (User) session.getAttribute("loggedInUser");
+
+                    if(user != null){
+                %>
+                <li class="nav-item">
+                    <a class="nav-link" href="profile.jsp">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="controller?action=logout">Logout</a>
+                </li>
+                <%
+                    } else {
+                %>
                 <li class="nav-item">
                     <a class="nav-link" href="login.jsp">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="register.jsp">Register</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="profile.jsp">Profile</a>
-                </li>
+                <%}%>
             </ul>
         </div>
     </nav>

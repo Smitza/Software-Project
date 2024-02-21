@@ -39,12 +39,12 @@ public interface UserDaoInterface {
 
 
     /**
-     * Gets a users by their ID
+     * Gets a user by their ID
      * @param id the ID of the user
      * @return Information of the user
      * @throws DaoException
      */
-    public ArrayList<User> getUserById(int id) throws DaoException;
+    public User getUserById(int id) throws DaoException;
 
 
 

@@ -41,6 +41,9 @@ public class Movie extends Product {
         this.movieRating = movieRating;
     }
 
+    public Movie(int productid, String director, String format, String runtime, String movierating) {
+    }
+
     public String getDirector() {
         return director;
     }

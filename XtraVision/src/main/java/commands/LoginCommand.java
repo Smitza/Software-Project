@@ -23,7 +23,7 @@ public class LoginCommand implements Command{
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         if(username != null && password != null && !username.isEmpty() && !password.isEmpty()){
-            UserDao userDao = new UserDao("user_database");
+            UserDao userDao = new UserDao("xtra");
             User user = userDao.getUserbyUserPass(username, password);
             if(user != null){
                 session.setAttribute("loggedInUser", user);

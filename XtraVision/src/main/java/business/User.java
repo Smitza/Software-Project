@@ -45,12 +45,20 @@ public class User {
         this.userid = userid;
     }
 
-    public String getName() {
+    public String getUserName() {
         return username;
     }
 
-    public void setName(String name) {
+    public void setUsername(String username) {
         this.username = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {

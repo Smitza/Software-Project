@@ -152,11 +152,11 @@ return rowsAffected > 0;
     }
 
     @Override
-    public ArrayList<User> getUserById(int id) {
+    public User getUserById(int id) {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        ArrayList<User> users = new ArrayList<>();
+        User u = null;
 
         try {
             con = this.getConnection();
@@ -175,8 +175,7 @@ return rowsAffected > 0;
                 int membership = rs.getInt("MEMBERSHIP");
                 int isAdmin = rs.getInt("ISADMIN");
 
-                User u = new User(id, username, email, password, phone, name, membership, isAdmin);
-                users.add(u);
+                u = new User(id, username, email, password, phone, name, membership, isAdmin);
             }
         } catch (SQLException e) {
             System.out.println("An error occurred in the findUserByUsernamePassword() method: " + e.getMessage());
@@ -195,7 +194,7 @@ return rowsAffected > 0;
                 System.out.println("An error occurred when shutting down the findUserByUsernamePassword() method: " + e.getMessage());
             }
         }
-        return users;
+        return u;
     }
 }
 

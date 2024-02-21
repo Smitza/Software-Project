@@ -12,7 +12,7 @@
 }
 %>
 
-<form action="controller" method="post">S
+<form action="controller" method="POST">
 
     <label for="username">Username:</label><br>
     <input type="text" id="username" name="username" required><br>
@@ -28,12 +28,6 @@
 
     <label for="name">Name:</label><br>
     <input type="text" id="name" name="name" required><br>
-
-    <label for="membership">Membership (Enter 0 for Standard, 1 for Premium):</label><br>
-    <input type="number" id="membership" name="membership" required><br>
-
-    <label for="isAdmin">Admin Status (Enter 0 for User, 1 for Admin):</label><br>
-    <input type="number" id="isAdmin" name="isAdmin" required><br>
 
     <input type="submit" value="Submit">
     <input type="hidden" name="action" value="register">
