@@ -51,6 +51,8 @@ public class Tv extends Product {
         this.tvRating = tvRating;
     }
 
+    public Tv(int productid, String showrunner, String format, int noofseasons, int noofepisodes, String runtime, String tvrating) {
+    }
 
 
     public String getShowrunner() {
