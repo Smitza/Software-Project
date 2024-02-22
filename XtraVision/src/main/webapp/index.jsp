@@ -49,26 +49,46 @@
 <%--    ----------------------- MEMBERSHIP ADS -------------------------%>
 
     <section id="Memberships" style="background-image: linear-gradient(#fa0303, #ff960e 100%, #fff)">
-        <div class="container pt-sm-3" id="membership-container">
-            <div class="row text-center" id="membership-row">
-                <div class="col-6 mx-auto">
-                    <img class="img-fluid mb-3" width="450" src="images/xtragold.png">
-                    <h4 class="text-center">With Xtra-Vision Gold you get the following perks:</h4>
+        <div class="container py-4 py-xl-5" id="membership-container">
+            <div class="bg-dark border rounded-3 border-5 border-dark overflow-hidden">
+                <div class="row g-0">
+                    <div class="col-md-6"><div class="text-white p-4 p-md-5">
+                            <h2 class="fw-bold text-white mb-3">Xtra-Vision GOLD €9.99 per month</h2>
+                            <h3 class="mb-4">Unleash the full potential of your entertainment with the Gold Membership, where luxury meets leisure.<br>
+                            <br>
+                            Perks Included in GOLD:</h3>
+                            <p>- 4 free rentals per week<br>
+                            <p>- GOLD deals on in-store & delivery rentals<br>
+                            <p>- 4K Tv, Movie and Game Streaming <br>
+                            <p>- Play an unlimited selection of games from the game catalogue</p>
+                            <br>
+                            <div class="my-3"><a class="btn btn-light btn-lg" role="button" href="#">Subscribe</a></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 order-first order-md-last" style="min-height: 250px;"><img class="w-100 h-100 fit-cover" src="images/xtragold.png"></div>
                 </div>
-                <div class="col-6 x-auto" style="background-color: rgba(192, 192, 192, 0.75)">
-                    <img class="img-fluid mb-3" width="450" src="images/xtrasilver.png">
-                    <h4 class="text-center">With Xtra-Vision Silver you get the following perks:</h4>
-                    <ul class="list-group">
-                        <li class="list-group-item">• Cras justo odio</li>
-                        <li class="list-group-item">• Dapibus ac facilisis in</li>
-                        <li class="list-group-item">• Morbi leo risus</li>
-                        <li class="list-group-item">• Porta ac consectetur ac</li>
-                    </ul>
+            </div>
+
+            <div class="bg-light border rounded-3 border-5 overflow-hidden mt-3">
+                <div class="row g-0">
+                    <div class="col-md-6"><div class="p-4 p-md-5">
+                        <h2 class="fw-bold mb-3">Xtra-Vision SILVER €9.99 per month</h2>
+                        <h3 class="mb-4">For those seeking a premium entertainment experience on a budget.<br>
+                            <br>
+                            Perks included in SILVER:</h3>
+                        <p>- 2 free rentals per week<br>
+                        <p>- SILVER deals on in-store & delivery rentals<br>
+                        <p>- HD TV, Movie and Game Streaming<br>
+                        <p>- Play a limited selection of the game catalogue</p>
+                        <br>
+                        <div class="my-3"><a class="btn btn-dark btn-lg" role="button" href="#">Subscribe</a></div>
+                    </div>
+                    </div>
+                    <div class="col-md-6 order-last order-md-first" style="min-height: 250px;"><img class="w-100 h-100 fit-cover" src="images/xtrasilver.png"></div>
                 </div>
             </div>
         </div>
     </section>
-
 </body>
 
 <jsp:include page="footer.jsp"/>
