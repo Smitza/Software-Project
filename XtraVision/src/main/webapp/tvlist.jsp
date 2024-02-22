@@ -8,7 +8,7 @@
 
     <%
     TvDao TvDao = new TvDao("xtra");
-    List<Tv> Tvs = TvDao();
+    List<Tv> Tvs = TvDao.getAllTvShows();
     if(!Tvs.isEmpty()){
 
 %>
