@@ -1,14 +1,10 @@
 package daos;
 
 import business.Game;
-import business.Platform;
-import business.Rating;
-import business.User;
 import exceptions.DaoException;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class GameDao extends Dao implements GameDaoInterface {
 

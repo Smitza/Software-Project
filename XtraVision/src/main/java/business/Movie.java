@@ -6,9 +6,9 @@ import java.util.Objects;
 public class Movie extends Product {
 
     private String director;
-    private Platform.MoviePlatform format; // streaming or dvd
+    private String format; // streaming or dvd
     private int runtime;
-    private Rating.MovieRating movieRating;
+    private String movieRating;
 
     private static final int MAX_DIRECTOR_LENGTH = 50;
 
@@ -33,15 +33,12 @@ public class Movie extends Product {
      * @param quantity      the available quantity of the movie
      */
 
-    public Movie(int productid, String name, String description, String genre, String director, String studio, Platform.MoviePlatform format, LocalDate releaseDate, double price, Rating.MovieRating movieRating, int runtime, int quantity) {
+    public Movie(int productid, String name, String description, String genre, String director, String studio, String format, LocalDate releaseDate, double price, String movieRating, int runtime, int quantity) {
         super(productid, name, description, genre, studio, releaseDate, price, quantity);
         this.director = director;
         this.format = format;
         this.runtime = runtime;
         this.movieRating = movieRating;
-    }
-
-    public Movie(int productid, String director, String format, String runtime, String movierating) {
     }
 
     public String getDirector() {
@@ -62,7 +59,7 @@ public class Movie extends Product {
         this.director = director;
     }
 
-    public Platform.MoviePlatform getFormat() {
+    public String getFormat() {
         return format;
     }
 
@@ -73,7 +70,7 @@ public class Movie extends Product {
      * @throws IllegalArgumentException if the format is null
      */
 
-    public void setFormat(Platform.MoviePlatform format) {
+    public void setFormat(String format) {
         if (format == null) {
             throw new IllegalArgumentException("Format cannot be null.");
         }
@@ -98,7 +95,7 @@ public class Movie extends Product {
         this.runtime = runtime;
     }
 
-    public Rating.MovieRating getMovieRating() {
+    public String getMovieRating() {
         return movieRating;
     }
 
@@ -109,7 +106,7 @@ public class Movie extends Product {
      * @throws IllegalArgumentException if the movie rating is null
      */
 
-    public void setMovieRating(Rating.MovieRating movieRating) {
+    public void setMovieRating(String movieRating) {
         if (movieRating == null) {
             throw new IllegalArgumentException("Movie rating cannot be null.");
         }
@@ -133,7 +130,7 @@ public class Movie extends Product {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Movie movie = (Movie) o;
-        return runtime == movie.runtime && Objects.equals(director, movie.director) && format == movie.format && movieRating == movie.movieRating;
+        return runtime == movie.runtime && Objects.equals(director, movie.director) && Objects.equals(format, movie.format) && Objects.equals(movieRating, movie.movieRating);
     }
 
     @Override

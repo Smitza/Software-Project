@@ -10,11 +10,11 @@ import java.util.Objects;
 
 public class Tv extends Product {
     private String showrunner;
-    private Format.TvFormat format; // streaming or dvd
+    private String format; // streaming or dvd
     private int numberOfSeasons;
     private int numberOfEpisodes;
     private int runtime; //should we do max runtime??
-    private Rating.TvRating tvRating;
+    private String tvRating;
 
     private static final int MAX_SHOWRUNNER_LENGTH = 50;
 
@@ -41,7 +41,7 @@ public class Tv extends Product {
      * @param tvRating          The TV rating of the show.
      */
 
-    public Tv(int productid, String name, String description, String genre, String studio, LocalDate releaseDate, double price, int quantity, String showrunner, Format.TvFormat format, int numberOfSeasons, int numberOfEpisodes, int runtime, Rating.TvRating tvRating) {
+    public Tv(int productid, String name, String description, String genre, String studio, LocalDate releaseDate, double price, int quantity, String showrunner, String format, int numberOfSeasons, int numberOfEpisodes, int runtime, String tvRating) {
         super(productid, name, description, genre, studio, releaseDate, price, quantity);
         this.showrunner = showrunner;
         this.format = format;
@@ -51,8 +51,7 @@ public class Tv extends Product {
         this.tvRating = tvRating;
     }
 
-    public Tv(int productid, String showrunner, String format, int noofseasons, int noofepisodes, String runtime, String tvrating) {
-    }
+
 
     public String getShowrunner() {
         return showrunner;
@@ -72,7 +71,7 @@ public class Tv extends Product {
         this.showrunner = showrunner;
     }
 
-    public Format.TvFormat getFormat() {
+    public String getFormat() {
         return format;
     }
 
@@ -83,7 +82,7 @@ public class Tv extends Product {
      * @throws IllegalArgumentException If the format is null.
      */
 
-    public void setFormat(Format.TvFormat format) {
+    public void setFormat(String format) {
         if (format == null) {
             throw new IllegalArgumentException("Format cannot be null.");
         }
@@ -143,11 +142,11 @@ public class Tv extends Product {
         }
     }
 
-    public Rating.TvRating getTvRating() {
+    public String getTvRating() {
         return tvRating;
     }
 
-    public void setTvRating(Rating.TvRating tvRating) {
+    public void setTvRating(String tvRating) {
         if (tvRating == null) {
             throw new IllegalArgumentException("Tv rating cannot be null.");
         }
@@ -173,8 +172,10 @@ public class Tv extends Product {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Tv tv = (Tv) o;
-        return numberOfSeasons == tv.numberOfSeasons && numberOfEpisodes == tv.numberOfEpisodes && runtime == tv.runtime && Objects.equals(showrunner, tv.showrunner) && format == tv.format && tvRating == tv.tvRating;
+        return numberOfSeasons == tv.numberOfSeasons && numberOfEpisodes == tv.numberOfEpisodes && runtime == tv.runtime && Objects.equals(showrunner, tv.showrunner) && Objects.equals(format, tv.format) && Objects.equals(tvRating, tv.tvRating);
     }
+
+
 
     @Override
     public int hashCode() {
