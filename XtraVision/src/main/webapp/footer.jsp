@@ -28,43 +28,43 @@
                     </div>
                     <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
                         <h6 class="text-uppercase mb-4 font-weight-bold">Follow us</h6>
-
+                        <!-- Facebook -->
                         <a
                                 class="btn btn-primary btn-floating m-1"
                                 style="background-color: #3b5998"
-                                href="#!"
+                                href="https://www.facebook.com"
                                 role="button"
                         ><i class="fab fa-facebook-f"></i
                         ></a>
-
+                        <!-- Twitter -->
                         <a
                                 class="btn btn-primary btn-floating m-1"
                                 style="background-color: #55acee"
-                                href="#!"
+                                href="https://twitter.com"
                                 role="button"
                         ><i class="fab fa-twitter"></i
                         ></a>
-
+                        <!-- Google -->
                         <a
                                 class="btn btn-primary btn-floating m-1"
                                 style="background-color: #dd4b39"
-                                href="#!"
+                                href="https://www.google.ie/"
                                 role="button"
                         ><i class="fab fa-google"></i
                         ></a>
-
+                        <!-- Instagram -->
                         <a
                                 class="btn btn-primary btn-floating m-1"
                                 style="background-color: #ac2bac"
-                                href="#!"
+                                href="https://www.instagram.com"
                                 role="button"
                         ><i class="fab fa-instagram"></i
                         ></a>
-
+                        <!-- LinkedIn -->
                         <a
                                 class="btn btn-primary btn-floating m-1"
                                 style="background-color: #0082ca"
-                                href="#!"
+                                href="https://ie.linkedin.com"
                                 role="button"
                         ><i class="fab fa-linkedin-in"></i
                         ></a>
@@ -72,7 +72,7 @@
                         <a
                                 class="btn btn-primary btn-floating m-1"
                                 style="background-color: #000000"
-                                href="#!"
+                                href="https://github.com/Smitza/Software-Project"
                                 role="button"
                         ><i class="fab fa-github"></i
                         ></a>
