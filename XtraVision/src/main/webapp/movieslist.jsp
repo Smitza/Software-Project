@@ -17,7 +17,6 @@
         for(Movie m: Movies){
     %>
     <tr>
-        <td><%=m.getName()%></td>
         <td><%=m.getDirector()%></td>
         <td><%=m.getFormat()%></td>
         <td><%=m.getRuntime()%></td>

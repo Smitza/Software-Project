@@ -7,7 +7,7 @@ public class Movie extends Product {
 
     private String director;
     private String format; // streaming or dvd
-    private int runtime;
+    private String runtime;
     private String movieRating;
 
     private static final int MAX_DIRECTOR_LENGTH = 50;
@@ -33,7 +33,7 @@ public class Movie extends Product {
      * @param quantity      the available quantity of the movie
      */
 
-    public Movie(int productid, String name, String description, String genre, String director, String studio, String format, LocalDate releaseDate, double price, String movieRating, int runtime, int quantity) {
+    public Movie(int productid, String name, String description, String genre, String director, String studio, String format, LocalDate releaseDate, double price, String movieRating, String runtime, int quantity) {
         super(productid, name, description, genre, studio, releaseDate, price, quantity);
         this.director = director;
         this.format = format;
@@ -42,6 +42,11 @@ public class Movie extends Product {
     }
 
     public Movie(int productid, String director, String format, String runtime, String movierating) {
+        super(productid, null, null, null, null, null, 0, 0);
+        this.director = director;
+        this.format = format;
+        this.runtime = runtime;
+        this.movieRating = movierating;
     }
 
     public String getDirector() {
@@ -80,7 +85,7 @@ public class Movie extends Product {
         this.format = format;
     }
 
-    public int getRuntime() {
+    public String getRuntime() {
         return runtime;
     }
 
@@ -91,9 +96,9 @@ public class Movie extends Product {
      * @throws IllegalArgumentException if the runtime is not positive
      */
 
-    public void setRuntime(int runtime) {
-        if (runtime <= 0) {
-            throw new IllegalArgumentException("Runtime must be positive.");
+    public void setRuntime(String runtime) {
+        if (runtime.isEmpty()) {
+            throw new IllegalArgumentException("Runtime cannot be null.");
         }
         this.runtime = runtime;
     }
@@ -130,10 +135,10 @@ public class Movie extends Product {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Movie)) return false;
         if (!super.equals(o)) return false;
         Movie movie = (Movie) o;
-        return runtime == movie.runtime && Objects.equals(director, movie.director) && Objects.equals(format, movie.format) && Objects.equals(movieRating, movie.movieRating);
+        return Objects.equals(director, movie.director) && Objects.equals(format, movie.format) && Objects.equals(runtime, movie.runtime) && Objects.equals(movieRating, movie.movieRating);
     }
 
     @Override

@@ -18,7 +18,7 @@
     <title>Xtra-Xtra-Vision</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark" style="background-image: linear-gradient(#fa0303, #ff960e 100%, #fff)">
+    <nav class="navbar navbar-expand-sm navbar-dark" style="background-image: linear-gradient(#fa0303, #ff960e 100%, #fff) ;">
         <div class="container-fluid">
             <a class="navbar-brand mx-auto" href="index.jsp"><img src="images/Xtra-Logo.png" width="300" alt="Return Home"></a>
             <ul class="navbar-nav me-auto fs-3">

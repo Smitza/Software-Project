@@ -85,7 +85,7 @@
                 style="background-color: rgba(0, 0, 0, 0.2)"
         >
             &copy; 2024 Copyright:
-            <a class="text-white" href="https://www.google.com/"
+            <a class="text-white" href="https://github.com/Smitza/Software-Project"
             >Group E</a
             >
         </div>
