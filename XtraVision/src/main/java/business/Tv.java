@@ -13,7 +13,7 @@ public class Tv extends Product {
     private String format; // streaming or dvd
     private int numberOfSeasons;
     private int numberOfEpisodes;
-    private int runtime; //should we do max runtime??
+    private String runtime; //should we do max runtime??
     private String tvRating;
 
     private static final int MAX_SHOWRUNNER_LENGTH = 50;
@@ -41,7 +41,7 @@ public class Tv extends Product {
      * @param tvRating          The TV rating of the show.
      */
 
-    public Tv(int productid, String name, String description, String genre, String studio, LocalDate releaseDate, double price, int quantity, String showrunner, String format, int numberOfSeasons, int numberOfEpisodes, int runtime, String tvRating) {
+    public Tv(int productid, String name, String description, String genre, String studio, LocalDate releaseDate, double price, int quantity, String showrunner, String format, int numberOfSeasons, int numberOfEpisodes, String runtime, String tvRating) {
         super(productid, name, description, genre, studio, releaseDate, price, quantity);
         this.showrunner = showrunner;
         this.format = format;
@@ -52,6 +52,12 @@ public class Tv extends Product {
     }
 
     public Tv(int productid, String showrunner, String format, int noofseasons, int noofepisodes, String runtime, String tvrating) {
+        super(productid, null, null, null, null, null, 0, 0);
+        this.showrunner = showrunner;
+        this.format = format;
+        this.numberOfSeasons = noofseasons;
+        this.numberOfEpisodes = noofepisodes;
+        this.runtime = runtime;
     }
 
 
@@ -127,7 +133,7 @@ public class Tv extends Product {
         this.numberOfEpisodes = numberOfEpisodes;
     }
 
-    public int getRuntime() {
+    public String getRuntime() {
         return runtime;
     }
 
@@ -138,8 +144,8 @@ public class Tv extends Product {
      * @throws IllegalArgumentException If the runtime is less than or equal to 0.
      */
     
-    public void setRuntime(int runtime) {
-        if (runtime <= 0) {
+    public void setRuntime(String runtime) {
+        if (runtime == null) {
             throw new IllegalArgumentException("Runtime must be positive.");
         }
     }
@@ -171,13 +177,11 @@ public class Tv extends Product {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Tv)) return false;
         if (!super.equals(o)) return false;
         Tv tv = (Tv) o;
-        return numberOfSeasons == tv.numberOfSeasons && numberOfEpisodes == tv.numberOfEpisodes && runtime == tv.runtime && Objects.equals(showrunner, tv.showrunner) && Objects.equals(format, tv.format) && Objects.equals(tvRating, tv.tvRating);
+        return numberOfSeasons == tv.numberOfSeasons && numberOfEpisodes == tv.numberOfEpisodes && Objects.equals(showrunner, tv.showrunner) && Objects.equals(format, tv.format) && Objects.equals(runtime, tv.runtime) && Objects.equals(tvRating, tv.tvRating);
     }
-
-
 
     @Override
     public int hashCode() {

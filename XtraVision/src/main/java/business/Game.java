@@ -37,6 +37,10 @@ public class Game extends Product{
     }
 
     public Game(int productid, String publisher, String platform, String gameRating) {
+        super(productid, null, null, null, null, null, 0, 0);
+        this.publisher = publisher;
+        this.platform = platform;
+        this.gameRating = gameRating;
     }
 
     /**

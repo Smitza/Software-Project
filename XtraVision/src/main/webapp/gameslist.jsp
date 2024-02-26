@@ -20,6 +20,7 @@
             <td><%=g.getName()%></td>
             <td><%=g.getPublisher()%></td>
             <td><%=g.getPlatform()%></td>
+            <td><%=g.getGameRating()%></td>
         </tr>
         <%
             }

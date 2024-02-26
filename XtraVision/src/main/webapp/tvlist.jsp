@@ -17,7 +17,6 @@
         for(Tv g: Tvs){
     %>
     <tr>
-        <td><%=g.getName()%></td>
         <td><%=g.getShowrunner()%></td>
         <td><%=g.getFormat()%></td>
         <td><%=g.getNumberOfSeasons()%></td>

@@ -50,6 +50,7 @@ public class GameDao extends Dao implements GameDaoInterface {
 
 
                 Game game = new Game(productid, publisher, platform, gameRating);
+                games.add(game);
             }
         } catch (SQLException e) {
             throw new DaoException("Error listing all games: " + e.getMessage(), e);
