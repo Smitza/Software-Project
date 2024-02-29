@@ -18,6 +18,9 @@ public class CommandFactory {
                 case "logout":
                     c = new LogoutCommand(request,response);
                     break;
+                case "profile":
+                    c = new ProfileCommand(request,response);
+                    break;
                 case "rental":
 //                    c = new RentalCommand(request,response);
 //                    break;
