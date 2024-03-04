@@ -47,7 +47,7 @@ DROP TABLE IF EXISTS `games`;
 CREATE TABLE `games` (
   `gameid` int(11) NOT NULL,
   `publisher` varchar(255) NOT NULL,
-  `platform` varchar(25) NOT NULL,
+  `platform` varchar(50) NOT NULL,
   `gamerating` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -96,6 +96,7 @@ CREATE TABLE `products` (
   `studio` varchar(80) NOT NULL,
   `releasedate` date NOT NULL,
   `price` double(8,2) NOT NULL,
+  `quantity` int(20) DEFAULT NULL,
   `payid` int(11) NOT NULL,
   `gameid` int(11) DEFAULT NULL,
   `tvid` int(11) DEFAULT NULL,

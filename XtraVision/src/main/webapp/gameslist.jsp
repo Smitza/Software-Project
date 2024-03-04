@@ -1,36 +1,55 @@
-<%@ page import="daos.GameDao" %>
-<%@ page import="business.Game" %>
+<%@ page import="business.Product" %>
+<%@ page import="daos.ProductDao" %>
 <%@ page import="java.util.List" %>
+<%@ page import="business.Game" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
-<body>
-<jsp:include page="head.jsp"/>
+
+<jsp:include page="head.jsp" />
 
 <%
-    GameDao gameDao = new GameDao("xtra");
-    List<Game> games = gameDao.getAllGames();
-    if(!games.isEmpty()){
-
+    ProductDao productDao = new ProductDao("xtra");
+    List<Product> gameProducts = productDao.getGameProducts();
+    if (!gameProducts.isEmpty()) {
 %>
-    <table>
-        <%
-            for(Game g: games){
-        %>
-        <tr>
-            <td><%=g.getName()%></td>
-            <td><%=g.getPublisher()%></td>
-            <td><%=g.getPlatform()%></td>
-        </tr>
-        <%
-            }
-        %>
-    </table>
-<%
-    } else {
-%>
- <p>No games found</p>
-<%    }
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Genre</th>
+        <th>Studio</th>
+        <th>Release Date</th>
+        <th>Price</th>
+        <th>Publisher</th>
+        <th>Platform</th>
+        <th>Game Rating</th>
+    </tr>
+    <%
+        for (Product product : gameProducts) {
+            if (product instanceof Game) {
+                Game game = (Game) product;
     %>
+    <tr>
+        <td><%= game.getName() %></td>
+        <td><%= game.getDescription() %></td>
+        <td><%= game.getGenre() %></td>
+        <td><%= game.getStudio() %></td>
+        <td><%= game.getReleaseDate() %></td>
+        <td><%= game.getPrice() %></td>
+        <td><%= game.getPublisher() %></td>
+        <td><%= game.getPlatform() %></td>
+        <td><%= game.getGameRating() %></td>
+    </tr>
+    <%
+            }
+        }
+    %>
+</table>
+<%
+} else {
+%>
+<p>No Game Products found</p>
+<%
+    }
+%>
 
-
-<jsp:include page="footer.jsp"/>
+<jsp:include page="footer.jsp" />
