@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 08, 2024 at 01:52 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- Generation Time: Mar 04, 2024 at 08:24 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -32,7 +32,7 @@ USE `xtra`;
 DROP TABLE IF EXISTS `delivery`;
 CREATE TABLE `delivery` (
   `deliveryid` int(15) NOT NULL,
-  `address` varchar(35) NOT NULL,
+  `address` varchar(255) NOT NULL,
   `phoneno` int(30) NOT NULL,
   `payid` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -46,8 +46,8 @@ CREATE TABLE `delivery` (
 DROP TABLE IF EXISTS `games`;
 CREATE TABLE `games` (
   `gameid` int(11) NOT NULL,
-  `publisher` varchar(15) NOT NULL,
-  `platform` varchar(10) NOT NULL,
+  `publisher` varchar(255) NOT NULL,
+  `platform` varchar(25) NOT NULL,
   `gamerating` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -60,7 +60,7 @@ CREATE TABLE `games` (
 DROP TABLE IF EXISTS `movies`;
 CREATE TABLE `movies` (
   `movieid` int(11) NOT NULL,
-  `director` varchar(25) NOT NULL,
+  `director` varchar(255) NOT NULL,
   `format` varchar(25) NOT NULL,
   `runtime` varchar(25) NOT NULL,
   `movierating` varchar(25) NOT NULL
@@ -80,6 +80,7 @@ CREATE TABLE `payment` (
   `paymentmethod` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+
 -- --------------------------------------------------------
 
 --
@@ -89,16 +90,16 @@ CREATE TABLE `payment` (
 DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products` (
   `productid` int(11) NOT NULL,
-  `name` varchar(15) NOT NULL,
+  `name` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
-  `genre` varchar(20) NOT NULL,
-  `studio` varchar(15) NOT NULL,
+  `genre` varchar(40) NOT NULL,
+  `studio` varchar(80) NOT NULL,
   `releasedate` date NOT NULL,
   `price` double(8,2) NOT NULL,
   `payid` int(11) NOT NULL,
-  `gameid` int(11) NOT NULL,
-  `tvid` int(11) NOT NULL,
-  `movieid` int(11) NOT NULL
+  `gameid` int(11) DEFAULT NULL,
+  `tvid` int(11) DEFAULT NULL,
+  `movieid` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -123,8 +124,8 @@ CREATE TABLE `products_users` (
 DROP TABLE IF EXISTS `tvshows`;
 CREATE TABLE `tvshows` (
   `tvid` int(11) NOT NULL,
-  `showrunner` varchar(15) NOT NULL,
-  `format` varchar(10) NOT NULL,
+  `showrunner` varchar(80) NOT NULL,
+  `format` varchar(25) NOT NULL,
   `noofseasons` int(10) NOT NULL,
   `noofepisodes` int(10) NOT NULL,
   `runtime` varchar(15) NOT NULL,
@@ -144,10 +145,11 @@ CREATE TABLE `users` (
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `phone` varchar(30) NOT NULL,
-  `name` varchar(30) NOT NULL,
+  `name` varchar(60) NOT NULL,
   `membership` int(8) NOT NULL,
   `isAdmin` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 --
 -- Indexes for dumped tables
@@ -215,43 +217,43 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `delivery`
 --
 ALTER TABLE `delivery`
-  MODIFY `deliveryid` int(15) NOT NULL AUTO_INCREMENT;
+  MODIFY `deliveryid` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `games`
 --
 ALTER TABLE `games`
-  MODIFY `gameid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `gameid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `movies`
 --
 ALTER TABLE `movies`
-  MODIFY `movieid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `movieid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `payid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `payid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `productid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `productid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `tvshows`
 --
 ALTER TABLE `tvshows`
-  MODIFY `tvid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `tvid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `userid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
