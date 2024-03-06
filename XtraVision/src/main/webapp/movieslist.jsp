@@ -1,37 +1,57 @@
-<%@ page import="business.Movie" %>
-<%@ page import="daos.MovieDao" %>
+<%@ page import="business.Product" %>
+<%@ page import="daos.ProductDao" %>
 <%@ page import="java.util.List" %>
+<%@ page import="business.Movie" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
-<body>
-<jsp:include page="head.jsp"/>
 
-    <%
-    MovieDao MovieDao = new MovieDao("xtra");
-    List<Movie> Movies = MovieDao.getAllMovies();
-    if(!Movies.isEmpty()){
+<jsp:include page="head.jsp" />
 
+<%
+    ProductDao productDao = new ProductDao("xtra");
+    List<Product> MovieProducts = productDao.getMovieProducts();
+    if (!MovieProducts.isEmpty()) {
 %>
 <table>
-    <%
-        for(Movie m: Movies){
-    %>
     <tr>
-        <td><%=m.getDirector()%></td>
-        <td><%=m.getFormat()%></td>
-        <td><%=m.getRuntime()%></td>
-        <td><%=m.getMovieRating()%></td>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Genre</th>
+        <th>Studio</th>
+        <th>Release Date</th>
+        <th>Price</th>
+        <th>Director</th>
+        <th>Format</th>
+        <th>Runtime</th>
+        <th>Rating</th>
     </tr>
     <%
+        for (Product product : MovieProducts) {
+            if (product instanceof Movie) {
+                Movie m = (Movie) product;
+    %>
+    <tr>
+        <td><%= m.getName() %></td>
+        <td><%= m.getDescription() %></td>
+        <td><%= m.getGenre() %></td>
+        <td><%= m.getStudio() %></td>
+        <td><%= m.getReleaseDate() %></td>
+        <td><%= m.getPrice() %></td>
+        <td><%= m.getDirector() %></td>
+        <td><%= m.getFormat()%></td>
+        <td><%= m.getRuntime()%></td>
+        <td><%= m.getMovieRating()%></td>
+    </tr>
+    <%
+            }
         }
     %>
 </table>
-    <%
-    } else {
+<%
+} else {
 %>
 <p>No Movies found</p>
-    <%    }
-    %>
+<%
+    }
+%>
 
-
-<jsp:include page="footer.jsp"/>
+<jsp:include page="footer.jsp" />

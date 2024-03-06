@@ -1,39 +1,61 @@
-<%@ page import="daos.TvDao" %>
-<%@ page import="business.Tv" %>
+<%@ page import="business.Product" %>
+<%@ page import="daos.ProductDao" %>
 <%@ page import="java.util.List" %>
+<%@ page import="business.Tv" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
-<body>
-<jsp:include page="head.jsp"/>
 
-    <%
-    TvDao TvDao = new TvDao("xtra");
-    List<Tv> Tvs = TvDao.getAllTvShows();
-    if(!Tvs.isEmpty()){
+<jsp:include page="head.jsp" />
 
+<%
+    ProductDao productDao = new ProductDao("xtra");
+    List<Product> TvProducts = productDao.getTvShowProducts();
+    if (!TvProducts.isEmpty()) {
 %>
 <table>
-    <%
-        for(Tv g: Tvs){
-    %>
     <tr>
-        <td><%=g.getShowrunner()%></td>
-        <td><%=g.getFormat()%></td>
-        <td><%=g.getNumberOfSeasons()%></td>
-        <td><%=g.getNumberOfEpisodes()%></td>
-        <td><%=g.getRuntime()%></td>
-        <td><%=g.getTvRating()%></td>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Genre</th>
+        <th>Studio</th>
+        <th>Release Date</th>
+        <th>Price</th>
+        <th>Showrunner</th>
+        <th>Format</th>
+        <th>Seasons</th>
+        <th>Episodes</th>
+        <th>Runtime</th>
+        <th>Rating</th>
     </tr>
     <%
+        for (Product product : TvProducts) {
+            if (product instanceof Tv) {
+                Tv t = (Tv) product;
+    %>
+    <tr>
+        <td><%= t.getName() %></td>
+        <td><%= t.getDescription() %></td>
+        <td><%= t.getGenre() %></td>
+        <td><%= t.getStudio() %></td>
+        <td><%= t.getReleaseDate() %></td>
+        <td><%= t.getPrice() %></td>
+        <td><%= t.getShowrunner() %></td>
+        <td><%= t.getFormat()%></td>
+        <td><%= t.getNumberOfSeasons()%></td>
+        <td><%= t.getNumberOfEpisodes()%></td>
+        <td><%= t.getRuntime()%></td>
+        <td><%= t.getTvRating()%></td>
+    </tr>
+    <%
+            }
         }
     %>
 </table>
-    <%
-    } else {
+<%
+} else {
 %>
-<p>No Tvs found</p>
-    <%    }
-    %>
+<p>No Tv Shows found</p>
+<%
+    }
+%>
 
-
-<jsp:include page="footer.jsp"/>
+<jsp:include page="footer.jsp" />

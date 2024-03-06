@@ -1,6 +1,8 @@
 package daos;
 
 import business.Game;
+import business.Movie;
+import business.Tv;
 import business.Product;
 import exceptions.DaoException;
 
@@ -56,6 +58,44 @@ public class ProductDao extends Dao implements ProductDaoInterface {
         return new Game(gameId, name, description, genre, studio, publisher, platform, releaseDate, price, quantity, gameRating);
     }
 
+    private Movie extractMovie(ResultSet resultSet) throws SQLException {
+        int movieId = resultSet.getInt("movieid");
+        String name = resultSet.getString("name");
+        String description = resultSet.getString("description");
+        String genre = resultSet.getString("genre");
+        String studio = resultSet.getString("studio");
+        LocalDate releaseDate = resultSet.getDate("releasedate").toLocalDate();
+        double price = resultSet.getDouble("price");
+        int quantity = resultSet.getInt("quantity");
+        String director = resultSet.getString("director");
+        String format = resultSet.getString("format");
+        String runtime = resultSet.getString("runtime");
+        String movieRating = resultSet.getString("movierating");
+
+        return new Movie(movieId, name, description, genre, director, studio, format, releaseDate, price, movieRating, runtime, quantity);
+    }
+
+    private Tv extractTvShow(ResultSet resultSet) throws SQLException {
+        int tvId = resultSet.getInt("tvid");
+        String name = resultSet.getString("name");
+        String description = resultSet.getString("description");
+        String genre = resultSet.getString("genre");
+        String studio = resultSet.getString("studio");
+        LocalDate releaseDate = resultSet.getDate("releasedate").toLocalDate();
+        double price = resultSet.getDouble("price");
+        int quantity = resultSet.getInt("quantity");
+        String showrunner = resultSet.getString("showrunner");
+        String format = resultSet.getString("format");
+        int numberOfSeasons = resultSet.getInt("noofseasons");
+        int numberOfEpisodes = resultSet.getInt("noofepisodes");
+        String runtime = resultSet.getString("runtime");
+        String tvRating = resultSet.getString("tvrating");
+
+        return new Tv(tvId, name, description, genre, studio, releaseDate, price, quantity, showrunner, format, numberOfSeasons, numberOfEpisodes, runtime, tvRating);
+    }
+
+
+
     public List<Product> getGameProducts() {
         List<Product> gameProducts = new ArrayList<>();
         try (Connection connection = getConnection();
@@ -69,6 +109,36 @@ public class ProductDao extends Dao implements ProductDaoInterface {
             e.printStackTrace();
         }
         return gameProducts;
+    }
+
+    public List<Product> getMovieProducts() {
+        List<Product> movieProducts = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM products INNER JOIN movies ON products.movieid = movies.movieid");
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                movieProducts.add(extractMovie(resultSet));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return movieProducts;
+    }
+
+    public List<Product> getTvShowProducts() {
+        List<Product> tvShowProducts = new ArrayList<>();
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM products INNER JOIN tvshows ON products.tvid = tvshows.tvid");
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                tvShowProducts.add(extractTvShow(resultSet));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return tvShowProducts;
     }
 
 

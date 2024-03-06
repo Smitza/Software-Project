@@ -47,7 +47,7 @@
 <%
 } else {
 %>
-<p>No Game Products found</p>
+<p>No Games found</p>
 <%
     }
 %>
