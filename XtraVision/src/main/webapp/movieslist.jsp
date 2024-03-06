@@ -8,44 +8,51 @@
 
 <%
     ProductDao productDao = new ProductDao("xtra");
-    List<Product> MovieProducts = productDao.getMovieProducts();
-    if (!MovieProducts.isEmpty()) {
+    List<Product> movieProducts = productDao.getMovieProducts();
+    if (!movieProducts.isEmpty()) {
 %>
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Genre</th>
-        <th>Studio</th>
-        <th>Release Date</th>
-        <th>Price</th>
-        <th>Director</th>
-        <th>Format</th>
-        <th>Runtime</th>
-        <th>Rating</th>
-    </tr>
+
+<div class="row row-cols-1 row-cols-md-4 g-4 p-3" style="background-image: url('images/gamebg.png'); background-size: cover; background-attachment: fixed">
     <%
-        for (Product product : MovieProducts) {
+        for (Product product : movieProducts) {
             if (product instanceof Movie) {
-                Movie m = (Movie) product;
+                Movie movie = (Movie) product;
     %>
-    <tr>
-        <td><%= m.getName() %></td>
-        <td><%= m.getDescription() %></td>
-        <td><%= m.getGenre() %></td>
-        <td><%= m.getStudio() %></td>
-        <td><%= m.getReleaseDate() %></td>
-        <td><%= m.getPrice() %></td>
-        <td><%= m.getDirector() %></td>
-        <td><%= m.getFormat()%></td>
-        <td><%= m.getRuntime()%></td>
-        <td><%= m.getMovieRating()%></td>
-    </tr>
+    <div class="col">
+        <div class="card h-100">
+            <img src="https://placehold.co/600x400" class="card-img-top" alt="<%=movie.getName()%> Movie Image" style="height: 400px">
+            <div class="card-body">
+                <h5 class="card-title"><%= movie.getName() %></h5>
+                <p class="card-text"><%= movie.getDescription() %></p>
+                <% if(movie.getPrice() != 0.0){ %>
+                <h3 class="card-text">To buy: &#x20AC; <%=movie.getPrice()%></h3>
+                <h3 class="card-text">Gold Price: &#x20AC; <%=Math.round((movie.getPrice() / 100) * 40)%></h3>
+                <h3 class="card-text">Silver Price: &#x20AC; <%=Math.round((movie.getPrice() / 100) * 60)%></h3>
+                <% } else { %>
+                <h3 class="card-text">Free</h3>
+                <% } %>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Genre:</strong> <%= movie.getGenre() %></li>
+                    <li class="list-group-item"><strong>Studio:</strong> <%= movie.getStudio() %></li>
+                    <li class="list-group-item"><strong>Release Date:</strong> <%= movie.getReleaseDate() %></li>
+                    <li class="list-group-item"><strong>Director:</strong> <%= movie.getDirector() %></li>
+                    <li class="list-group-item"><strong>Format:</strong> <%= movie.getFormat() %></li>
+                    <li class="list-group-item"><strong>Runtime:</strong> <%= movie.getRuntime() %></li>
+                    <li class="list-group-item"><strong>Movie Rating:</strong> <%= movie.getMovieRating() %></li>
+                </ul>
+                <div class="mt-3">
+                    <a href="#" class="btn btn-primary">Buy</a>
+                    <a href="#" class="btn btn-success">Rent</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <%
             }
         }
     %>
-</table>
+</div>
+
 <%
 } else {
 %>

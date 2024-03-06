@@ -11,39 +11,47 @@
     List<Product> gameProducts = productDao.getGameProducts();
     if (!gameProducts.isEmpty()) {
 %>
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Genre</th>
-        <th>Studio</th>
-        <th>Release Date</th>
-        <th>Price</th>
-        <th>Publisher</th>
-        <th>Platform</th>
-        <th>Game Rating</th>
-    </tr>
+
+<div class="row row-cols-1 row-cols-md-4 g-4  p-3" style="background-image: url('images/gamebg.png'); background-size: cover; background-attachment: fixed">
     <%
         for (Product product : gameProducts) {
             if (product instanceof Game) {
                 Game game = (Game) product;
     %>
-    <tr>
-        <td><%= game.getName() %></td>
-        <td><%= game.getDescription() %></td>
-        <td><%= game.getGenre() %></td>
-        <td><%= game.getStudio() %></td>
-        <td><%= game.getReleaseDate() %></td>
-        <td><%= game.getPrice() %></td>
-        <td><%= game.getPublisher() %></td>
-        <td><%= game.getPlatform() %></td>
-        <td><%= game.getGameRating() %></td>
-    </tr>
+    <div class="col">
+        <div class="card h-100">
+            <img src="images/ProductImages/<%=game.getName()%>gameimg.png" class="card-img-top" alt="<%=game.getName()%> Game Image" style="height: 400px">
+            <div class="card-body">
+                <h5 class="card-title"><%= game.getName() %></h5>
+                <p class="card-text"><%= game.getDescription() %></p>
+                <% if(game.getPrice() != 0.0){ %>
+                <h3 class="card-text">To buy: &#x20AC; <%=game.getPrice()%></h3>
+                <h3 class="card-text">Gold Price: &#x20AC; <%=Math.round((game.getPrice() / 100) * 40)%></h3>
+                <h3 class="card-text">Silver Price: &#x20AC; <%=Math.round((game.getPrice() / 100) * 60)%></h3>
+                <% } else { %>
+                <h3 class="card-text">Free</h3>
+                <% } %>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>Genre:</strong> <%= game.getGenre() %></li>
+                    <li class="list-group-item"><strong>Studio:</strong> <%= game.getStudio() %></li>
+                    <li class="list-group-item"><strong>Release Date:</strong> <%= game.getReleaseDate() %></li>
+                    <li class="list-group-item"><strong>Publisher:</strong> <%= game.getPublisher() %></li>
+                    <li class="list-group-item"><strong>Platform:</strong> <%= game.getPlatform() %></li>
+                    <li class="list-group-item"><img src="images/GameRatings/<%= game.getGameRating()%>.png" style="height: 50px"></li>
+                </ul>
+                <div class="mt-3">
+                    <a href="#" class="btn btn-primary">Buy</a>
+                    <a href="#" class="btn btn-success">Rent</a>
+                </div>
+            </div>
+        </div>
+    </div>
     <%
             }
         }
     %>
-</table>
+</div>
+
 <%
 } else {
 %>

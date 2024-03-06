@@ -48,7 +48,7 @@ INSERT INTO `delivery` (`deliveryid`, `address`, `phoneno`, `payid`) VALUES
 
 -- Insert data into the 'products' table
 INSERT INTO `products` (`productid`, `name`, `description`, `genre`, `studio`, `releasedate`, `price`, `quantity`, `payid`, `gameid`, `tvid`, `movieid`) VALUES
-(1, 'Battlefield 2042', 'WELCOME TO 2042\r\nBattlefield™ 2042 is a first-person shooter that marks the return to the iconic all-out warfare of the franchise. With the help of a cutting-edge arsenal, you can engage in intense, immersive multiplayer battles.\r\n\r\nLead your team to victory!', 'FPS', 'DICE', '2021-11-19', 59.99, 0, 0, 1, NULL, NULL),
+(1, 'Battlefield 2042', 'In Battlefield 2042, players are thrust into the near-future setting of the year 2042, where global superpowers are on the brink of collapse.', 'FPS', 'DICE', '2021-11-19', 59.99, 0, 0, 1, NULL, NULL),
 (2, 'Assassins Creed Valhalla', 'Experience the epic Viking saga as you raid your enemies, grow your settlement, and build political power in the quest to earn a place among the gods in Valhalla.', 'Action RPG', 'Ubisoft', '2020-11-10', 49.99, 0, 0, 2, NULL, NULL),
 (3, 'The Legend of Zelda Breath of the Wild', 'Embark on a journey in Hyrule and explore the vast open world, solve puzzles, defeat enemies, and uncover the secrets of the kingdom.', 'Action-Adventure', 'Nintendo', '2017-03-03', 59.99, 0, 0, 3, NULL, NULL),
 (4, 'Call of Duty Warzone', 'Drop into a massive battleground with your squad, collect weapons, and battle it out to be the last team standing in this intense battle royale game.', 'Battle Royale', 'Activision', '2020-03-10', 0.00, 0, 0, 4, NULL, NULL),
