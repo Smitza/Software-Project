@@ -15,11 +15,11 @@ public class CommandFactory {
                 case "register":
                     c = new RegisterCommand(request,response);
                     break;
+                case "editUser":
+                    c = new EditUserCommand(request, response);
+                    break;
                 case "logout":
                     c = new LogoutCommand(request,response);
-                    break;
-                case "profile":
-                    c = new ProfileCommand(request,response);
                     break;
                 case "rental":
 //                    c = new RentalCommand(request,response);

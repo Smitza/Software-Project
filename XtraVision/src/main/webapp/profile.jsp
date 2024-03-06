@@ -23,6 +23,9 @@
 <p><strong>Name:</strong> <%= user.getName() %></p>
 <p><strong>Membership:</strong> <%= user.getMembership() %></p>
 <p><strong>Admin:</strong> <%= user.isAdmin()%></p>
+<br>
+<p>Something not right? <a href="EditUser.jsp">Change it</a></p>
+
 <% } else { %>
 <p>User not found.</p>
 <% } %>

@@ -46,7 +46,7 @@ public interface UserDaoInterface {
      */
     public User getUserById(int id) throws DaoException;
 
-
+    public int SetUserDetails(String username, String email, String phone, String name, String password, int id) throws DaoException;
 
 
 }

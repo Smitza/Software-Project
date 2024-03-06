@@ -152,6 +152,38 @@ return rowsAffected > 0;
     }
 
     @Override
+    public int SetUserDetails(String username, String email, String phone, String name, String password, int id){
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        User u = null;
+
+        int rowsAffected = -1;
+
+        try {
+            con = this.getConnection();
+            String query = "UPDATE users SET username = ?, email = ?, phone = ?, name = ? WHERE userid = ? AND password = ? ";
+            ps = con.prepareStatement(query);
+
+            ps.setString(1, username);
+            ps.setString(2, email);
+            ps.setString(3, phone);
+            ps.setString(4, name);
+            ps.setInt(5, id);
+            ps.setString(6, password);
+
+            rowsAffected =  ps.executeUpdate();
+
+
+            } catch (SQLException e) {
+                System.err.println("Error occurred while changing user details. Try again later");
+                return rowsAffected;
+            }
+            return rowsAffected;
+        }
+
+
+    @Override
     public User getUserById(int id) {
         Connection con = null;
         PreparedStatement ps = null;
