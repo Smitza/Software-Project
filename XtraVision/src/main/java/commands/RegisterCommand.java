@@ -5,6 +5,7 @@ import daos.UserDao;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class RegisterCommand implements Command {
 
@@ -28,15 +29,19 @@ public class RegisterCommand implements Command {
         int membership = request.getIntHeader("membership");
         int isAdmin = request.getIntHeader("isAdmin");
 
-        if(username != null && email != null && password != null && phone != null && name != null && !username.isEmpty() && !email.isEmpty() && !password.isEmpty() && !phone.isEmpty() && !name.isEmpty()){
+        if (username != null && email != null && password != null && phone != null && name != null && !username.isEmpty() && !email.isEmpty() && !password.isEmpty() && !phone.isEmpty() && !name.isEmpty()) {
+            // Hash the password
+            String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+
             UserDao userDao = new UserDao("xtra");
-            boolean added = userDao.addUser(username, email, password, phone, name, membership, isAdmin);
-            if(added == false){
-                forwardToJsp = "error.jsp";
+            // Make sure to pass the hashedPassword instead of password
+            boolean added = userDao.addUser(username, email, hashedPassword, phone, name, membership, isAdmin);
+
+            if(!added){
+                forwardToJsp = "register.jsp";
                 String error = "Account creation failed, Please try again";
-                session.setAttribute("errorMessage", error);
+                session.setAttribute("registerErrorMessage", error);
             } else {
-                forwardToJsp = "index.jsp";
                 session.setAttribute("username", username);
                 User u = new User(username, email, password, phone, name);
                 session.setAttribute("loggedInUser", u);
@@ -44,7 +49,7 @@ public class RegisterCommand implements Command {
             }
         } else {
             String errorMessage = "One or more fields were missing. Please try again";
-            session.setAttribute("errorMessage", errorMessage);
+            session.setAttribute("registerErrorMessage", errorMessage);
             forwardToJsp = "error.jsp";
         }
         return forwardToJsp;
