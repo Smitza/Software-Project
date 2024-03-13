@@ -228,6 +228,18 @@ return rowsAffected > 0;
         }
         return u;
     }
+
+    public void updateUser(User user) {
+        try (Connection conn = getConnection();
+             PreparedStatement statement = conn.prepareStatement("UPDATE users SET isAdmin = ? WHERE userid = ?")) {
+            statement.setInt(1, user.isAdmin());
+            statement.setInt(2, user.getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error occured: The selected user was not found" + e.getMessage());
+        }
+    }
+
 }
 
 

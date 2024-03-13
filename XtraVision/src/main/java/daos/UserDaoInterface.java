@@ -2,6 +2,7 @@ package daos;
 import business.User;
 import exceptions.DaoException;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface UserDaoInterface {
@@ -47,6 +48,8 @@ public interface UserDaoInterface {
     public User getUserById(int id) throws DaoException;
 
     public int SetUserDetails(String username, String email, String phone, String name, String password, int id) throws DaoException;
+
+    public void updateUser(User u) throws SQLException;
 
 
 }

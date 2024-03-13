@@ -2,16 +2,15 @@ package commands;
 
 import business.User;
 import daos.UserDao;
-import daos.UserDaoInterface;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
-public class UpgradeCommand implements Command {
+public class RemoveAdminCommand implements Command {
 
     private HttpServletRequest request;
     private HttpServletResponse response;
-    public UpgradeCommand(HttpServletRequest request, HttpServletResponse response) {
+
+    public RemoveAdminCommand(HttpServletRequest request, HttpServletResponse response) {
         this.request = request;
         this.response = response;
     }
@@ -23,7 +22,7 @@ public class UpgradeCommand implements Command {
         UserDao userDao = new UserDao("xtra");
         User u = userDao.getUserById(userId);
         if (u!= null) {
-            u.setAdmin(1);
+            u.setAdmin(0);
             userDao.updateUser(u); // Update user in the database
         }
         return destination;

@@ -3,9 +3,6 @@
 <%@ page import="daos.UserDao" %>
 <%@ page import="daos.UserDaoInterface" %>
 <%@ page import="java.util.List" %>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<body>
 <jsp:include page="head.jsp"/>
 
 <h1 class="text-center">User List:</h1>
@@ -30,9 +27,15 @@
 
             <% if (user.isAdmin() == 1) { %>
             <p class="card-text">User is already an admin.</p>
+            <form action="controller" method="post">
+                <input type="hidden" name="action" value="removeadmin">
+                <input type="hidden" name="userId" value="<%= user.getId() %>">
+                <button type="submit" class="btn btn-danger">Remove Admin Status</button>
+            </form>
             <% } else { %>
-            <form action="admincontrol" method="post">
-                <input type="hidden" name="userId" value="<%= user.getName() %>">
+            <form action="controller" method="post">
+                <input type="hidden" name="action" value="upgradeuser">
+                <input type="hidden" name="userId" value="<%= user.getId() %>">
                 <button type="submit" class="btn btn-primary">Upgrade to Admin</button>
             </form>
             <% } %>

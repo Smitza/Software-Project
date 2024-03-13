@@ -5,7 +5,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 public class CommandFactory {
     public static Command getCommand(String action, HttpServletRequest request, HttpServletResponse response){
-        Command c = null;
+        Command c;
         if(action != null) {
             switch(action){
                 //Write link to each command (login, register, rental etc...)
@@ -21,11 +21,11 @@ public class CommandFactory {
                 case "logout":
                     c = new LogoutCommand(request,response);
                     break;
-                case "rental":
-//                    c = new RentalCommand(request,response);
-//                    break;
                 case "upgradeuser":
                     c = new UpgradeCommand(request,response);
+                    break;
+                case "removeadmin":
+                    c = new RemoveAdminCommand(request,response);
                     break;
                 default:
                     String errormessage = "No action value provided in controller";
