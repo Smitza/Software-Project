@@ -16,13 +16,11 @@
         UserDao userDao = new UserDao("xtra");
         User user = userDao.getUserById(loggedInUser.getId());
 %>
-<p><strong>User ID:</strong> <%= user.getId() %></p>
-<p><strong>Username:</strong> <%= user.getName() %></p>
+<p><strong>Username:</strong> <%= user.getUserName() %></p>
 <p><strong>Email:</strong> <%= user.getEmail() %></p>
 <p><strong>Phone:</strong> <%= user.getPhone() %></p>
 <p><strong>Name:</strong> <%= user.getName() %></p>
-<p><strong>Membership:</strong> <%= user.getMembership() %></p>
-<p><strong>Admin:</strong> <%= user.isAdmin()%></p>
+
 <br>
 <p>Something not right? <a href="EditUser.jsp">Change it</a></p>
 

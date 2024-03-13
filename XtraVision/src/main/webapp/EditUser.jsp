@@ -13,7 +13,6 @@
         UserDao userDao = new UserDao("xtra");
         User user = userDao.getUserById(loggedInUser.getId());
 
-        username: user.getUserName();
 %>
 <html>
 <head>
@@ -51,6 +50,9 @@
                             <p>Confirm your changes by entering your password</p>
                             <div class="mb-3">
                                 <input type="password" id="password" name="password" placeholder="Password" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="text" id="currentUsername" name="currentUsername" placeholder="Current Username" required>
                             </div>
                             <div class="mb-3">
                                 <button class="btn btn-primary d-block w-100" value="submit" type="submit">Confirm</button>

@@ -20,6 +20,7 @@ public class EditUserCommand implements Command{
     public String execute(){
         String destination = "index.jsp";
         HttpSession session = request.getSession(true);
+        String currentUsername = request.getParameter("currentUsername");
         String username = request.getParameter("username");
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
@@ -27,7 +28,7 @@ public class EditUserCommand implements Command{
         String password = request.getParameter("password");
         if(username != null && !username.isEmpty() && email != null && !email.isEmpty() && phone != null && !phone.isEmpty() && name != null && !name.isEmpty() && password != null && !password.isEmpty()){
             UserDao userDao = new UserDao("xtra");
-            User u = userDao.getUserbyUserPass(username, password);
+            User u = userDao.getUserbyUserPass(currentUsername, password);
             if(u == null){
                 destination = "error.jsp";
                 String error = "No user session detected. Please <a href=\"login.jsp\">login .</a>";
