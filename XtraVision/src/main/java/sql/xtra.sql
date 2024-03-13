@@ -97,7 +97,6 @@ CREATE TABLE `products` (
   `releasedate` date NOT NULL,
   `price` double(8,2) NOT NULL,
   `quantity` int(20) DEFAULT NULL,
-  `payid` int(11) NOT NULL,
   `gameid` int(11) DEFAULT NULL,
   `tvid` int(11) DEFAULT NULL,
   `movieid` int(11) DEFAULT NULL

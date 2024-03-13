@@ -23,9 +23,6 @@
             <a class="navbar-brand mx-auto" href="index.jsp"><img src="images/Xtra-Logo.png" width="300" alt="Return Home"></a>
             <ul class="navbar-nav me-auto fs-3">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.jsp">Home</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="gameslist.jsp">Games</a>
                 </li>
                 <li class="nav-item">
@@ -44,7 +41,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="controller?action=logout">Logout</a>
                 </li>
-                <%
+                <% if(user.isAdmin() == 1 ) { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="admincontrol.jsp">Admin Control Panel</a>
+                </li>
+                <% }
                     } else {
                 %>
                 <li class="nav-item">

@@ -1,12 +1,6 @@
 <%@ page import="daos.UserDao" %>
 <%@ page import="business.User" %>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %><!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>User Profile</title>
-</head>
-<body>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <jsp:include page="head.jsp"/>
 <h1>User Profile</h1>
 <%
@@ -24,9 +18,9 @@
 <br>
 <p>Something not right? <a href="EditUser.jsp">Change it</a></p>
 
-<% } else { %>
-<p>User not found.</p>
-<% } %>
+<% } else {
+response.sendRedirect("login.jsp");
+} %>
 
 <jsp:include page="footer.jsp"/>
 </body>

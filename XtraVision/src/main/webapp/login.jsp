@@ -13,6 +13,15 @@
         <div class="row d-flex justify-content-center pb-5">
             <div class="col-md-6 col-xl-4" style="width: 327px;">
                 <div class="card mb-5" style="border-radius: 20px;border-width: 9px;background-color: rgba(33,37,41,0.80); box-shadow: 0 0 5px black; ">
+                    <%
+                        String loginErrorMessage = (String) session.getAttribute("loginErrorMessage");
+                        if (loginErrorMessage != null) {
+                    %>
+                    <h4 class="text-danger text-center mt-4" ><%= loginErrorMessage %></h4>
+                    <%
+                        }
+                        session.removeAttribute("loginErrorMessage"); // Clear the error message from the session
+                    %>
                     <div class="card-body d-flex flex-column align-items-center" style="border-color: rgba(33,37,41,0.80);">
                         <i class="fa-solid fa-user fa-3x p-3"></i>
                         <form action="controller" class="text-center" method="POST">

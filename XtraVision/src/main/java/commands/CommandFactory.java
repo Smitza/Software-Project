@@ -24,6 +24,9 @@ public class CommandFactory {
                 case "rental":
 //                    c = new RentalCommand(request,response);
 //                    break;
+                case "upgradeuser":
+                    c = new UpgradeCommand(request,response);
+                    break;
                 default:
                     String errormessage = "No action value provided in controller";
                     c = new ErrorCommand(request,response,errormessage);

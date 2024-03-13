@@ -9,7 +9,6 @@ public class EditUserCommand implements Command{
 
     private HttpServletRequest request;
     private HttpServletResponse response;
-    private String errorMessage;
 
     public EditUserCommand(HttpServletRequest request, HttpServletResponse response) {
         this.request = request;

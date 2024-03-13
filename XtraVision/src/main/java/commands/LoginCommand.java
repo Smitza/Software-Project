@@ -29,14 +29,14 @@ public class LoginCommand implements Command{
                 session.setAttribute("loggedInUser", user);
                 destination = "index.jsp";
             }else{
-                String errorMessage = "No user found.";
-                session.setAttribute("errorMessage", errorMessage);
-                destination = "error.jsp";
+                String errorMessage = "Incorrect username or password.";
+                session.setAttribute("loginErrorMessage", errorMessage);
+                destination = "login.jsp";
             }
         }else{
             String errorMessage = "One or more fields are missing please try again";
-            session.setAttribute("errorMessage", errorMessage);
-            destination = "error.jsp";
+            session.setAttribute("loginErrorMessage", errorMessage);
+            destination = "login.jsp";
         }
         return destination;
     }
