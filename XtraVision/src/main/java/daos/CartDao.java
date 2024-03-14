@@ -7,13 +7,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CartDao extends Dao implements CartDaoInterface{
 
     public CartDao(String dbName){ super(dbName); }
 
     @Override
-    public boolean addProductToCart(int userId, int productId, int quantity){
+    public boolean addProductToCart(int userId, int productId, int quantity) throws DaoException{
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -53,16 +55,16 @@ public class CartDao extends Dao implements CartDaoInterface{
     }
 
     @Override
-    public Product getCartByUserId(int userId){
+    public List<Product> getCartByUserId(int userId){
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
-        Product p = null;
+        ArrayList<Product> cartProducts = new ArrayList<>();
 
         try{
             con = this.getConnection();
 
-            String query = "SELECT productid, quantity from xtra.products_users WHERE userid = ?";
+            String query = "SELECT productid, quantity from xtra.cart WHERE userid = ?";
             ps = con.prepareStatement(query);
             ps.setInt(1, userId);
 
@@ -71,7 +73,8 @@ public class CartDao extends Dao implements CartDaoInterface{
             while(rs.next()){
                 int prodcutid = rs.getInt("productid");
                 int quantity = rs.getInt("quantity");
-                p = new Product(prodcutid, quantity);
+                Product p = new Product(prodcutid, quantity);
+                cartProducts.add(p);
             }
 
         } catch (SQLException e){
@@ -88,14 +91,14 @@ public class CartDao extends Dao implements CartDaoInterface{
                     freeConnection(con);
                 }
             } catch (SQLException e) {
-                System.out.println("An error occurred when shutting down the findUserByUsernamePassword() method: " + e.getMessage());
+                System.out.println("An error occurred when shutting down the GetCartByuserId method: " + e.getMessage());
             }
         }
-        return p;
+        return cartProducts;
     }
 
     @Override
-    public boolean updateCartQuantity(int cartId, int quantity){
+    public boolean updateCartQuantity(int cartId, int quantity, int productiId){
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -104,11 +107,12 @@ public class CartDao extends Dao implements CartDaoInterface{
         try{
             con = this.getConnection();
 
-            String query = "UPDATE xtra.cart SET quantity = ? WHERE cartId = ?";
+            String query = "UPDATE xtra.cart SET quantity = ? WHERE cartId = ? AND productid= ?";
             ps = con.prepareStatement(query);
 
             ps.setInt(1, quantity);
             ps.setInt(2, cartId);
+            ps.setInt(3, productiId);
 
             rowsAffected = ps.executeUpdate();
 
@@ -127,7 +131,7 @@ public class CartDao extends Dao implements CartDaoInterface{
                     freeConnection(con);
                 }
             } catch (SQLException e) {
-                System.out.println("An error occurred when shutting down the findAllUsers() method: " + e.getMessage());
+                System.out.println("An error occurred when shutting down the updateCartQuantity method: " + e.getMessage());
             }
         }
         return rowsAffected > 0;

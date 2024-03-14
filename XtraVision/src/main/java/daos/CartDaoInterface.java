@@ -10,9 +10,9 @@ public interface CartDaoInterface {
 
 public boolean addProductToCart(int userId, int productId, int quantity) throws DaoException;
 
-public Product getCartByUserId(int userId) throws DaoException;
+public List<Product> getCartByUserId(int userId) throws DaoException;
 
-public boolean updateCartQuantity(int cartId, int quantity) throws DaoException;
+public boolean updateCartQuantity(int cartId, int quantity, int productId) throws DaoException;
 
 public void checkoutCart(int userId) throws  DaoException;
 

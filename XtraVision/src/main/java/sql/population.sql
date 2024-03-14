@@ -64,5 +64,7 @@ INSERT INTO `products` (`productid`, `name`, `description`, `genre`, `studio`, `
 (14, 'The Departed', 'Witness the cat-and-mouse game between an undercover cop and a mole in this intense crime thriller directed by Martin Scorsese.', 'Crime', 'Warner Bros. Pictures', '2006-10-06', 19.99, 0,  NULL, NULL, 4),
 (15, 'Titanic', 'Experience the epic romance and tragedy aboard the ill-fated maiden voyage of the RMS Titanic.', 'Romance', '20th Century Studios', '1997-12-19', 24.99, 0,  NULL, NULL, 5);
 
-INSERT INTO products_users (PRODUCTID, USERID, PAYID, ORDERID, QUANTITY, ORDERDATE, TOTALPRICE, STATUS) VALUES
-(1, 1, 1, 1, 3, NOW(), 7.7, 'ordered');
+INSERT INTO cart (CARTID, PRODUCTID, USERID,  QUANTITY) VALUES
+(1, 1, 1, 3),
+(1, 2, 1, 6),
+(1, 3, 1, 9);

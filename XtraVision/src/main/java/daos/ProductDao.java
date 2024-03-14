@@ -1,9 +1,6 @@
 package daos;
 
-import business.Game;
-import business.Movie;
-import business.Tv;
-import business.Product;
+import business.*;
 import exceptions.DaoException;
 
 import java.sql.*;
@@ -41,7 +38,54 @@ public class ProductDao extends Dao implements ProductDaoInterface {
         return rowsAffected > 0;
     }
 
+    public Product getProductById(int productId) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Product p = null;
 
+        try {
+            con = this.getConnection();
+
+            String query = "SELECT * FROM products where productid = ?";
+            ps = con.prepareStatement(query);
+            ps.setInt(1, productId);
+
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                int productID = rs.getInt("productid");
+                String name = rs.getString("name");
+                String description = rs.getString("description");
+                String genre = rs.getString("genre");
+                String studio = rs.getString("studio");
+                LocalDate releaseDate = rs.getDate("releasedate").toLocalDate();
+                double price = rs.getDouble("price");
+                int quantity = rs.getInt("quantity");
+
+
+                p = new Product(productID, name, description, genre, studio, releaseDate, price, quantity);
+
+            }
+
+        } catch (SQLException e) {
+            System.out.println("An error occurred when requesting information on products by ID");
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    freeConnection(con);
+                }
+            } catch (SQLException e) {
+                System.out.println("An error occurred when shutting down the getProductById() method: " + e.getMessage());
+            }
+            return p;
+        }
+    }
     private Game extractGame(ResultSet resultSet) throws SQLException {
         int gameId = resultSet.getInt("gameid");
         String name = resultSet.getString("name");
