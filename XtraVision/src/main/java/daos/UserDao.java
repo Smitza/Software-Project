@@ -229,6 +229,88 @@ return rowsAffected > 0;
         return u;
     }
 
+    public User getUserByUsername(String username) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        User u = null;
+
+        try {
+            con = this.getConnection();
+            String query = "SELECT * FROM USERS WHERE USERNAME = ?";
+            ps = con.prepareStatement(query);
+            ps.setString(1, username);
+
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                int userid = rs.getInt("USERID");
+                String email = rs.getString("EMAIL");
+                String phone = rs.getString("PHONE");
+                String name = rs.getString("NAME");
+                int membership = rs.getInt("MEMBERSHIP");
+                int isAdmin = rs.getInt("ISADMIN");
+
+                u = new User(userid, username, email, "", phone, name, membership, isAdmin);
+            }
+        } catch (SQLException e) {
+            System.out.println("An error occurred in the getUserByUsername() method: " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    freeConnection(con);
+                }
+            } catch (SQLException e) {
+                System.out.println("An error occurred when shutting down the getUserByUsername() method: " + e.getMessage());
+            }
+        }
+            return u;
+        }
+
+
+    public String getHashedPasswordByUsername(String username) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String hashedPassword = null;
+
+        try {
+            con = this.getConnection();
+            String query = "SELECT password FROM USERS WHERE USERNAME = ?";
+            ps = con.prepareStatement(query);
+            ps.setString(1, username);
+
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                hashedPassword = rs.getString("PASSWORD");
+            }
+        } catch (SQLException e) {
+            System.out.println("An error occurred in the getHashedPasswordByUsername() method: " + e.getMessage());
+        }  finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    freeConnection(con);
+                }
+            } catch (SQLException e) {
+                System.out.println("An error occurred when shutting down the getHashedPasswordByUsername() method: " + e.getMessage());
+            }
+        }
+
+        return hashedPassword;
+    }
+
+
     public void updateUser(User user) {
         try (Connection conn = getConnection();
              PreparedStatement statement = conn.prepareStatement("UPDATE users SET isAdmin = ? WHERE userid = ?")) {

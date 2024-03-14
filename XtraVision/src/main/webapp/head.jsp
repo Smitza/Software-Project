@@ -57,9 +57,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="register.jsp">Register</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="Cart.jsp">Cart</a>
-                </li>
                 <%}%>
             </ul>
         </div>
