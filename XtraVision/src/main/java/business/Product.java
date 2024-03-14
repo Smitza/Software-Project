@@ -32,6 +32,18 @@ public class Product {
     public Product() {
     }
 
+    public Product(int productid, int quantity){
+        this.productid = productid;
+        this.quantity = quantity;
+    }
+
+    public Product(int productid, String name, double price, int quantity){
+        this.productid = productid;
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
     /**
      * Constructs a Product instance with detailed information.
      *

@@ -41,6 +41,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="controller?action=logout">Logout</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Cart.jsp">Cart</a>
+                </li>
                 <% if(user.isAdmin() == 1 ) { %>
                 <li class="nav-item">
                     <a class="nav-link" href="admincontrol.jsp">Admin Control Panel</a>
@@ -53,6 +56,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="register.jsp">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Cart.jsp">Cart</a>
                 </li>
                 <%}%>
             </ul>
