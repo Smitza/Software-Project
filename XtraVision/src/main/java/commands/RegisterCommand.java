@@ -26,8 +26,8 @@ public class RegisterCommand implements Command {
         String password = request.getParameter("password");
         String phone = request.getParameter("phone");
         String name = request.getParameter("name");
-        int membership = request.getIntHeader("membership");
-        int isAdmin = request.getIntHeader("isAdmin");
+        int membership = 1; //Default to free
+        int isAdmin = 0; //Default to non admin
 
         if (username != null && email != null && password != null && phone != null && name != null && !username.isEmpty() && !email.isEmpty() && !password.isEmpty() && !phone.isEmpty() && !name.isEmpty()) {
             // Hash the password
@@ -42,9 +42,11 @@ public class RegisterCommand implements Command {
                 String error = "Account creation failed, Please try again";
                 session.setAttribute("registerErrorMessage", error);
             } else {
-                session.setAttribute("username", username);
-                User u = new User(username, email, password, phone, name);
-                session.setAttribute("loggedInUser", u);
+                //Gets new user we created
+                User newUser = userDao.getUserByUsername(username);
+                // Set the fetched user as the loggedInUser
+                session.setAttribute("loggedInUser", newUser);
+
                 forwardToJsp = "index.jsp";
             }
         } else {
