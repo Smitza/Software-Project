@@ -19,7 +19,7 @@
                 Game game = (Game) product;
     %>
     <div class="col">
-        <div class="card h-100">
+        <div class="card h-100 text-white" style="background-color: rgba(0, 0, 0, 0.6)">
             <img src="images/ProductImages/<%=game.getName()%>gameimg.png" class="card-img-top" alt="<%=game.getName()%> Game Image" style="height: 400px">
             <div class="card-body">
                 <h5 class="card-title"><%= game.getName() %></h5>
@@ -31,7 +31,7 @@
                 <% } else { %>
                 <h3 class="card-text">Free</h3>
                 <% } %>
-                <ul class="list-group list-group-flush">
+                <ul class="list-group list-group-flush rounded-3">
                     <li class="list-group-item"><strong>Genre:</strong> <%= game.getGenre() %></li>
                     <li class="list-group-item"><strong>Studio:</strong> <%= game.getStudio() %></li>
                     <li class="list-group-item"><strong>Release Date:</strong> <%= game.getReleaseDate() %></li>

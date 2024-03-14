@@ -19,7 +19,7 @@
                 Tv tv = (Tv) product;
     %>
     <div class="col">
-        <div class="card h-100">
+        <div class="card h-100 text-white" style="background-color: rgba(0, 0, 0, 0.6)">
             <img src="https://placehold.co/600x400" class="card-img-top" alt="<%=tv.getName()%> TV Image" style="height: 400px">
             <div class="card-body">
                 <h5 class="card-title"><%= tv.getName() %></h5>

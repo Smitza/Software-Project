@@ -2,7 +2,6 @@
 <%@ page import="business.User" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <jsp:include page="head.jsp"/>
-<h1>User Profile</h1>
 <%
     int userId;
     User loggedInUser = (User) session.getAttribute("loggedInUser");
@@ -10,14 +9,25 @@
         UserDao userDao = new UserDao("xtra");
         User user = userDao.getUserById(loggedInUser.getId());
 %>
-<p><strong>Username:</strong> <%= user.getUserName() %></p>
-<p><strong>Email:</strong> <%= user.getEmail() %></p>
-<p><strong>Phone:</strong> <%= user.getPhone() %></p>
-<p><strong>Name:</strong> <%= user.getName() %></p>
+<div class="container padding-bottom-3x mt-4 mb-2">
+    <div class="row">
+        <div class="col-lg-4">
+            <aside class="user-info-wrapper">
+                    <div class="user-info">
+                    <div class="user-data">
+                        <h4><%=user.getName()%></h4>
+                    </div>
+                </div>
 
-<br>
-<p>Something not right? <a href="EditUser.jsp">Change it</a></p>
-
+            </aside>
+            <nav class="list-group">
+                <a class="list-group-item" href="#"><i class="fa fa-user"></i> Profile</a>
+                <a class="list-group-item with-badge" href="#"><i class=" fa fa-th"></i> Orders<span class="badge badge-primary badge-pill">6</span></a>
+                <p>Something not right? <a href="EditUser.jsp"> Change it</a></p>
+            </nav>
+        </div>
+    </div>
+</div>
 <% } else {
 response.sendRedirect("login.jsp");
 } %>
