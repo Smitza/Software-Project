@@ -36,26 +36,26 @@
                     if(user != null){
                 %>
                 <li class="nav-item">
-                    <a class="nav-link" href="profile.jsp">Profile</a>
+                    <a class="nav-link" href="profile.jsp"><i class="fa fa-user"></i> Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="controller?action=logout">Logout</a>
+                    <a class="nav-link" href="Cart.jsp"><i class="fa fa-cart-shopping"></i> Cart</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="Cart.jsp">Cart</a>
+                    <a class="nav-link" href="controller?action=logout"><i class="fa fa-right-from-bracket"></i> Logout</a>
                 </li>
                 <% if(user.isAdmin() == 1 ) { %>
                 <li class="nav-item">
-                    <a class="nav-link" href="admincontrol.jsp">Admin Control Panel</a>
+                    <a class="nav-link" href="admincontrol.jsp"><i class="fa fa-user-tie"></i> Admin Control Panel</a>
                 </li>
                 <% }
                     } else {
                 %>
                 <li class="nav-item">
-                    <a class="nav-link" href="login.jsp">Login</a>
+                    <a class="nav-link" href="login.jsp"><i class="fa fa-right-from-bracket"></i> Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="register.jsp">Register</a>
+                    <a class="nav-link" href="register.jsp"><i class="fa fa-address-card"></i> Register</a>
                 </li>
                 <%}%>
             </ul>
