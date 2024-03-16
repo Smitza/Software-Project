@@ -1,6 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
-<body>
 <jsp:include page="head.jsp"/>
 <section class="login-form" style="background-image: url('images/shelfbg.png')">
     <div class="container pt-5" style="color:white; width: 758px;">

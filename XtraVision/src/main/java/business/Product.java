@@ -12,10 +12,10 @@ public class Product {
     private int productid;
     private String name;
     private String description;
-    private String genre; // might add enum later for better organization
-    private String studio; //production studio / game devs, could change name in frontend to prevent confusion, if needed
-    private LocalDate releaseDate; //might consider how we handle future releases or upcoming titles
-    private double price; //should use Bigdecimal, may fix later?
+    private String genre;
+    private String studio;
+    private LocalDate releaseDate;
+    private double price;
     private int quantity;
 
     private static final int MAX_NAME_LENGTH = 100;
