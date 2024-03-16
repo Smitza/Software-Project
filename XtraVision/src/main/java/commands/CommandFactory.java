@@ -27,6 +27,9 @@ public class CommandFactory {
                 case "removeadmin":
                     c = new RemoveAdminCommand(request,response);
                     break;
+                case "addproductcart":
+                    c = new AddCartCommand(request,response);
+                    break;
                 default:
                     String errormessage = "No action value provided in controller";
                     c = new ErrorCommand(request,response,errormessage);

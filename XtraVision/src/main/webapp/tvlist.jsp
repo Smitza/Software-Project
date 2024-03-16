@@ -43,8 +43,7 @@
                     <li class="list-group-item"><strong>TV Rating:</strong> <%= tv.getTvRating() %></li>
                 </ul>
                 <div class="mt-3">
-                    <a href="#" class="btn btn-primary">Buy</a>
-                    <a href="#" class="btn btn-success">Rent</a>
+                    <a href="#" class="btn btn-primary">Add to cart</a>
                 </div>
             </div>
         </div>

@@ -7,25 +7,32 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="head.jsp" />
-<html>
-<head>
-    <title>Error Page</title>
-</head>
-<body>
-  <h1>Something went wrong</h1>
-  <%
-    String message = (String) session.getAttribute("errorMessage");
-    if(message != null) {
-  %>
-  <div><%=message%></div>
-  <%
-    session.removeAttribute("errorMessage");
-    } else {
-  %>
-  <div>How did you end up here? No error found...</div>
-  <%
-    }
-  %>
+<body style="background-image: url('images/error.png')">
+<section class="d-flex align-items-center min-vh-50 py-5">
+  <div class="container py-5 mx-3">
+        <img src="images/404icon.png">
+  </div>
+    <div class="col-md-6 text-center text-md-start">
+      <div class="lc-block mb-3">
+          <h1 class="fw-bold h4">SOMETHING WENT WRONG!<br></h1>
+      </div>
+      <div class="lc-block mb-3">
+        <%
+          String message = (String) session.getAttribute("errorMessage");
+          if(message != null) {
+        %>
+      <h1 class="w-bold text-white"><%=message%></h1>
+        <%
+        session.removeAttribute("errorMessage");
+        } else {
+        %>
+      <h2 class="fw-bold text-white">How did you end up here? No error found...</h2>
+        <%
+          }
+        %>
+      </div>
+    </div>
+</section>
   <jsp:include page="footer.jsp"/>
-</body>
-</html>
+
+
