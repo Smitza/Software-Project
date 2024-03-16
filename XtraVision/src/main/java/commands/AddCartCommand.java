@@ -20,6 +20,7 @@ public class AddCartCommand  implements Command {
     public String execute() {
         HttpSession session = request.getSession(true);
         int gameId = Integer.parseInt(request.getParameter("gameId"));
+
         User loggedInUser = (User) request.getSession().getAttribute("loggedInUser");
 
         if (loggedInUser == null) {
@@ -30,7 +31,7 @@ public class AddCartCommand  implements Command {
 
         CartDao cartDao = new CartDao("xtra");
         try {
-            cartDao.addProductToCart(userId, gameId);
+            cartDao.addProductToCart(userId, gameId, 1);
             return "gameslist.jsp";
         } catch (DaoException e) {
             String errorMessage = e.getMessage();

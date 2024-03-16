@@ -33,6 +33,8 @@ public class PaymentDao extends Dao implements PaymentDaoInterface{
             ps.setString(2, paymentDate);
             ps.setString(3, paymentMethod);
 
+            rowsAffected = ps.executeUpdate();
+
         } catch (SQLException e) {
             System.out.println("An error occurred in the findAllUsers() method: " + e.getMessage());
         } finally {
@@ -67,6 +69,8 @@ public class PaymentDao extends Dao implements PaymentDaoInterface{
             ps = con.prepareStatement(query);
 
             ps.setInt(1, id);
+
+            rowsAffected = ps.executeUpdate();
 
         } catch (SQLException e) {
             System.out.println("An error occurred in the findAllUsers() method: " + e.getMessage());

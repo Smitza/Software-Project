@@ -54,7 +54,7 @@ public class UserDao extends Dao implements UserDaoInterface {
                 System.out.println("An error occurred when shutting down the findAllUsers() method: " + e.getMessage());
             }
         }
-return rowsAffected > 0;
+        return rowsAffected > 0;
     }
 
     @Override

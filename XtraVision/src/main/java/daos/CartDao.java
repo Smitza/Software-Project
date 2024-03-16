@@ -17,27 +17,31 @@ public class CartDao extends Dao implements CartDaoInterface {
     }
 
     @Override
-    public boolean addProductToCart(int userId, int productId) throws DaoException {
+    public boolean addProductToCart(int userId, int productId, int quantity) throws DaoException {
         Connection con = null;
         PreparedStatement ps = null;
-        int rowsAffected = 0;
+        ResultSet rs = null;
+        int rowsAffected = -1;
 
         try {
             con = this.getConnection();
 
-            String query = "INSERT INTO cart (userid, productid) VALUES (?, ?)";
+            String query = "INSERT INTO cart (userid, productid, quantity) VALUES ( ?, ?, ?)";
             ps = con.prepareStatement(query);
 
             ps.setInt(1, userId);
             ps.setInt(2, productId);
+            ps.setInt(3, quantity);
 
             rowsAffected = ps.executeUpdate();
 
         } catch (SQLException e) {
             throw new DaoException("An error occurred adding an item to your cart", e);
         } finally {
-            closeResources(con, ps, null);
+
+            closeResources(con, ps, rs);
         }
+
         return rowsAffected > 0;
     }
 
@@ -69,6 +73,7 @@ public class CartDao extends Dao implements CartDaoInterface {
         } finally {
             closeResources(con, ps, rs);
         }
+
         return cartProducts;
     }
 
@@ -76,7 +81,7 @@ public class CartDao extends Dao implements CartDaoInterface {
     public boolean updateCartQuantity(int cartId, int quantity, int productId) throws DaoException {
         Connection con = null;
         PreparedStatement ps = null;
-        int rowsAffected = 0;
+        int rowsAffected = -1;
 
         try {
             con = this.getConnection();
@@ -95,6 +100,7 @@ public class CartDao extends Dao implements CartDaoInterface {
         } finally {
             closeResources(con, ps, null);
         }
+
         return rowsAffected > 0;
     }
 
