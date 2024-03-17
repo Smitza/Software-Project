@@ -202,8 +202,6 @@ ALTER TABLE `cart`
 --
 -- Constraints for table `delivery`
 --
-ALTER TABLE `delivery`
-  ADD CONSTRAINT `userid FOREIGN delivery` FOREIGN KEY (`userid`) REFERENCES `users` (`userid`);
 
 --
 -- Constraints for table `products`

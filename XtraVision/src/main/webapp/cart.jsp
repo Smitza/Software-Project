@@ -31,8 +31,10 @@
 <div class="text-center mt-3">
     <p>Total Price: <%= totalPrice %></p>
 </div>
+
 <div class="text-center mt-3">
-    <form action="payment.jsp" method="post">
+    <form action="delivery.jsp" method="post">
+        <input type="hidden" name="action" value="cartCheckout">
         <button type="submit" class="btn btn-primary">Checkout</button>
     </form>
 </div>

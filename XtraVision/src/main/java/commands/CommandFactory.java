@@ -33,6 +33,9 @@ public class CommandFactory {
                 case "subscribe":
                     c = new SubscribeCommand(request,response);
                     break;
+                case "delivery":
+                    c = new DeliveryCommand(request, response);
+                    break;
                 default:
                     String errormessage = "No action value provided in controller";
                     c = new ErrorCommand(request,response,errormessage);

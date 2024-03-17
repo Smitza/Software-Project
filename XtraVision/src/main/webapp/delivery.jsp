@@ -13,7 +13,7 @@
             <label for="payMethod">Payment method:</label>
             <input type="text" id="payMethod" name="payMethod" required><br><br>
 
-            <input type="submit" value="Delivery">
+            <input type="submit" value="Finish">
             <input type="hidden" name="action" value="delivery">
         </form>
 
