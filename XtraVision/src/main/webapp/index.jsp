@@ -60,7 +60,7 @@
                             <p>- 4K Tv, Movie and Game Streaming <br>
                             <p>- Play an unlimited selection of games from the game catalogue</p>
                             <br>
-                            <div class="my-3"><a class="btn btn-light btn-lg" role="button" href="#">Subscribe</a></div>
+                            <div class="my-3"><a class="btn btn-light btn-lg" role="button" href="subscribe.jsp">Subscribe</a></div>
                         </div>
                     </div>
                     <div class="col-md-6 order-first order-md-last" style="min-height: 250px;"><img class="w-100 h-100 fit-cover" src="images/xtragold.png"></div>

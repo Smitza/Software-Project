@@ -322,6 +322,17 @@ public class UserDao extends Dao implements UserDaoInterface {
         }
     }
 
+    public void addMembership(User user) {
+        try (Connection conn = getConnection();
+             PreparedStatement statement = conn.prepareStatement("UPDATE users SET membership = ? WHERE userid = ?")) {
+            statement.setInt(1, user.getMembership());
+            statement.setInt(2, user.getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error occured: The selected user was not found" + e.getMessage());
+        }
+    }
+
 }
 
 

@@ -30,6 +30,9 @@ public class CommandFactory {
                 case "addproductcart":
                     c = new AddCartCommand(request,response);
                     break;
+                case "subscribe":
+                    c = new SubscribeCommand(request,response);
+                    break;
                 default:
                     String errormessage = "No action value provided in controller";
                     c = new ErrorCommand(request,response,errormessage);

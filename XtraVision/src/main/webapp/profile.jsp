@@ -34,5 +34,3 @@ response.sendRedirect("login.jsp");
 } %>
 
 <jsp:include page="footer.jsp"/>
-</body>
-</html>
