@@ -7,7 +7,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class CartDao extends Dao implements CartDaoInterface {
@@ -55,7 +57,9 @@ public class CartDao extends Dao implements CartDaoInterface {
         try {
             con = this.getConnection();
 
-            String query = "SELECT productid, quantity FROM cart WHERE userid = ?";
+            String query = "SELECT p.productid, p.name, p.description, p.genre, p.studio, p.releasedate, p.price, c.quantity " +
+                    "FROM cart c INNER JOIN products p ON c.productid = p.productid " +
+                    "WHERE c.userid = ?";
             ps = con.prepareStatement(query);
             ps.setInt(1, userId);
 
@@ -63,8 +67,14 @@ public class CartDao extends Dao implements CartDaoInterface {
 
             while (rs.next()) {
                 int productId = rs.getInt("productid");
+                String name = rs.getString("name");
+                String genre = rs.getString("genre");
+                String studio = rs.getString("studio");
+                LocalDate releaseDate = rs.getDate("releaseDate").toLocalDate();
+                String description = rs.getString("description");
+                double price = rs.getDouble("price");
                 int quantity = rs.getInt("quantity");
-                Product p = new Product(productId, quantity);
+                Product p = new Product(productId, name, description, genre, studio, releaseDate, price, quantity);
                 cartProducts.add(p);
             }
 

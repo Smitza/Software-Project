@@ -24,6 +24,8 @@ public class AddCartCommand  implements Command {
         User loggedInUser = (User) request.getSession().getAttribute("loggedInUser");
 
         if (loggedInUser == null) {
+            String errorMessage = "Please login to purchase products";
+            session.setAttribute("loginErrorMessage", errorMessage);
             return "login.jsp";
         }
 
