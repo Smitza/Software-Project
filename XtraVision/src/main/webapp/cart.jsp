@@ -31,7 +31,6 @@
                                             <h3 class="text-black mb-0">Cart Empty</h3>
                                         </div>
             <%
-            System.out.println("Cart is empty");
                 } else {
                 for (Product p : cartProducts){
                 totalPrice += p.getPrice();

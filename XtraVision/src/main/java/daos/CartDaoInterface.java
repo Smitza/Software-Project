@@ -16,4 +16,6 @@ public boolean updateCartQuantity(int cartId, int quantity, int productId) throw
 
 public void checkoutCart(int userId) throws  DaoException;
 
+public void removeProductFromCart(int userId, int productId) throws DaoException;
+
 }

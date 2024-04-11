@@ -146,6 +146,27 @@ public class CartDao extends Dao implements CartDaoInterface {
         }
     }
 
+    @Override
+    public void removeProductFromCart(int userId, int productId) throws DaoException {
+        Connection con = null;
+        PreparedStatement ps = null;
+
+        try {
+            con = this.getConnection();
+
+            String query = "DELETE FROM cart WHERE userid = ? AND productid = ?";
+            ps = con.prepareStatement(query);
+
+            ps.setInt(1, userId);
+            ps.setInt(2, productId);
+
+        } catch (SQLException e) {
+            throw new DaoException("An error occurred removing the product from your cart", e);
+        } finally {
+            closeResources(con, ps, null);
+        }
+    }
+
     private void closeResources(Connection con, PreparedStatement ps, ResultSet rs) throws DaoException {
         try {
             if (rs != null) {

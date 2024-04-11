@@ -30,6 +30,9 @@ public class CommandFactory {
                 case "addproductcart":
                     c = new AddCartCommand(request,response);
                     break;
+                case "removeproductcart":
+                    c = new RemoveCartCommand(request,response);
+                    break;
                 case "subscribe":
                     c = new SubscribeCommand(request,response);
                     break;
