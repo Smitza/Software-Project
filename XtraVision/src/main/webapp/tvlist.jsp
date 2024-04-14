@@ -43,7 +43,13 @@
                     <li class="list-group-item"><strong>TV Rating:</strong> <%= tv.getTvRating() %></li>
                 </ul>
                 <div class="mt-3">
-                    <a href="#" class="btn btn-primary">Add to cart</a>
+                    <form action="controller" method="post">
+                        <input type="hidden" name="action" value="addproductcart">
+                        <input type="hidden" name="productId" value="<%= tv.getProductId() %>">
+                        <div class="mt-3">
+                            <button type="submit" class="btn btn-primary">Add to cart</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

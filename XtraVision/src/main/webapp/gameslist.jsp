@@ -41,7 +41,7 @@
                 </ul>
                 <form action="controller" method="post">
                     <input type="hidden" name="action" value="addproductcart">
-                    <input type="hidden" name="gameId" value="<%= game.getProductId() %>">
+                    <input type="hidden" name="productId" value="<%= game.getProductId() %>">
                     <div class="mt-3">
                         <button type="submit" class="btn btn-primary">Add to cart</button>
                     </div>

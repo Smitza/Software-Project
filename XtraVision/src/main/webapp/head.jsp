@@ -39,7 +39,7 @@
                     <a class="nav-link" href="profile.jsp"><i class="fa fa-user"></i> Profile</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="cart.jsp"><i class="fa fa-cart-shopping"></i> Cart</a>
+                    <a class="nav-link" href="cart.jsp"><i class="fa fa-cart-shopping"></i> Cart</a> <span id="cartBadge" class="badge"></span>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="controller?action=logout"><i class="fa fa-right-from-bracket"></i> Logout</a>

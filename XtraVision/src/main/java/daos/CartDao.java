@@ -28,23 +28,66 @@ public class CartDao extends Dao implements CartDaoInterface {
         try {
             con = this.getConnection();
 
-            String query = "INSERT INTO cart (userid, productid, quantity) VALUES ( ?, ?, ?)";
-            ps = con.prepareStatement(query);
-
+            // Check if the product already exists in the cart
+            String checkQuery = "SELECT quantity FROM cart WHERE userid = ? AND productid = ?";
+            ps = con.prepareStatement(checkQuery);
             ps.setInt(1, userId);
             ps.setInt(2, productId);
-            ps.setInt(3, quantity);
+            rs = ps.executeQuery();
 
-            rowsAffected = ps.executeUpdate();
+            if (rs.next()) {
+                // If the product already exists, update the quantity
+                int existingQuantity = rs.getInt("quantity");
+                int newQuantity = existingQuantity + quantity;
 
+                String updateQuery = "UPDATE cart SET quantity = ? WHERE userid = ? AND productid = ?";
+                ps = con.prepareStatement(updateQuery);
+                ps.setInt(1, newQuantity);
+                ps.setInt(2, userId);
+                ps.setInt(3, productId);
+
+                rowsAffected = ps.executeUpdate();
+            } else {
+                // If the product doesn't exist, insert a new record
+                String insertQuery = "INSERT INTO cart (userid, productid, quantity) VALUES (?, ?, ?)";
+                ps = con.prepareStatement(insertQuery);
+                ps.setInt(1, userId);
+                ps.setInt(2, productId);
+                ps.setInt(3, quantity);
+
+                rowsAffected = ps.executeUpdate();
+            }
         } catch (SQLException e) {
             throw new DaoException("An error occurred adding an item to your cart", e);
         } finally {
-
             closeResources(con, ps, rs);
         }
 
         return rowsAffected > 0;
+    }
+
+
+    @Override
+    public void removeProductFromCart(int userId, int productId) throws DaoException {
+        Connection con = null;
+        PreparedStatement ps = null;
+
+        try {
+            con = this.getConnection();
+
+            String query = "DELETE FROM cart WHERE userid = ? AND productid = ?";
+            ps = con.prepareStatement(query);
+
+            ps.setInt(1, userId);
+            ps.setInt(2, productId);
+
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new DaoException("An error occurred removing the product from your cart", e);
+        } finally {
+            closeResources(con, ps, null);
+        }
     }
 
     @Override
@@ -86,6 +129,8 @@ public class CartDao extends Dao implements CartDaoInterface {
 
         return cartProducts;
     }
+
+
 
     @Override
     public boolean updateCartQuantity(int cartId, int quantity, int productId) throws DaoException {
@@ -146,26 +191,7 @@ public class CartDao extends Dao implements CartDaoInterface {
         }
     }
 
-    @Override
-    public void removeProductFromCart(int userId, int productId) throws DaoException {
-        Connection con = null;
-        PreparedStatement ps = null;
 
-        try {
-            con = this.getConnection();
-
-            String query = "DELETE FROM cart WHERE userid = ? AND productid = ?";
-            ps = con.prepareStatement(query);
-
-            ps.setInt(1, userId);
-            ps.setInt(2, productId);
-
-        } catch (SQLException e) {
-            throw new DaoException("An error occurred removing the product from your cart", e);
-        } finally {
-            closeResources(con, ps, null);
-        }
-    }
 
     private void closeResources(Connection con, PreparedStatement ps, ResultSet rs) throws DaoException {
         try {

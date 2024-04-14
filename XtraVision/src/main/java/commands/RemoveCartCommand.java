@@ -11,7 +11,6 @@ public class RemoveCartCommand implements Command {
 
     private HttpServletRequest request;
     private HttpServletResponse response;
-    private String errorMessage;
 
     public RemoveCartCommand(HttpServletRequest request, HttpServletResponse response) {
         this.request = request;
