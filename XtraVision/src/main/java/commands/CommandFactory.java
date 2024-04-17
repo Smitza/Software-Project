@@ -39,6 +39,10 @@ public class CommandFactory {
                 case "delivery":
                     c = new DeliveryCommand(request, response);
                     break;
+                case "deleteProduct":
+                    c = new DeleteProductCommand(request, response);
+                    break;
+
                 default:
                     String errormessage = "No action value provided in controller";
                     c = new ErrorCommand(request,response,errormessage);

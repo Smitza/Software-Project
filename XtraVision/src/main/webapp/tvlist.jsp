@@ -2,6 +2,7 @@
 <%@ page import="daos.ProductDao" %>
 <%@ page import="java.util.List" %>
 <%@ page import="business.Tv" %>
+<%@ page import="business.User" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <jsp:include page="head.jsp" />
@@ -42,6 +43,20 @@
                     <li class="list-group-item"><strong>Runtime:</strong> <%= tv.getRuntime() %></li>
                     <li class="list-group-item"><strong>TV Rating:</strong> <%= tv.getTvRating() %></li>
                 </ul>
+                <%-- Check if the user is an admin --%>
+                <% if (((User) session.getAttribute("loggedInUser")).isAdmin() == 1) { %>
+                <div class="mt-3">
+                    <form action="edittv.jsp" method="get">
+                        <input type="hidden" name="productId" value="<%= tv.getProductId() %>">
+                        <button type="submit" class="btn btn-primary">Edit</button>
+                    </form>
+                    <form action="controller" method="post">
+                        <input type="hidden" name="action" value="deleteProduct">
+                        <input type="hidden" name="productId" value="<%= tv.getProductId() %>">
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+                <% } %>
                 <div class="mt-3">
                     <form action="controller" method="post">
                         <input type="hidden" name="action" value="addproductcart">

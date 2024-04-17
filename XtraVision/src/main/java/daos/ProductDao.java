@@ -185,5 +185,22 @@ public class ProductDao extends Dao implements ProductDaoInterface {
         return tvShowProducts;
     }
 
+    public boolean deleteProduct(int productId) {
+        int rowsAffected = -1;
+        String query = "DELETE FROM products WHERE productid = ?";
+
+        try (Connection con = getConnection();
+             PreparedStatement ps = con.prepareStatement(query)) {
+
+            ps.setInt(1, productId);
+
+            rowsAffected = ps.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("Unable to delete product: " +e.getMessage());
+        }
+        return rowsAffected > 0;
+    }
+
 
 }
