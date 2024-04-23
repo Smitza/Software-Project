@@ -21,7 +21,7 @@
     %>
     <div class="col">
         <div class="card h-100 text-white" style="background-color: rgba(0, 0, 0, 0.6)">
-            <img src="https://placehold.co/600x400" class="card-img-top" alt="<%=movie.getName()%> Movie Image" style="height: 400px">
+            <img src="images/ProductImages/<%=movie.getName()%>movieimg.png" class="card-img-top" alt="<%=movie.getName()%> Movie Image" style="height: 400px">
             <div class="card-body">
                 <h5 class="card-title"><%= movie.getName() %></h5>
                 <p class="card-text"><%= movie.getDescription() %></p>
@@ -42,7 +42,7 @@
                     <li class="list-group-item"><strong>Movie Rating:</strong> <%= movie.getMovieRating() %></li>
                 </ul>
                 <%-- Check if the user is an admin --%>
-                <% if (((User) session.getAttribute("loggedInUser")).isAdmin() == 1)  { %>
+                <% if (session.getAttribute("loggedInUser") != null && ((User) session.getAttribute("loggedInUser")).isAdmin() == 1)  { %>
                 <div class="mt-3">
                     <form action="editmovie.jsp" method="get">
                         <input type="hidden" name="productId" value="<%= movie.getProductId() %>">

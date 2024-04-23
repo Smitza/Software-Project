@@ -11,5 +11,7 @@ public interface ProductDaoInterface {
     public Product getProductById(int productId) throws DaoException;
 
     public List<Product> getGameProducts();
+    
+    public boolean deleteProduct(int productId);
 
 }

@@ -41,7 +41,7 @@
                     <li class="list-group-item"><img src="images/GameRatings/<%= game.getGameRating()%>.png" style="height: 50px"></li>
                 </ul>
                 <%-- Check if the user is an admin --%>
-                <% if (((User) session.getAttribute("loggedInUser")).isAdmin() == 1) { %>
+                <% if (session.getAttribute("loggedInUser") != null &&((User) session.getAttribute("loggedInUser")).isAdmin() == 1) { %>
                 <div class="mt-3">
                     <form action="editgame.jsp" method="get">
                         <input type="hidden" name="productId" value="<%= game.getProductId() %>">
@@ -57,10 +57,12 @@
                 <form action="controller" method="post">
                     <input type="hidden" name="action" value="addproductcart">
                     <input type="hidden" name="productId" value="<%= game.getProductId() %>">
+                    <% if(session.getAttribute("loggedInUser") != null) { %>
                     <div class="mt-3">
                         <button type="submit" class="btn btn-primary">Add to cart</button>
                     </div>
                 </form>
+                <% } %>
             </div>
         </div>
     </div>

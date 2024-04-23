@@ -180,7 +180,7 @@ public class ProductDao extends Dao implements ProductDaoInterface {
                 tvShowProducts.add(extractTvShow(resultSet));
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Error: Could not retrieve Tv-Shows " + e.getMessage());
         }
         return tvShowProducts;
     }

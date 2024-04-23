@@ -9,23 +9,25 @@
         UserDao userDao = new UserDao("xtra");
         User user = userDao.getUserById(loggedInUser.getId());
 %>
-<div class="container padding-bottom-3x mt-4 mb-2">
-    <div class="row">
-        <div class="col-lg-4">
-            <aside class="user-info-wrapper">
-                    <div class="user-info">
-                    <div class="user-data">
-                        <h4><%=user.getName()%></h4>
+<div class="profile-page" style="background-image: url('images/shelfbg.png')">
+    <div class="container padding-bottom-3x mt-4 mb-2 vh-100 align-content-center pt-4 mx-2" style="background-color: rgba(0, 0, 0, 0.6); color:white">
+        <div class="row">
+            <div class="col-lg-4">
+                <aside class="user-info-wrapper">
+                        <div class="user-info">
+                        <div class="user-data">
+                            <h4><%=user.getName()%></h4>
+                        </div>
                     </div>
-                </div>
 
-            </aside>
-            <nav class="list-group">
-                <a class="list-group-item with-badge" href="#"><i class=" fa fa-th"></i> Orders<span class="badge badge-primary badge-pill">6</span></a>
-                <a class="list-group-item" href="#"><i class="fa fa-receipt"></i> Receipts</a>
+                </aside>
+                <nav class="list-group">
+                    <a class="list-group-item with-badge" href="#"><i class=" fa fa-th"></i> Orders<span class="badge badge-primary badge-pill">6</span></a>
+                    <a class="list-group-item" href="#"><i class="fa fa-receipt"></i> Receipts</a>
 
-                <p>Something not right? <a href="EditUser.jsp"> Change it</a></p>
-            </nav>
+                    <p>Something not right? <a href="EditUser.jsp"> Change it</a></p>
+                </nav>
+            </div>
         </div>
     </div>
 </div>
