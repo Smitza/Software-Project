@@ -1,8 +1,10 @@
 package daos;
+import business.BillingInformation;
 import business.User;
 import exceptions.DaoException;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public interface UserDaoInterface {
@@ -51,5 +53,8 @@ public interface UserDaoInterface {
 
     public void updateUser(User u) throws SQLException;
 
+    public boolean addBillingInformation(BillingInformation bi) throws DaoException;
+
+    public BillingInformation getUserBillingInfo(int id) throws DaoException;
 
 }
