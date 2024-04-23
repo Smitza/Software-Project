@@ -1,11 +1,10 @@
 package daos;
 
+import business.BillingInformation;
 import business.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -318,8 +317,98 @@ public class UserDao extends Dao implements UserDaoInterface {
             statement.setInt(2, user.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Error occured: The selected user was not found" + e.getMessage());
+            System.out.println("Error occurred: The selected user was not found" + e.getMessage());
         }
+    }
+
+    @Override
+    public boolean addBillingInformation(BillingInformation bi){
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int rowsAffected = -1;
+
+        try{
+            con = this.getConnection();
+
+            String query = "INSERT INTO billing_information(userId, addressline1, addressline2, cardNumber, cardHolder, expDate, secNumber) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            ps = con.prepareStatement(query);
+
+            ps.setInt(1,bi.getUserid());
+            ps.setString(2,bi.getAddressLine1());
+            ps.setString(3,bi.getAddressLine2());
+            ps.setInt(4,bi.getCardNumber());
+            ps.setString(5,bi.getCardHolder());
+            ps.setString(6, bi.getExpDate());
+            ps.setInt(7, bi.getSecNum());
+
+            rowsAffected = ps.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("An error occurred in the findAllUsers() method: " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    freeConnection(con);
+                }
+            } catch (SQLException e) {
+                System.out.println("An error occurred when shutting down the findAllUsers() method: " + e.getMessage());
+            }
+        }
+        return rowsAffected > 0;
+    }
+
+    @Override
+    public BillingInformation getUserBillingInfo(int id) {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        BillingInformation bi = null;
+
+        try{
+            con = this.getConnection();
+
+            String query = "SELECT * FROM BILLING_INFORMATION WHERE USERID = ?";
+            ps = con.prepareStatement(query);
+            ps.setInt(1, id);
+
+            rs = ps.executeQuery();
+
+            if(rs.next()){
+                int userId = rs.getInt("USERID");
+                String addressline1 = rs.getString("ADDRESSLINE1");
+                String addressline2 = rs.getString("ADDRESSLINE2");
+                int cardNumber = rs.getInt("CARDNUMBER");
+                String cardHolder = rs.getString("CARDHOLDER");
+                String expNum = rs.getString("EXPDATE");
+                int secNum = rs.getInt("SECNUMBER");
+
+                bi = new BillingInformation(userId, addressline1, addressline2, cardHolder, cardNumber, expNum, secNum);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error occurred getting billing information " + e.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    freeConnection(con);
+                }
+            } catch (SQLException e) {
+                System.out.println("An error occurred when shutting down the getUserBillingInfo() method: " + e.getMessage());
+            }
+        }
+        return bi;
     }
 
     public void addMembership(User user) {
@@ -329,7 +418,7 @@ public class UserDao extends Dao implements UserDaoInterface {
             statement.setInt(2, user.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("Error occured: The selected user was not found" + e.getMessage());
+            System.out.println("Error occurred: The selected user was not found" + e.getMessage());
         }
     }
 

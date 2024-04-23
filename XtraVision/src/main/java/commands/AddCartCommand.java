@@ -34,7 +34,7 @@ public class AddCartCommand  implements Command {
         CartDao cartDao = new CartDao("xtra");
         try {
             cartDao.addProductToCart(userId, productId, 1);
-            return "gameslist.jsp";
+            return "checkout.jsp";
         } catch (DaoException e) {
             String errorMessage = e.getMessage();
             session.setAttribute("errorMessage", errorMessage);

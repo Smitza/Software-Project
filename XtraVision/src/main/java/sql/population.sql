@@ -43,6 +43,13 @@ INSERT INTO `movies` (`movieid`, `director`, `format`, `runtime`, `movierating`)
 (4, 'Martin Scorsese', 'Blu-ray', '160 minutes', 'R'),
 (5, 'James Cameron', 'DVD', '200 minutes', 'PG-13');
 
+INSERT INTO `tvshows` (`tvid`, `showrunner`, `format`, `noofseasons`, `noofepisodes`, `runtime`, `tvrating`) VALUES
+                                                                                                                 (1, 'Vince Gilligan', 'Streaming', 5, 62, '45 minutes', 'TV_MA'),
+                                                                                                                 (2, 'David Benioff', 'DVD', 8, 73, '60 minutes', 'TV_14'),
+                                                                                                                 (3, 'Duffer Brothers', 'Streaming', 3, 25, '50 minutes', 'TV_14'),
+                                                                                                                 (4, 'Shonda Rhimes', 'Streaming', 6, 112, '55 minutes', 'TV_14'),
+                                                                                                                 (5, 'Matthew Weiner', 'DVD', 7, 92, '47 minutes', 'TV_MA');
+
 --
 -- Dumping data for table `products`
 --
@@ -68,14 +75,6 @@ INSERT INTO `products` (`productid`, `name`, `description`, `genre`, `studio`, `
 -- Dumping data for table `tvshows`
 --
 
-INSERT INTO `tvshows` (`tvid`, `showrunner`, `format`, `noofseasons`, `noofepisodes`, `runtime`, `tvrating`) VALUES
-(1, 'Vince Gilligan', 'Streaming', 5, 62, '45 minutes', 'TV_MA'),
-(2, 'David Benioff', 'DVD', 8, 73, '60 minutes', 'TV_14'),
-(3, 'Duffer Brothers', 'Streaming', 3, 25, '50 minutes', 'TV_14'),
-(4, 'Shonda Rhimes', 'Streaming', 6, 112, '55 minutes', 'TV_14'),
-(5, 'Matthew Weiner', 'DVD', 7, 92, '47 minutes', 'TV_MA');
-
---
 -- Dumping data for table `users`
 --
 

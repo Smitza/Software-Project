@@ -96,7 +96,7 @@
                                             <h5 class="text-uppercase">Total price</h5>
                                             <h5><%= totalPrice %></h5>
                                         </div>
-                                        <form action="delivery.jsp" method="post">
+                                        <form action="checkout.jsp" method="post">
                                         <input type="hidden" name="action" value="cartCheckout">
                                         <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-dark btn-block btn-lg"
                                                 data-mdb-ripple-color="dark">Checkout</button>
