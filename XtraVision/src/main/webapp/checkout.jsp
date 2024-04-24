@@ -17,23 +17,24 @@
         UserDao userdao = new UserDao("xtra");
         BillingInformation bi = userdao.getUserBillingInfo(loggedInUser.getId());
 
-
+        if(bi != null){
 %>
 
+<form  action="controller" class="text-center" method="post">
 <label for="address1">Address Line 1:</label>
-<input type="text" id="address1" name="address1" value="<%  if(bi != null){ bi.getAddressLine1(); }  %>" required><br><br>
+<input type="text" id="address1" name="address1" value="<%=  bi.getAddressLine1()   %>" required><br><br>
 
 <label for="address2">Address Line 2:</label>
-<input type="text" id="address2" name="address2" value="<%  if(bi != null){ bi.getAddressLine2(); }  %>" required><br><br>
+<input type="text" id="address2" name="address2" value="<%= bi.getAddressLine2()   %>" required><br><br>
 
-<label for="phonenumber">Address Line 2:</label>
+<label for="phonenumber">phone number:</label>
 <input type="number" id="phonenumber" name="phonenumber" required><br><br>
 
 <label for="cardNumber">Card Number:</label>
-<input type="number" id="cardNumber" name="cardNumber" value="<%  if(bi != null){ bi.getCardNumber(); }  %>" required><br><br>
+<input type="number" id="cardNumber" name="cardNumber" value="<%=  bi.getCardNumber() %>" required><br><br>
 
 <label for="cardHolder">Card Holder:</label>
-<input type="text" id="cardHolder" name="cardHolder" value="<%  if(bi != null){ bi.getCardHolder(); }  %>" required><br><br>
+<input type="text" id="cardHolder" name="cardHolder" value="<%=  bi.getCardHolder()  %>" required><br><br>
 
 <label for="expiry">Expiration date</label>
 <select name='expireMM' id='expireMM'>
@@ -85,9 +86,11 @@
 <label for="secNumb">Security numbers:</label>
 <input type="number" id="secNumb" name="secNumb" value="<%  if(bi != null){ bi.getSecNum(); }  %>" required><br><br>
 
-<input type="submit" value="Finish">
+<input type="submit"  value="Finish">
 <input type="hidden" name="action" value="finishCheck">
+</form>
 </body>
 </html>
 <% } %>
+<%}%>
 <jsp:include page="footer.jsp"/>
