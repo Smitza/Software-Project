@@ -45,6 +45,9 @@ public class CommandFactory {
                 case "addBillingInformation":
                     c = new BillingInformationCommand(request, response);
                     break;
+                case "addProduct":
+                    c = new AddProductCommand(request, response);
+                    break;
                 case "deleteProduct":
                     c = new DeleteProductCommand(request, response);
                     break;

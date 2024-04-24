@@ -25,7 +25,7 @@
                         continue;
                     }
     %>
-    <div class ="col">
+<div class ="col">
 <div class="card shadow-sm">
     <div class="card-body">
         <h5 class="card-title"><%= user.getUserName() %></h5>
@@ -48,8 +48,8 @@
         </form>
         <% } %>
     </div>
-</div>
     </div>
+</div>
 <%
             }
         }
@@ -65,12 +65,11 @@
                     </div>
                     <div class="card-body">
                         <form action="controller" method="post" id="productForm">
-                            <input type="hidden" name="action" value="addproduct">
+                            <input type="hidden" name="action" value="addProduct">
                             <div class="mb-3">
                                 <label for="productType" class="form-label">Product Type</label>
                                 <select class="form-select" name="productType" id="productType" onchange="changeForm()" required>
-                                    <option value="">Select Product Type</option>
-                                    <option value="Game">Game</option>
+                                    <option value="Game" selected>Game</option>
                                     <option value="Movie">Movie</option>
                                     <option value="Tv">TV Show</option>
                                 </select>
@@ -99,7 +98,7 @@
                                 <label for="price" class="form-label">Price</label>
                                 <input type="number" class="form-control" id="price" name="price" required>
                             </div>
-                            <div id="gameFields" style="display: none;">
+                            <div id="gameFields" style="display: block;">
                                 <div class="mb-3">
                                     <label for="publisher" class="form-label">Publisher</label>
                                     <input type="text" class="form-control" id="publisher" name="publisher">
@@ -152,12 +151,10 @@
                             <button type="submit" class="btn btn-primary">Add Product</button>
                         </form>
                     </div>
-                </div>
+                </div>*
             </div>
         </div>
     </div>
-
-    <jsp:include page="footer.jsp"/>
 
     <script>
         function changeForm() {
