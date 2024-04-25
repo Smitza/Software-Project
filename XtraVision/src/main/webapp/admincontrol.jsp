@@ -118,12 +118,12 @@
                                     <input type="text" class="form-control" id="director" name="director">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="format" class="form-label">Format</label>
-                                    <input type="text" class="form-control" id="format" name="format">
+                                    <label for="movieFormat" class="form-label">Format</label>
+                                    <input type="text" class="form-control" id="movieFormat" name="movieFormat">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="runtime" class="form-label">Runtime</label>
-                                    <input type="text" class="form-control" id="runtime" name="runtime">
+                                    <label for="movieRuntime" class="form-label">Runtime</label>
+                                    <input type="text" class="form-control" id="movieRuntime" name="movieRuntime">
                                 </div>
                                 <div class="mb-3">
                                     <label for="movieRating" class="form-label">Movie Rating</label>
@@ -142,6 +142,14 @@
                                 <div class="mb-3">
                                     <label for="noOfEpisodes" class="form-label">Number of Episodes</label>
                                     <input type="number" class="form-control" id="noOfEpisodes" name="noOfEpisodes">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="tvFormat" class="form-label">Number of Episodes</label>
+                                    <input type="text" class="form-control" id="tvFormat" name="tvFormat">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="tvRuntime" class="form-label">Number of Episodes</label>
+                                    <input type="text" class="form-control" id="tvRuntime" name="tvRuntime">
                                 </div>
                                 <div class="mb-3">
                                     <label for="tvRating" class="form-label">TV Rating</label>

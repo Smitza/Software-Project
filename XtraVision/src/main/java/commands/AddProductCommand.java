@@ -27,12 +27,11 @@ public class AddProductCommand implements Command {
         String studio = request.getParameter("studio");
         LocalDate releaseDate = LocalDate.parse(request.getParameter("releaseDate"));
         double price = Double.parseDouble(request.getParameter("price"));
-        int quantity = Integer.parseInt(request.getParameter("quantity")); // You need to add quantity field in the form
+        int quantity = 0;
 
-        ProductDao productDao = new ProductDao("your_db_name");
+        ProductDao productDao = new ProductDao("xtra");
 
         try {
-            // Depending on the product type, create an appropriate instance of Product subclass
             Product product;
             switch (productType) {
                 case "Game":
@@ -43,33 +42,33 @@ public class AddProductCommand implements Command {
                     break;
                 case "Movie":
                     String director = request.getParameter("director");
-                    String format = request.getParameter("format");
-                    String runtime = request.getParameter("runtime");
+                    String movieFormat = request.getParameter("movieFormat");
+                    String movieRuntime = request.getParameter("movieRuntime");
                     String movieRating = request.getParameter("movieRating");
-                    product = new Movie(0, name, description, genre, director, studio, format, releaseDate, price, movieRating, runtime, quantity);
+                    product = new Movie(0, name, description, genre, director, studio, movieFormat, releaseDate, price, movieRating, movieRuntime, quantity);
                     break;
                 case "Tv":
                     String showrunner = request.getParameter("showrunner");
+                    String tvFormat = request.getParameter("tvFormat");
+                    String tvRuntime = request.getParameter("tvRuntime");
                     int noOfSeasons = Integer.parseInt(request.getParameter("noOfSeasons"));
                     int noOfEpisodes = Integer.parseInt(request.getParameter("noOfEpisodes"));
                     String tvRating = request.getParameter("tvRating");
-                    product = new Tv(0, name, description, genre, studio, releaseDate, price, quantity, showrunner, format, noOfSeasons, noOfEpisodes, runtime, tvRating);
+                    product = new Tv(0, name, description, genre, studio, releaseDate, price, quantity, showrunner, tvFormat, noOfSeasons, noOfEpisodes, tvRuntime, tvRating);
                     break;
                 default:
-                    // Handle unknown product type
                     return "error.jsp"; // Redirect to error page
             }
 
             // Add product to the database
             if (productDao.addProduct(product)) {
-                // Product added successfully
-                return "success.jsp"; // Redirect to success page
+                return "admincontrol.jsp";
             } else {
                 // Failed to add product
                 return "error.jsp"; // Redirect to error page
             }
         } catch (DaoException e) {
-            e.printStackTrace(); // Log the exception
+            System.out.println("An exception occured when trying to add the product: " +e.getMessage());
             return "error.jsp"; // Redirect to error page
         }
     }
