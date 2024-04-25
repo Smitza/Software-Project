@@ -7,6 +7,8 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ProductDao extends Dao implements ProductDaoInterface {
 
@@ -202,5 +204,23 @@ public class ProductDao extends Dao implements ProductDaoInterface {
         return rowsAffected > 0;
     }
 
-
+    private static final Logger LOGGER = Logger.getLogger(ProductDao.class.getName());
+    public List<Product> searchGamesByName(String name) throws DaoException {
+        List<Product> games = new ArrayList<>();
+        String query = "SELECT * FROM products INNER JOIN games ON products.gameid = games.gameid WHERE products.name LIKE ?";
+        try (Connection con = getConnection();
+             PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setString(1, "%" + name + "%");
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    games.add(extractGame(rs));
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error searching for games by name", e);
+            throw new DaoException("Error searching for games", e);
+        }
+        return games;
+    }
 }
+

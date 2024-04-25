@@ -1,28 +1,24 @@
-<%@ page import="business.Product" %>
-<%@ page import="daos.ProductDao" %>
 <%@ page import="java.util.List" %>
 <%@ page import="business.Game" %>
-<%@ page import="business.User" %>
+<%@ page import="business.Product" %>
+<%@ page import="daos.ProductDao" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <jsp:include page="head.jsp" />
 
-<form action="controller" method="get">
-    <input type="text" name="searchQuery" placeholder="Search games..." required>
-    <button type="submit">Search</button>
-    <input type="hidden" name="action" value="searchGames">
-</form>
-
+<h2>Search Results</h2>
 
 <%
     ProductDao productDao = new ProductDao("xtra");
-    List<Product> gameProducts = productDao.getGameProducts();
-    if (!gameProducts.isEmpty()) {
+    List<Game> searchResults = (List<Game>) session.getAttribute("gameProducts");
+    request.setAttribute("gameProducts", searchResults);
+    if (searchResults != null && !searchResults.isEmpty()) {
 %>
+
 
 <div class="row row-cols-1 row-cols-md-4 g-4  p-3" style="background-image: url('images/gamebg.png'); background-size: cover; background-attachment: fixed">
     <%
-        for (Product product : gameProducts) {
+        for (Product product : searchResults) {
             if (product instanceof Game) {
                 Game game = (Game) product;
     %>
@@ -47,29 +43,13 @@
                     <li class="list-group-item"><strong>Platform:</strong> <%= game.getPlatform() %></li>
                     <li class="list-group-item"><img src="images/GameRatings/<%= game.getGameRating()%>.png" style="height: 50px"></li>
                 </ul>
-                <%-- Check if the user is an admin --%>
-                <% if (session.getAttribute("loggedInUser") != null &&((User) session.getAttribute("loggedInUser")).isAdmin() == 1) { %>
-                <div class="mt-3">
-                    <form action="editgame.jsp" method="get">
-                        <input type="hidden" name="productId" value="<%= game.getProductId() %>">
-                        <button type="submit" class="btn btn-primary">Edit</button>
-                    </form>
-                    <form action="controller" method="post">
-                        <input type="hidden" name="action" value="deleteProduct">
-                        <input type="hidden" name="productId" value="<%= game.getProductId() %>">
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-                </div>
-                <% } %>
                 <form action="controller" method="post">
                     <input type="hidden" name="action" value="addproductcart">
                     <input type="hidden" name="productId" value="<%= game.getProductId() %>">
-                    <% if(session.getAttribute("loggedInUser") != null) { %>
                     <div class="mt-3">
                         <button type="submit" class="btn btn-primary">Add to cart</button>
                     </div>
                 </form>
-                <% } %>
             </div>
         </div>
     </div>
@@ -79,12 +59,10 @@
     %>
 </div>
 
-<%
-} else {
-%>
-<p>No Games found</p>
-<%
-    }
-%>
+<% } else { %>
+<p>No games found that match your criteria.</p>
+<% } %>
+
+<a href="gameslist.jsp">Search Again</a>
 
 <jsp:include page="footer.jsp" />

@@ -51,6 +51,9 @@ public class CommandFactory {
                 case "deleteProduct":
                     c = new DeleteProductCommand(request, response);
                     break;
+                case "searchGames":
+                    c = new SearchGamesCommand(request, response);
+                    break;
 
                 default:
                     String errormessage = "No action value provided in controller";
