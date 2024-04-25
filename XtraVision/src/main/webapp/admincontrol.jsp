@@ -11,7 +11,7 @@
 <div class="row row-cols-1 row-cols-md-2 g-4 mt-3 mb-3 pb-3 ">
     <%
         User u  = (User) session.getAttribute("loggedInUser");
-        if(u.isAdmin() == 1){
+        if (u != null && u.isAdmin() == 1) {
             UserDao userDao = new UserDao("xtra");
             List<User> userList = userDao.getAllUsers();
 
@@ -53,7 +53,6 @@
 <%
             }
         }
-    }
 %>
 </div>
     <div class="container mt-5">
@@ -64,7 +63,7 @@
                         Add New Product
                     </div>
                     <div class="card-body">
-                        <form action="controller" method="post" id="productForm">
+
                             <input type="hidden" name="action" value="addProduct">
                             <div class="mb-3">
                                 <label for="productType" class="form-label">Product Type</label>
@@ -74,6 +73,10 @@
                                     <option value="Tv">TV Show</option>
                                 </select>
                             </div>
+
+
+                        <form action="controller" method="POST">
+                            <input type="hidden" name="action" value="addProduct">
                             <div class="mb-3">
                                 <label for="name" class="form-label">Name</label>
                                 <input type="text" class="form-control" id="name" name="name" required>
@@ -98,7 +101,10 @@
                                 <label for="price" class="form-label">Price</label>
                                 <input type="number" class="form-control" id="price" name="price" required>
                             </div>
-                            <div id="gameFields" style="display: block;">
+
+
+                            <%--==============GAME FORM==================--%>
+                            <div class="mb-3" id="gameFields" style="display: block;">
                                 <div class="mb-3">
                                     <label for="publisher" class="form-label">Publisher</label>
                                     <input type="text" class="form-control" id="publisher" name="publisher">
@@ -112,7 +118,11 @@
                                     <input type="text" class="form-control" id="gameRating" name="gameRating">
                                 </div>
                             </div>
-                            <div id="movieFields" style="display: none;">
+
+
+
+                        <%--==============MOVIE FORM==================--%>
+                            <div class="mb-3" id="movieFields" style="display: none;">
                                 <div class="mb-3">
                                     <label for="director" class="form-label">Director</label>
                                     <input type="text" class="form-control" id="director" name="director">
@@ -130,7 +140,11 @@
                                     <input type="text" class="form-control" id="movieRating" name="movieRating">
                                 </div>
                             </div>
-                            <div id="tvShowFields" style="display: none;">
+
+
+
+                        <%--==============TV FORM==================--%>
+                            <div class="mb-3" id="tvShowFields" style="display: none;">
                                 <div class="mb-3">
                                     <label for="showrunner" class="form-label">Showrunner</label>
                                     <input type="text" class="form-control" id="showrunner" name="showrunner">
@@ -157,9 +171,10 @@
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary">Add Product</button>
+
                         </form>
                     </div>
-                </div>*
+                </div>
             </div>
         </div>
     </div>
@@ -171,14 +186,64 @@
                 document.getElementById("gameFields").style.display = "block";
                 document.getElementById("movieFields").style.display = "none";
                 document.getElementById("tvShowFields").style.display = "none";
+
+                document.getElementById("publisher").disabled = false;
+                document.getElementById("platform").disabled = false;
+                document.getElementById("gameRating").disabled = false;
+
+                // Disable movie and TV show specific fields
+                document.getElementById("director").disabled = true;
+                document.getElementById("movieFormat").disabled = true;
+                document.getElementById("movieRuntime").disabled = true;
+                document.getElementById("movieRating").disabled = true;
+                document.getElementById("showrunner").disabled = true;
+                document.getElementById("noOfSeasons").disabled = true;
+                document.getElementById("noOfEpisodes").disabled = true;
+                document.getElementById("tvFormat").disabled = true;
+                document.getElementById("tvRuntime").disabled = true;
+                document.getElementById("tvRating").disabled = true;
             } else if (productType === "Movie") {
                 document.getElementById("gameFields").style.display = "none";
                 document.getElementById("movieFields").style.display = "block";
                 document.getElementById("tvShowFields").style.display = "none";
+
+                // Enable movie specific fields
+                document.getElementById("director").disabled = false;
+                document.getElementById("movieFormat").disabled = false;
+                document.getElementById("movieRuntime").disabled = false;
+                document.getElementById("movieRating").disabled = false;
+
+                // Disable game and TV show specific fields
+                document.getElementById("publisher").disabled = true;
+                document.getElementById("platform").disabled = true;
+                document.getElementById("gameRating").disabled = true;
+                document.getElementById("showrunner").disabled = true;
+                document.getElementById("noOfSeasons").disabled = true;
+                document.getElementById("noOfEpisodes").disabled = true;
+                document.getElementById("tvFormat").disabled = true;
+                document.getElementById("tvRuntime").disabled = true;
+                document.getElementById("tvRating").disabled = true;
             } else if (productType === "Tv") {
                 document.getElementById("gameFields").style.display = "none";
                 document.getElementById("movieFields").style.display = "none";
                 document.getElementById("tvShowFields").style.display = "block";
+
+                // Enable TV show specific fields
+                document.getElementById("showrunner").disabled = false;
+                document.getElementById("noOfSeasons").disabled = false;
+                document.getElementById("noOfEpisodes").disabled = false;
+                document.getElementById("tvFormat").disabled = false;
+                document.getElementById("tvRuntime").disabled = false;
+                document.getElementById("tvRating").disabled = false;
+
+                // Disable game and movie specific fields
+                document.getElementById("publisher").disabled = true;
+                document.getElementById("platform").disabled = true;
+                document.getElementById("gameRating").disabled = true;
+                document.getElementById("director").disabled = true;
+                document.getElementById("movieFormat").disabled = true;
+                document.getElementById("movieRuntime").disabled = true;
+                document.getElementById("movieRating").disabled = true;
             } else {
                 document.getElementById("gameFields").style.display = "none";
                 document.getElementById("movieFields").style.display = "none";
@@ -188,6 +253,9 @@
     </script>
 </div>
 
+<%
 
+    }
+%>
 
 <jsp:include page="footer.jsp"/>

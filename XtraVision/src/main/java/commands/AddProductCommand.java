@@ -31,6 +31,7 @@ public class AddProductCommand implements Command {
 
         ProductDao productDao = new ProductDao("xtra");
 
+
         try {
             Product product;
             switch (productType) {
@@ -39,6 +40,7 @@ public class AddProductCommand implements Command {
                     String platform = request.getParameter("platform");
                     String gameRating = request.getParameter("gameRating");
                     product = new Game(0, name, description, genre, studio, publisher, platform, releaseDate, price, quantity, gameRating);
+                    productDao.addProduct(product);
                     break;
                 case "Movie":
                     String director = request.getParameter("director");
@@ -46,6 +48,7 @@ public class AddProductCommand implements Command {
                     String movieRuntime = request.getParameter("movieRuntime");
                     String movieRating = request.getParameter("movieRating");
                     product = new Movie(0, name, description, genre, director, studio, movieFormat, releaseDate, price, movieRating, movieRuntime, quantity);
+                    productDao.addProduct(product);
                     break;
                 case "Tv":
                     String showrunner = request.getParameter("showrunner");
@@ -55,6 +58,7 @@ public class AddProductCommand implements Command {
                     int noOfEpisodes = Integer.parseInt(request.getParameter("noOfEpisodes"));
                     String tvRating = request.getParameter("tvRating");
                     product = new Tv(0, name, description, genre, studio, releaseDate, price, quantity, showrunner, tvFormat, noOfSeasons, noOfEpisodes, tvRuntime, tvRating);
+                    productDao.addProduct(product);
                     break;
                 default:
                     return "error.jsp"; // Redirect to error page
