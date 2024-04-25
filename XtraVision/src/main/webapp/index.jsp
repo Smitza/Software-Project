@@ -51,7 +51,7 @@
             <div class="bg-dark border rounded-3 border-5 border-dark overflow-hidden">
                 <div class="row g-0">
                     <div class="col-md-6"><div class="text-white p-4 p-md-5">
-                            <h2 class="fw-bold text-white mb-3">Xtra-Vision GOLD €9.99 per month</h2>
+                            <h2 class="fw-bold text-white mb-3">EX-Tra GOLD €9.99 per month</h2>
                             <h3 class="mb-4">Unleash the full potential of your entertainment with the Gold Membership, where luxury meets leisure.<br>
                             <br>
                             Perks Included in GOLD:</h3>
@@ -70,7 +70,7 @@
             <div class="bg-light border rounded-3 border-5 overflow-hidden mt-3">
                 <div class="row g-0">
                     <div class="col-md-6"><div class="p-4 p-md-5">
-                        <h2 class="fw-bold mb-3">Xtra-Vision SILVER €9.99 per month</h2>
+                        <h2 class="fw-bold mb-3">EX-Tra SILVER €9.99 per month</h2>
                         <h3 class="mb-4">For those seeking a premium entertainment experience on a budget.<br>
                             <br>
                             Perks included in SILVER:</h3>

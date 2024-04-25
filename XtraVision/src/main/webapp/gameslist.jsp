@@ -7,57 +7,68 @@
 
 <jsp:include page="head.jsp" />
 
-<form action="controller" method="get">
-    <input type="text" name="searchQuery" placeholder="Search games..." required>
-    <button type="submit">Search</button>
-    <input type="hidden" name="action" value="searchGames">
-</form>
-
 
 <%
     ProductDao productDao = new ProductDao("xtra");
     List<Product> gameProducts = productDao.getGameProducts();
     if (!gameProducts.isEmpty()) {
 %>
-
-<div class="row row-cols-1 row-cols-md-4 g-4  p-3" style="background-image: url('images/gamebg.png'); background-size: cover; background-attachment: fixed">
+<div style="background-image: url('images/gamebg.png'); background-size: cover; background-attachment: fixed">
+    <div class="container p-3 align-content-center text-center">
+        <form action="controller" method="get">
+            <input style="width:900px; border-radius: 10px; outline: none;" type="text" name="searchQuery" placeholder="Search games..." required>
+            <span class="input-group-btn">
+                <button class="btn btn-green mx-1" style="background-color: buttonface;" type="submit"><i class="fa fa-search"></i></button>
+            </span>
+            <input type="hidden" name="action" value="searchGames">
+        </form>
+    </div>
+    <div class="row row-cols-4 p-3">
     <%
         for (Product product : gameProducts) {
             if (product instanceof Game) {
                 Game game = (Game) product;
     %>
     <div class="col">
-        <div class="card h-100 text-white" style="background-color: rgba(0, 0, 0, 0.6)">
-            <img src="images/ProductImages/<%=game.getName()%>gameimg.png" class="card-img-top" alt="<%=game.getName()%> Game Image" style="height: 400px">
-            <div class="card-body">
-                <h5 class="card-title"><%= game.getName() %></h5>
-                <p class="card-text"><%= game.getDescription() %></p>
-                <% if(game.getPrice() != 0.0){ %>
-                <h3 class="card-text">To buy: &#x20AC; <%=game.getPrice()%></h3>
-                <h3 class="card-text">Gold Price: &#x20AC; <%=Math.round((game.getPrice() / 100) * 40)%></h3>
-                <h3 class="card-text">Silver Price: &#x20AC; <%=Math.round((game.getPrice() / 100) * 60)%></h3>
-                <% } else { %>
-                <h3 class="card-text">Free</h3>
-                <% } %>
-                <ul class="list-group list-group-flush rounded-3">
-                    <li class="list-group-item"><strong>Genre:</strong> <%= game.getGenre() %></li>
-                    <li class="list-group-item"><strong>Studio:</strong> <%= game.getStudio() %></li>
-                    <li class="list-group-item"><strong>Release Date:</strong> <%= game.getReleaseDate() %></li>
-                    <li class="list-group-item"><strong>Publisher:</strong> <%= game.getPublisher() %></li>
-                    <li class="list-group-item"><strong>Platform:</strong> <%= game.getPlatform() %></li>
-                    <li class="list-group-item"><img src="images/GameRatings/<%= game.getGameRating()%>.png" style="height: 50px"></li>
-                </ul>
+        <div class="product-card card text-black m-2" style="border-radius: 15px; border-color: #b8b8b8;">
+            <img class="img-fluid card-img-top p-3" src="images/ProductImages/<%=game.getName()%>gameimg.png"  alt="<%=game.getName()%> Game Image" style="background-color: white; border-radius: 20px">
+            <div class="card-body p-4">
+                <div class="text-center mt-1">
+                    <h4 class="card-title"><%= game.getName() %></h4>
+                    <% if(game.getPrice() != 0.0){ %>
+                    <h2 class="text-primary mb-1 pb-3">&#x20AC; <%=game.getPrice()%></h2>
+                    <% } else { %>
+                    <h5 class="text-primary mb-1 pb-3">Free</h5>
+                    <% } %>
+                </div>
+
+                <div class="d-flex flex-column mb-4">
+                    <span><%= game.getDescription() %></span>
+                </div>
+
+                <div class="d-flex flex-column mb-4">
+                    <ul class="list-unstyled mb-0 text-center">
+                        <li aria-hidden="true">—</li>
+                        <li><strong>Genre:</strong> <%= game.getGenre() %></li>
+                        <li><strong>Studio:</strong> <%= game.getStudio() %></li>
+                        <li><strong>Release Date:</strong> <%= game.getReleaseDate() %></li>
+                        <li><strong>Publisher:</strong> <%= game.getPublisher() %></li>
+                        <li><strong>Platform:</strong> <%= game.getPlatform() %></li>
+                        <li aria-hidden="true">—</li>
+                        <img src="images/GameRatings/<%= game.getGameRating()%>.png" style="height: 75px">
+                    </ul>
+                </div>
                 <%-- Check if the user is an admin --%>
                 <% if (session.getAttribute("loggedInUser") != null &&((User) session.getAttribute("loggedInUser")).isAdmin() == 1) { %>
-                <div class="mt-3">
+                <div class=" flex-row text-center">
                     <form action="editgame.jsp" method="get">
                         <input type="hidden" name="productId" value="<%= game.getProductId() %>">
-                        <button type="submit" class="btn btn-primary">Edit</button>
+                        <button type="button" class="btn btn-primary flex-fill me-1">Edit</button>
                     </form>
                     <form action="controller" method="post">
                         <input type="hidden" name="action" value="deleteProduct">
                         <input type="hidden" name="productId" value="<%= game.getProductId() %>">
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-danger flex-fill ms-1">Delete</button>
                     </form>
                 </div>
                 <% } %>
@@ -65,20 +76,21 @@
                     <input type="hidden" name="action" value="addproductcart">
                     <input type="hidden" name="productId" value="<%= game.getProductId() %>">
                     <% if(session.getAttribute("loggedInUser") != null) { %>
-                    <div class="mt-3">
-                        <button type="submit" class="btn btn-primary">Add to cart</button>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary me-1">Add to cart</button>
                     </div>
                 </form>
-                <% } %>
+                    <% } %>
             </div>
         </div>
     </div>
-    <%
-            }
-        }
-    %>
-</div>
 
+<%
+     }
+    }
+%>
+    </div>
+</div>
 <%
 } else {
 %>

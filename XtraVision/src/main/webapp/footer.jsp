@@ -11,7 +11,7 @@
                             Group E
                         </h6>
                         <p>
-                            A group project by Sean, Oran and Brian. Made with love.
+                            Copyright Disclaimer: - Under section 107 of the copyright Act 1976, allowance is mad for FAIR USE for purpose such a as criticism, comment, news reporting, teaching, scholarship and research. Any similarity to existing products is purely coincidental.
                         </p>
                     </div>
 

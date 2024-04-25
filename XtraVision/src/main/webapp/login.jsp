@@ -5,7 +5,7 @@
         <div class="row mb-5">
             <div class="col-md-8 col-xl-6 text-center mx-auto">
                 <h1>Log in</h1>
-                <p class="w-lg-50">Login to your Xtra-Xtra Vision account.</p>
+                <p class="w-lg-50">Login to your EX-Tra Deliveries account.</p>
             </div>
         </div>
         <div class="row d-flex justify-content-center pb-5">
@@ -15,7 +15,7 @@
                         String loginErrorMessage = (String) session.getAttribute("loginErrorMessage");
                         if (loginErrorMessage != null) {
                     %>
-                    <h4 class="text-danger text-center mt-4" ><%= loginErrorMessage %></h4>
+                    <h4 class="text-white text-center mt-4" ><%= loginErrorMessage %></h4>
                     <%
                         }
                         session.removeAttribute("loginErrorMessage"); // Clear the error message from the session

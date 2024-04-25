@@ -13,7 +13,7 @@
         <div class="row mb-5">
             <div class="col-md-8 col-xl-6 text-center mx-auto">
                 <h1>Register</h1>
-                <p class="w-lg-50">Sign-Up for a Xtra-Xtra-Vision account.</p>
+                <p class="w-lg-50">Sign-Up for an EX-Tra Deliveries account.</p>
             </div>
         </div>
         <div class="row d-flex justify-content-center pb-5">

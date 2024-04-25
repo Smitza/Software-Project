@@ -158,11 +158,11 @@
                                     <input type="number" class="form-control" id="noOfEpisodes" name="noOfEpisodes">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="tvFormat" class="form-label">Number of Episodes</label>
+                                    <label for="tvFormat" class="form-label">Format</label>
                                     <input type="text" class="form-control" id="tvFormat" name="tvFormat">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="tvRuntime" class="form-label">Number of Episodes</label>
+                                    <label for="tvRuntime" class="form-label">Runtime</label>
                                     <input type="text" class="form-control" id="tvRuntime" name="tvRuntime">
                                 </div>
                                 <div class="mb-3">
