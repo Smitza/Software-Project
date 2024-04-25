@@ -76,7 +76,7 @@
 </div>
 
 <% } else { %>
-<p>No games found that match your criteria.</p>
+<p>No movies found that match your criteria.</p>
 <% } %>
 
 <a href="movieslist.jsp">Search Again</a>
