@@ -65,10 +65,12 @@
                     <form action="controller" method="post">
                         <input type="hidden" name="action" value="addproductcart">
                         <input type="hidden" name="productId" value="<%= movie.getProductId() %>">
+                        <% if(session.getAttribute("loggedInUser") != null) { %>
                         <div class="mt-3">
                             <button type="submit" class="btn btn-primary">Add to cart</button>
                         </div>
                     </form>
+                <% } %>
                 </div>
             </div>
         </div>
