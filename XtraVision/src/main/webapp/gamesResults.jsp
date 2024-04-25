@@ -66,3 +66,5 @@
 <a href="gameslist.jsp">Search Again</a>
 
 <jsp:include page="footer.jsp" />
+
+

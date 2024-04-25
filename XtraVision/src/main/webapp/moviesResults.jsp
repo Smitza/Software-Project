@@ -7,21 +7,17 @@
 
 <jsp:include page="head.jsp" />
 
-<form action="controller" method="get">
-    <input type="text" name="searchQuery" placeholder="Search movies..." required>
-    <button type="submit">Search</button>
-    <input type="hidden" name="action" value="searchMovies">
-</form>
 
 <%
     ProductDao productDao = new ProductDao("xtra");
-    List<Product> movieProducts = productDao.getMovieProducts();
-    if (!movieProducts.isEmpty()) {
+    List<Movie> searchResults = (List<Movie>) session.getAttribute("movieProducts");
+    request.setAttribute("movieProducts", searchResults);
+    if (searchResults != null && !searchResults.isEmpty()) {
 %>
 
 <div class="row row-cols-1 row-cols-md-4 g-4 p-3" style="background-image: url('images/gamebg.png'); background-size: cover; background-attachment: fixed">
     <%
-        for (Product product : movieProducts) {
+        for (Product product : searchResults) {
             if (product instanceof Movie) {
                 Movie movie = (Movie) product;
     %>
@@ -79,12 +75,9 @@
     %>
 </div>
 
-<%
-} else {
-%>
-<p>No Movies found</p>
-<%
-    }
-%>
+<% } else { %>
+<p>No games found that match your criteria.</p>
+<% } %>
 
+<a href="movieslist.jsp">Search Again</a>
 <jsp:include page="footer.jsp" />

@@ -222,5 +222,44 @@ public class ProductDao extends Dao implements ProductDaoInterface {
         }
         return games;
     }
-}
+
+    public List<Product> searchMoviesByTitle(String title) throws DaoException {
+        List<Product> movies = new ArrayList<>();
+        String query = "SELECT * FROM products INNER JOIN movies ON products.movieid = movies.movieid WHERE products.name LIKE ?";
+        try (Connection con = getConnection();
+             PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setString(1, "%" + title + "%");
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    movies.add(extractMovie(rs));
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error searching for movies by title", e);
+            throw new DaoException("Error searching for movies", e);
+        }
+        return movies;
+    }
+
+
+    public List<Product> searchTvShowsByTitle(String title) throws DaoException {
+        List<Product> TvShows = new ArrayList<>();
+        String query = "SELECT * FROM products INNER JOIN tvshows ON products.tvid = tvshows.tvid WHERE products.name LIKE ?";
+        try (Connection con = getConnection();
+             PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setString(1, "%" + title + "%");
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    TvShows.add(extractTvShow(rs));
+                }
+            }
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, "Error searching for Tv-Shows by title", e);
+            throw new DaoException("Error searching for Tv-Shows", e);
+        }
+        return TvShows;
+    }
+    }
+
+
 

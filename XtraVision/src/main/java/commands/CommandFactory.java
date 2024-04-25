@@ -54,6 +54,12 @@ public class CommandFactory {
                 case "searchGames":
                     c = new SearchGamesCommand(request, response);
                     break;
+                case "searchMovies":
+                    c = new SearchMoviesCommand(request, response);
+                    break;
+                case "searchTvShows":
+                    c = new SearchTvShowsCommand(request, response);
+                    break;
 
                 default:
                     String errormessage = "No action value provided in controller";
