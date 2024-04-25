@@ -15,7 +15,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/x-icon" sizes="32x32" href="images/favicon/favicon-16x16.png">
     <meta charset="utf-8">
-    <title>Xtra-Xtra-Vision</title>
+    <title>EX-tra Deliveries</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-sm navbar-dark" style="background-image: linear-gradient(#fa0303, #ff960e 100%, #fff) ;">
