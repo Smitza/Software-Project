@@ -259,6 +259,52 @@ public class ProductDao extends Dao implements ProductDaoInterface {
         }
         return TvShows;
     }
+
+    public List<Product> getOrdersByUserId(int userId) throws DaoException{
+        List<Product> orders = new ArrayList<>();
+
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+
+            con = this.getConnection();
+
+            String query = "SELECT * FROM products_users WHERE userId = ?";
+            ps = con.prepareStatement(query);
+            ps.setInt(1, userId);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()){
+                int productId = rs.getInt("productId");
+
+                Product product = getProductById(productId);
+                orders.add(product);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error occurred when retrieving orders");
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    freeConnection(con);
+                }
+            } catch (SQLException e) {
+                System.out.println("Error occurred when retrieving Orders");
+            }
+        }
+
+        return orders;
+    }
+
     }
 
 

@@ -14,4 +14,5 @@ public interface ProductDaoInterface {
     
     public boolean deleteProduct(int productId);
 
+    public List<Product> getOrdersByUserId(int userId) throws DaoException;
 }

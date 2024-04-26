@@ -36,8 +36,8 @@ public class CommandFactory {
                 case "subscribe":
                     c = new SubscribeCommand(request,response);
                     break;
-                case "checkout":
-                    c = new DeliveryCommand(request, response);
+                case "finishCheck":
+                    c = new CheckoutCommand(request, response);
                     break;
                 case "delivery":
                     c = new DeliveryCommand(request, response);

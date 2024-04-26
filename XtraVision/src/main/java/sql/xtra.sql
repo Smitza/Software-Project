@@ -36,7 +36,7 @@ CREATE TABLE `billing_information` (
                                        `Addressline2` varchar(256) DEFAULT NULL,
                                        `CardNumber` int(16) NOT NULL,
                                        `CardHolder` varchar(256) NOT NULL,
-                                       `ExpDate` date NOT NULL,
+                                       `ExpDate` varchar(4) NOT NULL,
                                        `SecNumber` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

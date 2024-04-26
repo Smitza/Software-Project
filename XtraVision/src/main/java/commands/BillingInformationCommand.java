@@ -54,7 +54,7 @@ public class BillingInformationCommand implements Command {
         if(!added){
             forwardToJsp = "error.jsp";
             String errorMessage = "Failed to store billing informaiton. please try again later ";
-            session.setAttribute("BillinginfoErrorMessage", errorMessage);
+            session.setAttribute("BillingInfoErrorMessage", errorMessage);
         } else {
             forwardToJsp = "profile.jsp";
         }

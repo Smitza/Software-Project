@@ -160,27 +160,28 @@ public class CartDao extends Dao implements CartDaoInterface {
     }
 
     @Override
-    public void checkoutCart(int userId) throws DaoException {
+    public int checkoutCart(int userId) throws DaoException {
         Connection con = null;
         PreparedStatement psDelete = null;
         PreparedStatement psInsert = null;
         PreparedStatement psSelect = null;
         ResultSet rs = null;
+        int rowsAffected = -1;
 
         try {
             con = this.getConnection();
+
+            String insertQuery = "INSERT INTO products_users (userid, productid, quantity, orderdate) SELECT userid, productid, quantity, NOW() FROM cart WHERE userid = ?" ;
+            psInsert = con.prepareStatement(insertQuery);
+            psInsert.setInt(1, userId);
+            psInsert.executeUpdate();
 
             String deleteQuery = "DELETE FROM cart WHERE userid = ?";
             psDelete = con.prepareStatement(deleteQuery);
             psDelete.setInt(1, userId);
             psDelete.executeUpdate();
 
-            String insertQuery = "INSERT INTO products_users (userid, productid, quantity, orderdate) " +
-                    "SELECT ?, productid, quantity, NOW() FROM cart WHERE userid = ?";
-            psInsert = con.prepareStatement(insertQuery);
-            psInsert.setInt(1, userId);
-            psInsert.setInt(2, userId);
-            psInsert.executeUpdate();
+            rowsAffected = 1;
 
         } catch (SQLException e) {
             throw new DaoException("An error occurred during checkout", e);
@@ -189,6 +190,7 @@ public class CartDao extends Dao implements CartDaoInterface {
             closeResources(null, psInsert, null);
             closeResources(null, psSelect, rs);
         }
+        return rowsAffected;
     }
 
 

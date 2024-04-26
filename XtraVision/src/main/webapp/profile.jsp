@@ -22,7 +22,7 @@
 
                 </aside>
                 <nav class="list-group">
-                    <a class="list-group-item with-badge" href="#"><i class=" fa fa-th"></i> Orders<span class="badge badge-primary badge-pill">6</span></a>
+                    <a class="list-group-item with-badge" href="Order.jsp"><i class=" fa fa-th"></i> Orders<span class="badge badge-primary badge-pill">6</span></a>
                     <a class="list-group-item" href="#"><i class="fa fa-receipt"></i> Receipts</a>
                     <a class="list-group-item" href="billingInfo.jsp"><i class="fa-solid fa-house"></i> Billing Information</a>
 
