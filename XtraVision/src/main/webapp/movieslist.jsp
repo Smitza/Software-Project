@@ -56,8 +56,8 @@
                             <li><strong>Director:</strong> <%= movie.getDirector() %></li>
                             <li><strong>Format:</strong> <%= movie.getFormat() %></li>
                             <li><strong>Runtime:</strong> <%= movie.getFormat() %></li>
-                            <li><strong>Rating:</strong> <%= movie.getMovieRating() %></li>
                             <li aria-hidden="true">—</li>
+                            <img src="images/MovieRatings/<%= movie.getMovieRating()%>.png" style="height: 75px">
                         </ul>
                     </div>
                     <%-- Check if the user is an admin --%>

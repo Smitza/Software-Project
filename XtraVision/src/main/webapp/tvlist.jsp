@@ -57,8 +57,8 @@
                             <li><strong>Seasons:</strong> <%= tv.getNumberOfSeasons() %></li>
                             <li><strong>Episodes:</strong> <%= tv.getNumberOfEpisodes() %></li>
                             <li><strong>Runtime per Episode:</strong> <%= tv.getRuntime() %></li>
-                            <li><strong>Rating:</strong> <%= tv.getTvRating() %></li>
                             <li aria-hidden="true">—</li>
+                            <img src="images/TvRatings/<%= tv.getTvRating()%>.png" style="height: 75px">
                         </ul>
                     </div>
                     <%-- Check if the user is an admin --%>
