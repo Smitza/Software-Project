@@ -11,7 +11,7 @@
         List<Product> cartProducts = cartDao.getCartByUserId(loggedInUser.getId());
 %>
 
-    <section class="h-100" style="background-image: url('images/shelfbg.png')">
+    <section class="vh-100" style="background-image: url('images/shelfbg.png')">
         <div class="container py-5 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12">
@@ -57,7 +57,7 @@
                                                 </button>
                                             </div>
                                             <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                                                <h6 class="mb-0"><%= p.getPrice() %></h6>
+                                                <h6 class="mb-0">&#x20AC; <%= p.getPrice() %></h6>
                                             </div>
                                             <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                                                 <form action="controller" class="text-center" method="POST">
@@ -94,7 +94,7 @@
 
                                         <div class="d-flex justify-content-between mb-5">
                                             <h5 class="text-uppercase">Total price</h5>
-                                            <h5><%= totalPrice %></h5>
+                                            <h5>&#x20AC; <%= totalPrice %></h5>
                                         </div>
                                         <form action="checkout.jsp" method="post">
                                         <input type="hidden" name="action" value="cartCheckout">

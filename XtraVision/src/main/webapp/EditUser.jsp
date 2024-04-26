@@ -35,16 +35,16 @@
                         <i class="fa-solid fa-user fa-3x p-3"></i>
                         <form action="controller" class="text-center" method="POST">
                             <div class="mb-3">
-                                <input type="text" id="username" name="username" value="<%= user.getUserName()%>" required>
+                                <input type="text" id="username" name="username" placeholder="Username" value="<%= user.getUserName()%>" required>
                             </div>
                             <div class="mb-3">
-                                <input type="email" id="email" name="email" value="<%= user.getEmail()%>" required>
+                                <input type="email" id="email" name="email" placeholder="Email" value="<%= user.getEmail()%>" required>
                             </div>
                             <div class="mb-3">
-                                <input type="tel" id="phone" name="phone" value="<%= user.getPhone()%>" required>
+                                <input type="tel" id="phone" name="phone" placeholder="Phone No." value="<%= user.getPhone()%>" required>
                             </div>
                             <div class="mb-3">
-                                <input type="text" id="name" name="name" value="<%= user.getName()%>" required>
+                                <input type="text" id="name" name="name" placeholder="Name" value="<%= user.getName()%>" required>
                             </div>
                             <br>
                             <p>Confirm your changes by entering your password</p>

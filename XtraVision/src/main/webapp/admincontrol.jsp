@@ -64,7 +64,6 @@
                     </div>
                     <div class="card-body">
 
-                            <input type="hidden" name="action" value="addProduct">
                             <div class="mb-3">
                                 <label for="productType" class="form-label">Product Type</label>
                                 <select class="form-select" name="productType" id="productType" onchange="changeForm()" required>
@@ -179,6 +178,8 @@
         </div>
     </div>
 
+
+   <%-- Sorry about the mess :(--%>
     <script>
         function changeForm() {
             var productType = document.getElementById("productType").value;

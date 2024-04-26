@@ -1,3 +1,8 @@
+
+/*Gradient generator used from: https://mdbootstrap.com/docs/standard/tools/design/gradients/*/
+
+/*Product Stylings*/
+
 .product-card{
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     transition: all 300ms;
@@ -16,3 +21,109 @@
     transform: translateY(-5px);
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
 }
+
+
+/*Profile Stylings*/
+
+.profile-card{
+    width: 350px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.editbtn {
+    height: 40px;
+    width: 150px;
+    border: none;
+    background-color: #000;
+    color: #aeaeae;
+    font-size: 15px
+}
+
+.name {
+    font-size: 22px;
+    font-weight: bold
+}
+
+.idd {
+    font-size: 14px;
+    font-weight: 600
+}
+
+.phone {
+    font-size: 14px;
+}
+
+.membership {
+    font-size: 22px;
+    font-weight: bold
+}
+
+.membership .fa-ticket {
+    font-size: 15px;
+    color: #444444
+}
+
+/*Checkout Stylings*/
+
+.pay-form{
+    border-radius: 15px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    /* fallback for old browsers */
+    background: #ffffff;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to top, rgb(255 56 56 / 60%), rgb(254 225 64 / 0%));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to top, rgb(255 56 56 / 60%), rgb(254 225 64 / 0%))
+}
+
+.pay-form .h8{
+    font-size: 30px;
+    font-weight: 800;
+    text-align: center;
+}
+
+.pay-form .btn {
+    /* fallback for old browsers */
+    background: #ff0000;
+
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: -webkit-linear-gradient(to right, rgba(255,0,0,0.5), rgba(255,77,0,0.5));
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(255,0,0,0.5), rgba(255,77,0,0.5));
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    border: none;
+    transition: 0.5s;
+    background-size: 200% auto;
+}
+
+.pay-form .btn:hover {
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+}
+
+.form-control {
+    color: white;
+    background-color: #4f4f4f;
+    border: 2px solid transparent;
+    height: 60px;
+    padding-left: 20px;
+    vertical-align: middle;
+}
+
+.form-control:focus {
+    color: white;
+    background-color: #600c0c;
+    border: 2px solid #da2d2d;
+    box-shadow: none;
+}
+
+
