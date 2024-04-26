@@ -22,7 +22,7 @@
             <span class="input-group-btn">
                 <button class="btn btn-green mx-1" style="background-color: buttonface;" type="submit"><i class="fa fa-search"></i></button>
             </span>
-            <input type="hidden" name="action" value="searchmovies">
+            <input type="hidden" name="action" value="searchMovies">
         </form>
     </div>
     <div class="row row-cols-4 p-3">

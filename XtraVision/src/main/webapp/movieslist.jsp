@@ -10,8 +10,9 @@
 
 <%
     ProductDao productDao = new ProductDao("xtra");
-    List<Product> movieProducts = productDao.getMovieProducts();
-    if (!movieProducts.isEmpty()) {
+    List<Movie> searchResults = (List<Movie>) session.getAttribute("movieProducts");
+    request.setAttribute("movieProducts", searchResults);
+    if (searchResults != null && !searchResults.isEmpty()) {
 %>
 
 <div style="background-image: url('images/gamebg.png'); background-size: cover; background-attachment: fixed">
@@ -21,12 +22,12 @@
             <span class="input-group-btn">
                 <button class="btn btn-green mx-1" style="background-color: buttonface;" type="submit"><i class="fa fa-search"></i></button>
             </span>
-            <input type="hidden" name="action" value="searchmovies">
+            <input type="hidden" name="action" value="searchMovies">
         </form>
     </div>
     <div class="row row-cols-4 p-3">
         <%
-            for (Product product : movieProducts) {
+            for (Product product : searchResults) {
                 if (product instanceof Movie) {
                     Movie movie = (Movie) product;
         %>
