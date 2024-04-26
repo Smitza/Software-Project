@@ -10,9 +10,8 @@
 
 <%
     ProductDao productDao = new ProductDao("xtra");
-    List<Movie> searchResults = (List<Movie>) session.getAttribute("movieProducts");
-    request.setAttribute("movieProducts", searchResults);
-    if (searchResults != null && !searchResults.isEmpty()) {
+    List<Product> movieProducts = productDao.getMovieProducts();
+    if (!movieProducts.isEmpty()) {
 %>
 
 <div style="background-image: url('images/gamebg.png'); background-size: cover; background-attachment: fixed">
@@ -27,7 +26,7 @@
     </div>
     <div class="row row-cols-4 p-3">
         <%
-            for (Product product : searchResults) {
+            for (Product product : movieProducts) {
                 if (product instanceof Movie) {
                     Movie movie = (Movie) product;
         %>
