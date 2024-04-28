@@ -92,13 +92,13 @@
                             <div class="col-12">
                                 <div class="d-flex flex-column">
                                     <p class="text mb-1">Card holder</p>
-                                    <input class="check-form mb-3" type="text" id="cardHolder" placeholder="Name " name="cardHolder" value="<%=  bi.getCardHolder()  %>" required>
+                                    <input class="check-form mb-3" type="text" id="cardHolder" placeholder="Name " name="cardHolder" value="" required>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="d-flex flex-column">
                                     <p class="text mb-1">Card number</p>
-                                    <input class="check-form mb-3" type="number" id="cardNumber" placeholder="1234 5678 435678" name="cardNumber" value="<%=  bi.getCardNumber() %>" required>
+                                    <input class="check-form mb-3" type="number" id="cardNumber" placeholder="1234 5678 435678" name="cardNumber" value="" required>
                                 </div>
                             </div>
                             <div class="col-2">
@@ -126,11 +126,11 @@
                                 <div class="d-flex flex-column">
                                     <select class="check-form mb-3" name='expireYY' id='expireYY'>
                                         <option value=''>Year</option>
-                                        <option value='20'>2020</option>
-                                        <option value='21'>2021</option>
-                                        <option value='22'>2022</option>
-                                        <option value='23'>2023</option>
-                                        <option value='24'>2024</option>
+                                        <option value='20'>2024</option>
+                                        <option value='21'>2025</option>
+                                        <option value='22'>2026</option>
+                                        <option value='23'>2027</option>
+                                        <option value='24'>2028</option>
                                     </select>
                                     <input class="inputCard" type="hidden" name="expiry" id="expiry" maxlength="4"/>
                                     <script>
@@ -159,7 +159,7 @@
                             <div class="col-2">
                                 <div class="d-flex flex-column">
                                     <p class="text mb-1">Security code</p>
-                                    <input class="check-form mb-3" type="number" id="secNumb" name="secNumb" value="<%  if(bi != null){ bi.getSecNum(); }  %>" required>
+                                    <input class="check-form mb-3" type="number" id="secNumb" name="secNumb" value="<%}  %>" required>
                                 </div>
                             </div>
                             <div class="col-12 pt-4">
@@ -181,5 +181,4 @@
 </section>
 
 <% } %>
-<%}%>
 <jsp:include page="footer.jsp"/>

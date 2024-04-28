@@ -36,12 +36,9 @@ public class BillingInformationCommand implements Command {
         int userId = loggedUser.getId();
         String addressline1 = request.getParameter("address1");
         String addressline2 = request.getParameter("address2");
-        int cardNumber = Integer.parseInt(request.getParameter("cardNumber"));
-        String cardHolder = request.getParameter("cardHolder");
-        String expiry = request.getParameter("expiry");
-        int secNumb =  Integer.parseInt(request.getParameter("secNumb"));
 
-        BillingInformation bi = new BillingInformation(userId, addressline1, addressline2, cardHolder, cardNumber, expiry, secNumb);
+
+        BillingInformation bi = new BillingInformation(userId, addressline1, addressline2);
 
         if (u == null) {
             String errorMessage = "No session detected. Please try again";

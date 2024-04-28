@@ -7,19 +7,12 @@ public class BillingInformation {
     int userid;
     String addressLine1;
     String addressLine2;
-    String cardHolder;
-    int cardNumber;
-    String expDate;
-    int secNum;
 
-    public BillingInformation(int userid, String addressLine1, String addressLine2, String cardHolder, int cardNumber, String expDate, int secNum) {
+
+    public BillingInformation(int userid, String addressLine1, String addressLine2) {
         this.userid = userid;
         this.addressLine1 = addressLine1;
         this.addressLine2 = addressLine2;
-        this.cardHolder = cardHolder;
-        this.cardNumber = cardNumber;
-        this.expDate = expDate;
-        this.secNum = secNum;
     }
 
     public int getUserid() {
@@ -46,35 +39,4 @@ public class BillingInformation {
         this.addressLine2 = addressLine2;
     }
 
-    public String getCardHolder() {
-        return cardHolder;
-    }
-
-    public void setCardHolder(String cardHolder) {
-        this.cardHolder = cardHolder;
-    }
-
-    public int getCardNumber() {
-        return cardNumber;
-    }
-
-    public void setCardNumber(int cardNumber) {
-        this.cardNumber = cardNumber;
-    }
-
-    public String getExpDate() {
-        return expDate;
-    }
-
-    public void setExpDate(String expDate) {
-        this.expDate = expDate;
-    }
-
-    public int getSecNum() {
-        return secNum;
-    }
-
-    public void setSecNum(int secNum) {
-        this.secNum = secNum;
-    }
 }

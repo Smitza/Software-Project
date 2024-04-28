@@ -347,16 +347,12 @@ public class UserDao extends Dao implements UserDaoInterface {
         try{
             con = this.getConnection();
 
-            String query = "INSERT INTO billing_information(userId, addressline1, addressline2, cardNumber, cardHolder, expDate, secNumber) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO billing_information(userId, addressline1, addressline2) VALUES (?, ?, ?)";
             ps = con.prepareStatement(query);
 
             ps.setInt(1,bi.getUserid());
             ps.setString(2,bi.getAddressLine1());
             ps.setString(3,bi.getAddressLine2());
-            ps.setInt(4,bi.getCardNumber());
-            ps.setString(5,bi.getCardHolder());
-            ps.setString(6, bi.getExpDate());
-            ps.setInt(7, bi.getSecNum());
 
             rowsAffected = ps.executeUpdate();
 
@@ -400,12 +396,9 @@ public class UserDao extends Dao implements UserDaoInterface {
                 int userId = rs.getInt("USERID");
                 String addressline1 = rs.getString("ADDRESSLINE1");
                 String addressline2 = rs.getString("ADDRESSLINE2");
-                int cardNumber = rs.getInt("CARDNUMBER");
-                String cardHolder = rs.getString("CARDHOLDER");
-                String expNum = rs.getString("EXPDATE");
-                int secNum = rs.getInt("SECNUMBER");
 
-                bi = new BillingInformation(userId, addressline1, addressline2, cardHolder, cardNumber, expNum, secNum);
+
+                bi = new BillingInformation(userId, addressline1, addressline2);
             }
         } catch (SQLException e) {
             System.out.println("Error occurred getting billing information " + e.getMessage());
