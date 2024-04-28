@@ -14,7 +14,7 @@ public class UserDao extends Dao implements UserDaoInterface {
     }
 
     @Override
-    public boolean addUser(String username, String email, String password, String phone, String name, int membership, int isAdmin){
+    public boolean addUser(String username, String email, String password, String phone, String name, int membership, int isAdmin, int isDeliverer){
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -23,7 +23,7 @@ public class UserDao extends Dao implements UserDaoInterface {
         try{
             con = this.getConnection();
 
-            String query = "INSERT INTO xtra.users(username, email, password, phone, name, membership, isAdmin) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String query = "INSERT INTO xtra.users(username, email, password, phone, name, membership, isAdmin, isDeliverer) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             ps = con.prepareStatement(query);
 
             ps.setString(1,username);
@@ -33,6 +33,7 @@ public class UserDao extends Dao implements UserDaoInterface {
             ps.setString(5,name);
             ps.setInt(6,membership);
             ps.setInt(7, isAdmin);
+            ps.setInt(8, isDeliverer);
 
             rowsAffected = ps.executeUpdate();
 

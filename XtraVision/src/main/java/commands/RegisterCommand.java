@@ -28,6 +28,7 @@ public class RegisterCommand implements Command {
         String name = request.getParameter("name");
         int membership = 1; //Default to free
         int isAdmin = 0; //Default to non admin
+        int isDeliverer = 0;
 
         if (username != null && email != null && password != null && phone != null && name != null && !username.isEmpty() && !email.isEmpty() && !password.isEmpty() && !phone.isEmpty() && !name.isEmpty()) {
             // Hash the password
@@ -35,7 +36,7 @@ public class RegisterCommand implements Command {
 
             UserDao userDao = new UserDao("xtra");
             // Make sure to pass the hashedPassword instead of password
-            boolean added = userDao.addUser(username, email, hashedPassword, phone, name, membership, isAdmin);
+            boolean added = userDao.addUser(username, email, hashedPassword, phone, name, membership, isAdmin, isDeliverer);
 
             if(!added){
                 forwardToJsp = "register.jsp";

@@ -21,7 +21,7 @@ public class UserDaoTests {
 
     @Test
     public void testAddUser() {
-        boolean result = userDao.addUser("testUser", "test@example.com", "testpassword", "123456789", "Test User", 0, 0);
+        boolean result = userDao.addUser("testUser", "test@example.com", "testpassword", "123456789", "Test User", 0, 0, 0);
         assertTrue(result);
     }
 

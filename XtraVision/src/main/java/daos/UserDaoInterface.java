@@ -22,7 +22,7 @@ public interface UserDaoInterface {
      * @return
      * @throws DaoException
      */
-    public boolean addUser(String username, String email, String password, String phone, String name, int membership, int isAdmin) throws DaoException;
+    public boolean addUser(String username, String email, String password, String phone, String name, int membership, int isAdmin, int isDeliverer) throws DaoException;
 
     /**
      * Gets all users
