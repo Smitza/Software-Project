@@ -1,5 +1,6 @@
 import business.Payment;
 import daos.PaymentDao;
+import exceptions.DaoException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -18,11 +19,12 @@ public class PaymentDaoTests {
     }
 
     @Test
-    public void testAddPayment() {
+    public void testAddPayment() throws DaoException {
         int amount = 100;
+        int userid = 0;
         String paymentDate = LocalDate.now().toString();
         String paymentMethod = "Credit Card";
-        int rowsAffected = paymentDao.addPayment(amount, paymentDate, paymentMethod);
+        int rowsAffected = paymentDao.addPayment(userid , amount, paymentDate, paymentMethod);
         assertEquals(1, rowsAffected);
     }
 

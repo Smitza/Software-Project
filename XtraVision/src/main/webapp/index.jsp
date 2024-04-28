@@ -57,8 +57,6 @@
                             Perks Included in GOLD:</h3>
                             <p>- 4 free rentals per week<br>
                             <p>- GOLD deals on in-store & delivery rentals<br>
-                            <p>- 4K Tv, Movie and Game Streaming <br>
-                            <p>- Play an unlimited selection of games from the game catalogue</p>
                             <br>
                             <div class="my-3"><a class="btn btn-light btn-lg" role="button" href="subscribe.jsp">Subscribe</a></div>
                         </div>
@@ -76,8 +74,6 @@
                             Perks included in SILVER:</h3>
                         <p>- 2 free rentals per week<br>
                         <p>- SILVER deals on in-store & delivery rentals<br>
-                        <p>- HD TV, Movie and Game Streaming<br>
-                        <p>- Play a limited selection of the game catalogue</p>
                         <br>
                         <div class="my-3"><a class="btn btn-dark btn-lg" role="button" href="#">Subscribe</a></div>
                     </div>
@@ -86,7 +82,9 @@
                 </div>
             </div>
         </div>
+
     </section>
-</body>
+
+
 
 <jsp:include page="footer.jsp"/>

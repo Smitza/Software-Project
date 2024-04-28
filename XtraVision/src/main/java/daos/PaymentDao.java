@@ -1,6 +1,7 @@
 package daos;
 
 import business.Payment;
+import exceptions.DaoException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,27 +17,26 @@ public class PaymentDao extends Dao implements PaymentDaoInterface{
         super(dbName);
     }
 
+
     @Override
-    public int addPayment(int amount, String paymentDate, String paymentMethod){
+    public int addPayment(int userId, double amount, String paymentDate, String paymentMethod) throws DaoException {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         int rowsAffected = -1;
 
-        try{
+        try {
             con = this.getConnection();
-
-            String query = "INSERT INTO PAYMENT(amount, paymentdate, paymentmethod) VALUES (?, ?, ?)";
+            String query = "INSERT INTO payment (userid, amount, paymentdate, paymentmethod) VALUES (?, ?, ?, ?)";
             ps = con.prepareStatement(query);
-
-            ps.setInt(1, amount);
-            ps.setString(2, paymentDate);
-            ps.setString(3, paymentMethod);
+            ps.setInt(1, userId);
+            ps.setDouble(2, amount);
+            ps.setString(3, paymentDate);
+            ps.setString(4, paymentMethod);
 
             rowsAffected = ps.executeUpdate();
-
         } catch (SQLException e) {
-            System.out.println("An error occurred in the findAllUsers() method: " + e.getMessage());
+            throw new DaoException("Error occurred while adding payment", e);
         } finally {
             try {
                 if (rs != null) {
@@ -49,9 +49,10 @@ public class PaymentDao extends Dao implements PaymentDaoInterface{
                     freeConnection(con);
                 }
             } catch (SQLException e) {
-                System.out.println("An error occurred when shutting down the findAllUsers() method: " + e.getMessage());
+                System.out.println("An error occurred when shutting down the addPayment() method: " + e.getMessage());
             }
         }
+
         return rowsAffected;
     }
 
@@ -109,11 +110,12 @@ public class PaymentDao extends Dao implements PaymentDaoInterface{
             rs = ps.executeQuery();
 
             while (rs.next()) {
+                int payid = rs.getInt("payid");
                 double amount = rs.getInt("amount");
                 LocalDate paymentDate = rs.getDate("paymentDate").toLocalDate();
                 String paymentMethod = rs.getString("paymentMethod");
 
-                Payment p = new Payment(amount, paymentDate, paymentMethod);
+                Payment p = new Payment(payid, amount, paymentDate, paymentMethod);
                 payment.add(p);
 
             }
@@ -156,11 +158,12 @@ public class PaymentDao extends Dao implements PaymentDaoInterface{
             rs = ps.executeQuery();
 
             while (rs.next()) {
+                int payid = rs.getInt("payid");
                 double amount = rs.getInt("amount");
                 LocalDate paymentDate = rs.getDate("paymentDate").toLocalDate();
                 String paymentMethod = rs.getString("paymentMethod");
 
-                Payment p = new Payment(amount, paymentDate, paymentMethod);
+                Payment p = new Payment(payid, amount, paymentDate, paymentMethod);
                 payment.add(p);
 
             }
@@ -201,12 +204,12 @@ public class PaymentDao extends Dao implements PaymentDaoInterface{
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                int id = rs.getInt("payid");
+                int payid = rs.getInt("payid");
                 double amount = rs.getInt("amount");
                 LocalDate paymentDate = rs.getDate("paymentDate").toLocalDate();
                 String paymentMethod = rs.getString("paymentMethod");
 
-                Payment p = new Payment(amount, paymentDate, paymentMethod);
+                Payment p = new Payment(payid,amount, paymentDate, paymentMethod);
                 payment.add(p);
 
             }

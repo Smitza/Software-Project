@@ -59,6 +59,15 @@
                     <a class="nav-link" href="register.jsp"><i class="fa fa-address-card"></i> Register</a>
                 </li>
                 <%}%>
+                <li class="px-3 nav-item">
+                    <div id="google_translate_element"></div>
+                </li>
+                <script type="text/javascript">
+                    function googleTranslateElementInit() {
+                        new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+                    }
+                </script>
+                <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
             </ul>
         </div>
     </nav>
