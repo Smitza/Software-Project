@@ -14,11 +14,12 @@ public class User {
     private int membership = 0; //Can be three states: Free, Silver or Gold
 
     private int isAdmin = 0;
+    private int isDeliverer = 0;
 
     public User() {
     }
 
-    public User(int userid, String username, String email, String password, String phone, String name, int membership, int isAdmin) {
+    public User(int userid, String username, String email, String password, String phone, String name, int membership, int isAdmin, int isDeliverer) {
         this.userid = userid;
         this.username = username;
         this.email = email;
@@ -27,6 +28,7 @@ public class User {
         this.name = name;
         this.membership = membership;
         this.isAdmin = isAdmin;
+        this.isDeliverer = isDeliverer;
     }
 
     public User(String username, String email, String password, String phone, String name) {
@@ -99,6 +101,14 @@ public class User {
 
     public void setAdmin(int admin) {
         isAdmin = admin;
+    }
+
+    public int IsDeliverer() {
+        return isDeliverer;
+    }
+
+    public void setIsDeliverer(int isDeliverer) {
+        this.isDeliverer = isDeliverer;
     }
 
     @java.lang.Override

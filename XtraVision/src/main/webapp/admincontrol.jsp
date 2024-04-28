@@ -47,6 +47,22 @@
             <button type="submit" class="btn btn-primary">Upgrade to Admin</button>
         </form>
         <% } %>
+
+        <% if (user.IsDeliverer() == 1) { %>
+        <p class="card-text">User is already a delivery driver.</p>
+        <form action="controller" method="post">
+            <input type="hidden" name="action" value="removeDriver">
+            <input type="hidden" name="userId" value="<%= user.getId() %>">
+            <button type="submit" class="btn btn-danger">Remove DD Status</button>
+        </form>
+        <% } else { %>
+        <form action="controller" method="post">
+            <input type="hidden" name="action" value="upgradeuserDriver">
+            <input type="hidden" name="userId" value="<%= user.getId() %>">
+            <button type="submit" class="btn btn-primary">Upgrade to delivery driver</button>
+        </form>
+        <% } %>
+
     </div>
     </div>
 </div>

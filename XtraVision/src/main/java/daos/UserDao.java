@@ -79,8 +79,9 @@ public class UserDao extends Dao implements UserDaoInterface {
                 String name = rs.getString("NAME");
                 int membership = rs.getInt("MEMBERSHIP");
                 int isAdmin = rs.getInt("ISADMIN");
+                int isDeliverer = rs.getInt("ISDELIVERER");
 
-                User user = new User(userId, username, email, password, phone, name, membership, isAdmin);
+                User user = new User(userId, username, email, password, phone, name, membership, isAdmin, isDeliverer);
                 users.add(user);
             }
         } catch (SQLException e) {
@@ -127,8 +128,9 @@ public class UserDao extends Dao implements UserDaoInterface {
                 String name = rs.getString("NAME");
                 int membership = rs.getInt("MEMBERSHIP");
                 int isAdmin = rs.getInt("ISADMIN");
+                int isDeliverer = rs.getInt("ISDELIVERER");
 
-                user = new User(userid, username, email, password, phone, name, membership, isAdmin);
+                user = new User(userid, username, email, password, phone, name, membership, isAdmin, isDeliverer);
             }
         } catch (SQLException e) {
             System.out.println("An error occurred in the getUser() method: " + e.getMessage());
@@ -205,8 +207,9 @@ public class UserDao extends Dao implements UserDaoInterface {
                 String name = rs.getString("NAME");
                 int membership = rs.getInt("MEMBERSHIP");
                 int isAdmin = rs.getInt("ISADMIN");
+                int isDeliverer = rs.getInt("ISDELIVERER");
 
-                u = new User(id, username, email, password, phone, name, membership, isAdmin);
+                u = new User(id, username, email, password, phone, name, membership, isAdmin, isDeliverer);
             }
         } catch (SQLException e) {
             System.out.println("An error occurred in the findUserByUsernamePassword() method: " + e.getMessage());
@@ -248,8 +251,9 @@ public class UserDao extends Dao implements UserDaoInterface {
                 String name = rs.getString("NAME");
                 int membership = rs.getInt("MEMBERSHIP");
                 int isAdmin = rs.getInt("ISADMIN");
+                int isDeliverer = rs.getInt("ISDELIVERER");
 
-                u = new User(userid, username, email, "", phone, name, membership, isAdmin);
+                u = new User(userid, username, email, "", phone, name, membership, isAdmin, isDeliverer);
             }
         } catch (SQLException e) {
             System.out.println("An error occurred in the getUserByUsername() method: " + e.getMessage());
@@ -314,6 +318,17 @@ public class UserDao extends Dao implements UserDaoInterface {
         try (Connection conn = getConnection();
              PreparedStatement statement = conn.prepareStatement("UPDATE users SET isAdmin = ? WHERE userid = ?")) {
             statement.setInt(1, user.isAdmin());
+            statement.setInt(2, user.getId());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error occurred: The selected user was not found" + e.getMessage());
+        }
+    }
+
+    public void updateUserDelivery(User user) {
+        try (Connection conn = getConnection();
+             PreparedStatement statement = conn.prepareStatement("UPDATE users SET isDeliverer = ? WHERE userid = ?")) {
+            statement.setInt(1, user.IsDeliverer());
             statement.setInt(2, user.getId());
             statement.executeUpdate();
         } catch (SQLException e) {

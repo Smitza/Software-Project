@@ -27,6 +27,12 @@ public class CommandFactory {
                 case "removeadmin":
                     c = new RemoveAdminCommand(request,response);
                     break;
+                case "upgradeuserDriver":
+                    c = new AddDriverCommand(request,response);
+                    break;
+                case "removeDriver":
+                    c = new RemoveDriverCommand(request,response);
+                    break;
                 case "addproductcart":
                     c = new AddCartCommand(request,response);
                     break;
