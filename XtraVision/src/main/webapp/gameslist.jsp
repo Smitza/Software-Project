@@ -13,45 +13,7 @@
     List<Product> gameProducts = productDao.getGameProducts();
     if (!gameProducts.isEmpty()) {
 %>
-<script>
-    // Check if the browser supports the Web Speech API
-    if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
-        // Initialize SpeechRecognition object
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        const recognition = new SpeechRecognition();
 
-        // Define the searchGames function to trigger the search process
-        function searchGames(query) {
-            // Redirect to the controller with the search query
-            window.location.href = 'controller?action=searchGames&searchQuery=' + encodeURIComponent(query);
-        }
-
-        // Add event handler for when speech recognition is started
-        recognition.onstart = function() {
-            console.log('Speech recognition started');
-        };
-
-        // Add event handler for when speech recognition results are available
-        recognition.onresult = function(event) {
-            const transcript = event.results[0][0].transcript.trim();
-            console.log('Speech recognition result:', transcript);
-            searchGames(transcript); // Trigger search process with the recognized query
-        };
-
-        // Add event handler for speech recognition errors
-        recognition.onerror = function(event) {
-            console.error('Speech recognition error:', event.error);
-        };
-
-        // Function to start speech recognition
-        function startSpeechRecognition() {
-            recognition.start();
-        }
-    } else {
-        // Speech recognition not supported, display a message or fallback option
-        console.error('Speech recognition not supported in this browser');
-    }
-</script>
 <div style="background-image: url('images/gamebg.png'); background-size: cover; background-attachment: fixed">
 
     <div class="container p-3 align-content-center text-center">
