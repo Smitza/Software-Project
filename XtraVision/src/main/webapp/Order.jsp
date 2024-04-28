@@ -87,6 +87,7 @@
                                                 <p class="fw-bold mb-0">Order Details</p>
                                                 <p class="text-muted mb-0"><span class="fw-bold me-4">Total</span>&#x20AC;<%= totalPrice %></p>
                                         </div>
+
                                         <% double finalprice = totalPrice;
 
                                                         if(user.getMembership() == 3){

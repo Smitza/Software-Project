@@ -272,6 +272,8 @@
 
 <%
 
+    } else {
+        response.sendRedirect("index.jsp");
     }
 %>
 
