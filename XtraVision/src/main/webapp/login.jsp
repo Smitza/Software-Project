@@ -33,7 +33,6 @@
                                 <button class="btn btn-primary d-block w-100" value="submit" type="submit">Login</button>
                                 <input type ="hidden" name="action" value="login">
                             </div>
-                            <p class="text-white">Forgot your password?</p>
                         </form>
                     </div>
                 </div>

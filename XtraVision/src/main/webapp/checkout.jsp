@@ -18,15 +18,10 @@
         UserDao userdao = new UserDao("xtra");
         BillingInformation bi = userdao.getUserBillingInfo(loggedInUser.getId());
 
+        response.sendRedirect("billingInfo.jsp");
         if(bi != null){
 %>
-<%if(cartProducts.isEmpty()){ %>
-<div class="col-md-2 col-lg-2 col-xl-2">
-    <h3 class="text-black mb-0">No Products Added!</h3>
-</div>
-<%
-} else {
-%>
+
 <section style="background-image: url('images/shelfbg.png'); background-size: cover; background-attachment: fixed;">
     <div class="container py-5">
         <div class="row mb-4 d-flex justify-content-between align-items-center">
@@ -34,10 +29,16 @@
                 <div class="card-body p-0">
                     <div class="p-5">
                         <div class="d-flex justify-content-between align-items-center mb-5">
+                            <%if(cartProducts.isEmpty()){ %>
+                            <h1 class="fw-bold mb-0 text-black">No products added</h1>
+                            <%
+                            } else {
+                            %>
                             <h1 class="fw-bold mb-0 text-black">Review + Purchase</h1>
                         </div>
                         <hr class="my-4">
                         <%
+
                             for (Product p : cartProducts){
                                 totalPrice += p.getPrice() * p.getQuantity();
                         %>
@@ -54,7 +55,6 @@
                         </div>
                         <%
                             }
-                        }
                         %>
                         <hr class="my-4">
                         <div class="d-flex justify-content-between mb-3">
@@ -70,6 +70,7 @@
                     </div>
                     <form  action="controller"  method="post">
                         <div class="row gx-3 p-4">
+                            <h4 class="fw-bold mb-4 text-black">Confirm your details: </h4>
                             <div class="col-12">
                                 <div class="d-flex flex-column">
                                     <p class="text mb-1">Billing address</p>
@@ -164,10 +165,14 @@
                             <div class="col-12 pt-4">
                                 <button class="btn btn-primary d-block w-100" value="submit" type="submit">Pay &#x20AC;<%= totalPrice%></button>
                                 <input type="hidden" name="action" value="finishCheck">
+                                <input type="hidden" name="totalPrice" value="<%= totalPrice %>">
                             </div>
                         </div>
                     </form>
                 </div>
+                <%
+                    }
+                %>
                 <hr class="my-4">
                 <h6><a href="cart.jsp" class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i>Back to cart</a></h6>
             </div>

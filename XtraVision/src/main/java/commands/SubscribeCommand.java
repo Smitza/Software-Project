@@ -26,11 +26,11 @@ public class SubscribeCommand implements Command {
         UserDao userDao = new UserDao("xtra");
         User u = userDao.getUserById(userId);
         if(subscription.equals("gold")) {
-            u.setAdmin(3);
-            userDao.updateUser(u);
+            u.setMembership(3);
+            userDao.addMembership(u);
         } else if (subscription.equals("silver")) {
-            u.setAdmin(2);
-            userDao.updateUser(u);
+            u.setMembership(2);
+            userDao.addMembership(u);
         } else {
             destination = "error.jsp";
             String error = "Unexpected membership type";

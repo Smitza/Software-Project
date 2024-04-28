@@ -9,7 +9,7 @@ public class Payment {
     private int paymentId;
     private double amount;
     private LocalDate paymentDate;
-    private String paymentMethod; //Methods could be credit card,  paypal,  google pay or  voucher
+    private String paymentMethod;
 
     private static final int MAX_ID = 100;
     private static final int MAX_PRICE = 10000;
@@ -18,7 +18,8 @@ public class Payment {
     public Payment() {
     }
 
-    public Payment(double amount, LocalDate paymentDate, String paymentMethod) {
+    public Payment(int paymentId, double amount, LocalDate paymentDate, String paymentMethod) {
+        this.paymentId = paymentId;
         this.amount = amount;
         this.paymentDate = paymentDate;
         this.paymentMethod = paymentMethod;

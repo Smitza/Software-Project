@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public interface PaymentDaoInterface {
 
-    public int addPayment(int amount, String PaymentDate, String paymentMethod) throws DaoException;
+    public int addPayment(int userId, double amount, String paymentDate, String paymentMethod) throws DaoException;
 
     public int deletePaymentById(int pId) throws DaoException;
 
