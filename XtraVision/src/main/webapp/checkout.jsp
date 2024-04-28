@@ -73,37 +73,37 @@
                             <div class="col-12">
                                 <div class="d-flex flex-column">
                                     <p class="text mb-1">Billing address</p>
-                                    <input class="form-control mb-3" type="text" id="address1" name="address1" value="<%=  bi.getAddressLine1()   %>" required>
+                                    <input class="check-form mb-3" type="text" id="address1" name="address1" value="<%=  bi.getAddressLine1()   %>" required>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="d-flex flex-column">
                                     <p class="text mb-1">Billing address, line 2</p>
-                                    <input class="form-control mb-3" type="text" id="address2" name="address2" value="<%= bi.getAddressLine2()   %>" required>
+                                    <input class="check-form mb-3" type="text" id="address2" name="address2" value="<%= bi.getAddressLine2()   %>" required>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="d-flex flex-column">
                                     <p class="text mb-1">Phone number</p>
-                                    <input class="form-control mb-3" type="number" id="phonenumber" name="phonenumber" required>
+                                    <input class="check-form mb-3" type="number" id="phonenumber" name="phonenumber" required>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="d-flex flex-column">
                                     <p class="text mb-1">Card holder</p>
-                                    <input class="form-control mb-3" type="text" id="cardHolder" placeholder="Name " name="cardHolder" value="<%=  bi.getCardHolder()  %>" required>
+                                    <input class="check-form mb-3" type="text" id="cardHolder" placeholder="Name " name="cardHolder" value="<%=  bi.getCardHolder()  %>" required>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="d-flex flex-column">
                                     <p class="text mb-1">Card number</p>
-                                    <input class="form-control mb-3" type="number" id="cardNumber" placeholder="1234 5678 435678" name="cardNumber" value="<%=  bi.getCardNumber() %>" required>
+                                    <input class="check-form mb-3" type="number" id="cardNumber" placeholder="1234 5678 435678" name="cardNumber" value="<%=  bi.getCardNumber() %>" required>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="d-flex flex-column">
                                     <p class="text mb-1">Expiration month</p>
-                                    <select class="form-control mb-3" name='expireMM' id='expireMM'>
+                                    <select class="check-form mb-3" name='expireMM' id='expireMM'>
                                         <option value=''>Month</option>
                                         <option value='01'>January</option>
                                         <option value='02'>February</option>
@@ -123,7 +123,7 @@
                             <div class="col-2">
                                 <p class="text mb-1">Expiration year</p>
                                 <div class="d-flex flex-column">
-                                    <select class="form-control mb-3" name='expireYY' id='expireYY'>
+                                    <select class="check-form mb-3" name='expireYY' id='expireYY'>
                                         <option value=''>Year</option>
                                         <option value='20'>2020</option>
                                         <option value='21'>2021</option>
@@ -158,7 +158,7 @@
                             <div class="col-2">
                                 <div class="d-flex flex-column">
                                     <p class="text mb-1">Security code</p>
-                                    <input class="form-control mb-3" type="number" id="secNumb" name="secNumb" value="<%  if(bi != null){ bi.getSecNum(); }  %>" required>
+                                    <input class="check-form mb-3" type="number" id="secNumb" name="secNumb" value="<%  if(bi != null){ bi.getSecNum(); }  %>" required>
                                 </div>
                             </div>
                             <div class="col-12 pt-4">
@@ -168,6 +168,8 @@
                         </div>
                     </form>
                 </div>
+                <hr class="my-4">
+                <h6><a href="cart.jsp" class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i>Back to cart</a></h6>
             </div>
         </div>
     </div>

@@ -1,8 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <jsp:include page="head.jsp"/>
 
-<%--    -------------- MAIN CAROUSEL ------------------------%>
 
+<%--    -------------- MAIN CAROUSEL ------------------------%>
     <section id="carouselSection">
         <div id="carouselMain" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">
