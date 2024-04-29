@@ -23,8 +23,11 @@
                 User user = userDao.getUserById(loggedInUser.getId());
                 ProductDao productDao = new ProductDao("xtra");
                 DeliveryDao deliveryDao = new DeliveryDao("xtra");
+
                 int id = loggedInUser.getId();
                 List<Product> orders = productDao.getOrdersByUserId(id);
+
+
 
 %>
 <jsp:include page="head.jsp"/>
@@ -86,6 +89,10 @@
                                         <div class="d-flex justify-content-between pt-2">
                                                 <p class="fw-bold mb-0">Order Details</p>
                                                 <p class="text-muted mb-0"><span class="fw-bold me-4">Total</span>&#x20AC;<%= totalPrice %></p>
+                                        </div>
+                                        <div class="d-flex justify-content-between pt-2">
+                                                <p class="fw-bold mb-0">Order Details</p>
+                                                <p class="text-muted mb-0"><span class="fw-bold me-4">Delivery Status</span><%= deliveryDao.getDeliveryStatus(deliveryDao.getDeliveryId(id)) %></p>
                                         </div>
                                         <% double finalprice = totalPrice;
 

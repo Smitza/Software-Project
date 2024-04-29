@@ -58,4 +58,97 @@ public class DeliveryDao extends Dao implements DeliveryDaoInterface {
         return rowsAffected > 0;
     }
 
+    public int getDeliveryId(int useId){
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        int id = 0;
+
+        try {
+            con = this.getConnection();
+
+            String query = "select distinct id from products_users where userid = ?";
+            ps = con.prepareStatement(query);
+            ps.setInt(1, useId);
+
+            rs = ps.executeQuery();
+
+            while(rs.next()){
+                id = rs.getInt("ID");
+            }
+
+        } catch (SQLException e) {
+
+            System.out.println("Error Processing delivery data");
+
+        } finally {
+
+            try {
+
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    freeConnection(con);
+                }
+
+            } catch (SQLException e) {
+
+                System.out.println("Error closing connection");
+
+            }
+        }
+        return id;
+    }
+
+    public String getDeliveryStatus(int DeliveryId){
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String status = null;
+
+        try {
+            con = this.getConnection();
+
+            String query = "select delivery.status from delivery where delivery.deliveryid in ( select products_users.id from products_users where products_users.id = ? )";
+            ps = con.prepareStatement(query);
+
+            ps.setInt(1, DeliveryId);
+
+            rs = ps.executeQuery();
+
+            while (rs.next()){
+                status = rs.getString("STATUS");
+            }
+
+        } catch (SQLException e) {
+
+            System.out.println("Error Processing delivery data");
+
+        } finally {
+
+            try {
+
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    freeConnection(con);
+                }
+
+            } catch (SQLException e) {
+
+                System.out.println("Error closing connection");
+
+            }
+        }
+        return status;
+    }
+
 }
