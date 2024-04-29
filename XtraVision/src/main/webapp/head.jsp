@@ -19,55 +19,60 @@
     <title>EX-tra Deliveries</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark" style="background-image: linear-gradient(#fa0303, #ff960e 100%, #fff) ;">
-        <div class="container-fluid">
-            <a class="navbar-brand mx-auto" href="index.jsp"><img src="images/Xtra-Logo.png" width="300" alt="Return Home"></a>
-            <ul class="navbar-nav me-auto fs-3">
-                <li class="nav-item">
-                    <a class="nav-link" href="gameslist.jsp">Games</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="movieslist.jsp">Movies</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="tvlist.jsp">Tv-Shows</a>
-                </li>
-                <% User user  = (User) session.getAttribute("loggedInUser");
+<nav class="navbar navbar-expand-sm navbar-dark" style="background-image: linear-gradient(#fa0303, #ff960e 100%, #fff);">
+    <div class="container-fluid">
+        <a class="navbar-brand mx-auto" href="index.jsp"><img src="images/Xtra-Logo.png" width="300" alt="Return Home"></a>
+        <ul class="navbar-nav me-auto fs-3">
+            <li class="nav-item">
+                <a class="nav-link" href="gameslist.jsp">Games</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="movieslist.jsp">Movies</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="tvlist.jsp">Tv-Shows</a>
+            </li>
+            <% User user  = (User) session.getAttribute("loggedInUser");
 
-                    if(user != null){
-                %>
-                <li class="nav-item">
-                    <a class="nav-link" href="profile.jsp"><i class="fa fa-user"></i> Profile</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="cart.jsp"><i class="fa fa-cart-shopping"></i> Cart</a> <span id="cartBadge" class="badge"></span>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="controller?action=logout"><i class="fa fa-right-from-bracket"></i> Logout</a>
-                </li>
-                <% if(user.isAdmin() == 1 ) { %>
-                <li class="nav-item">
-                    <a class="nav-link" href="admincontrol.jsp"><i class="fa fa-user-tie"></i> Admin Control Panel</a>
-                </li>
-                <% }
-                    } else {
-                %>
-                <li class="nav-item">
-                    <a class="nav-link" href="login.jsp"><i class="fa fa-right-from-bracket"></i> Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="register.jsp"><i class="fa fa-address-card"></i> Register</a>
-                </li>
-                <%}%>
-                <li class="px-3 nav-item">
-                    <div id="google_translate_element"></div>
-                </li>
-                <script type="text/javascript">
-                    function googleTranslateElementInit() {
-                        new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
-                    }
-                </script>
-                <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-            </ul>
-        </div>
-    </nav>
+                if(user != null){
+            %>
+            <li class="nav-item">
+                <a class="nav-link" href="profile.jsp"><i class="fa fa-user"></i> Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="cart.jsp"><i class="fa fa-cart-shopping"></i> Cart</a> <span id="cartBadge" class="badge"></span>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="controller?action=logout"><i class="fa fa-right-from-bracket"></i> Logout</a>
+            </li>
+            <% if(user.isAdmin() == 1 ) { %>
+            <li class="nav-item">
+                <a class="nav-link" href="admincontrol.jsp"><i class="fa fa-user-tie"></i> Admin Control Panel</a>
+            </li>
+            <% }
+                if(user.IsDeliverer() == 1) { %>
+            <li class="nav-item">
+                <a class="nav-link" href="driver.jsp"><i class="fa-solid fa-car"></i> Driver Control Panel</a>
+            </li>
+            <% }
+            } else {
+            %>
+            <li class="nav-item">
+                <a class="nav-link" href="login.jsp"><i class="fa fa-right-from-bracket"></i> Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="register.jsp"><i class="fa fa-address-card"></i> Register</a>
+            </li>
+            <%}%>
+            <li class="px-3 nav-item">
+                <div id="google_translate_element"></div>
+            </li>
+            <script type="text/javascript">
+                function googleTranslateElementInit() {
+                    new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+                }
+            </script>
+            <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        </ul>
+    </div>
+</nav>

@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <jsp:include page="head.jsp"/>
 
-
 <%--    -------------- MAIN CAROUSEL ------------------------%>
     <section id="carouselSection">
         <div id="carouselMain" class="carousel slide" data-bs-ride="carousel">
@@ -46,6 +45,32 @@
 
 <%--    ----------------------- MEMBERSHIP ADS -------------------------%>
 
+    <div id="subModal" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-subscribe">
+            <div class="modal-content">
+                    <div class="modal-header justify-content-center">
+                        <div class="icon-box">
+                            <img class="w-50 h-50 fit-cover" src="images/xtragold.png">
+                        </div>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><span>&times;</span></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <h4>Subscribe</h4>
+                        <p>Subscribe to EX-Deliveries!.</p>
+                        <form action="controller" method="post">
+                            <input type="hidden" name="action" value="subscribe">
+                            <label for="subscription">Select Subscription Plan:</label>
+                            <select id="subscription" name="subscription">
+                                <option value="gold">Gold</option>
+                                <option value="silver">Silver</option>
+                            </select>
+                            <input type="submit" value="Subscribe">
+                        </form>
+                    </div>
+            </div>
+        </div>
+    </div>
+
     <section id="Memberships" style="background-image: linear-gradient(#fa0303, #ff960e 100%, #fff)">
         <div class="container py-4 py-xl-5" id="membership-container">
             <div class="bg-dark border rounded-3 border-5 border-dark overflow-hidden">
@@ -58,7 +83,7 @@
                             <p>- 4 free rentals per week<br>
                             <p>- GOLD deals on in-store & delivery rentals<br>
                             <br>
-                            <div class="my-3"><a class="btn btn-light btn-lg" role="button" href="subscribe.jsp">Subscribe</a></div>
+                            <div class="my-3"><a class="btn btn-light btn-lg" role="button" data-bs-toggle="modal" data-bs-target="#subModal">Subscribe</a></div>
                         </div>
                     </div>
                     <div class="col-md-6 order-first order-md-last" style="min-height: 250px;"><img class="w-100 h-100 fit-cover" src="images/xtragold.png"></div>

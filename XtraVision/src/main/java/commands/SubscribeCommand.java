@@ -11,7 +11,7 @@ public class SubscribeCommand implements Command {
     private HttpServletRequest request;
     private HttpServletResponse response;
     public SubscribeCommand(HttpServletRequest request, HttpServletResponse response) {
-        String destination = "subscribe.jsp";
+        String destination = "index.jsp";
         this.request = request;
         this.response = response;
     }
@@ -19,7 +19,7 @@ public class SubscribeCommand implements Command {
     @Override
     public String execute() {
         HttpSession session = request.getSession(true);
-        String destination = "subscribe.jsp";
+        String destination = "index.jsp";
         String subscription =request.getParameter("subscription");
         User loggedInUser = (User) request.getSession().getAttribute("loggedInUser");
         int userId = loggedInUser.getId();
