@@ -18,7 +18,7 @@
         UserDao userdao = new UserDao("xtra");
         BillingInformation bi = userdao.getUserBillingInfo(loggedInUser.getId());
 
-        response.sendRedirect("billingInfo.jsp");
+
         if(bi != null){
 %>
 
@@ -171,6 +171,8 @@
                     </form>
                 </div>
                 <%
+                    } else {
+                        response.sendRedirect("billingInfo.jsp");
                     }
                 %>
                 <hr class="my-4">
